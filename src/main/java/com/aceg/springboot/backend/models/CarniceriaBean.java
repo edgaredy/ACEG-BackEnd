@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class Carniceria implements Serializable {
+public class CarniceriaBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -34,7 +34,7 @@ public class Carniceria implements Serializable {
 	/**
 	 * id de la carniceria
 	 */
-	private Integer id;
+	private Integer idCarniceria;
 
 	/**
 	 * nombre de la carniceria
@@ -49,7 +49,7 @@ public class Carniceria implements Serializable {
 	/**
 	 * codigo postal donde esta ubicada la carniceria
 	 */
-	private String codigoPostal;
+	private String cp;
 
 	/**
 	 * telefono de la carniceria
@@ -64,20 +64,20 @@ public class Carniceria implements Serializable {
 	/**
 	 * id del estado al que pertenece la carniceria
 	 */
-	private String estadoId;
+	private String idEstado;
 
 	/**
-	 * @return the id
+	 * @return the idCarniceria
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdCarniceria() {
+		return idCarniceria;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idCarniceria the idCarniceria to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdCarniceria(Integer idCarniceria) {
+		this.idCarniceria = idCarniceria;
 	}
 
 	/**
@@ -109,17 +109,17 @@ public class Carniceria implements Serializable {
 	}
 
 	/**
-	 * @return the codigoPostal
+	 * @return the cp
 	 */
-	public String getCodigoPostal() {
-		return codigoPostal;
+	public String getCp() {
+		return cp;
 	}
 
 	/**
-	 * @param codigoPostal the codigoPostal to set
+	 * @param cp the cp to set
 	 */
-	public void setCodigoPostal(String codigoPostal) {
-		this.codigoPostal = codigoPostal;
+	public void setCp(String cp) {
+		this.cp = cp;
 	}
 
 	/**
@@ -151,17 +151,17 @@ public class Carniceria implements Serializable {
 	}
 
 	/**
-	 * @return the estadoId
+	 * @return the idEstado
 	 */
-	public String getEstadoId() {
-		return estadoId;
+	public String getIdEstado() {
+		return idEstado;
 	}
 
 	/**
-	 * @param estadoId the estadoId to set
+	 * @param idEstado the idEstado to set
 	 */
-	public void setEstadoId(String estadoId) {
-		this.estadoId = estadoId;
+	public void setIdEstado(String idEstado) {
+		this.idEstado = idEstado;
 	}
 
 }

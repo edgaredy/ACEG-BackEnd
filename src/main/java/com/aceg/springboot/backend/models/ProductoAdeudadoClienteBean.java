@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class ProductoAdeudadoCliente implements Serializable {
+public class ProductoAdeudadoClienteBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -35,17 +35,17 @@ public class ProductoAdeudadoCliente implements Serializable {
 	/**
 	 * id del producto adeudado del cliente
 	 */
-	private Integer id;
+	private Integer idProdAde;
 
 	/**
 	 * fecha de compra del producto adeudado
 	 */
-	private Date fecha_compra;
+	private Date fechaCompra;
 
 	/**
 	 * peso del prodcuto del producto adeudado
 	 */
-	private Integer peso_producto;
+	private Integer pesoProducto;
 
 	/**
 	 * costo total del prodcuto adeudado
@@ -60,48 +60,48 @@ public class ProductoAdeudadoCliente implements Serializable {
 	/**
 	 * id del cliente que adeuda el producto
 	 */
-	private Integer cliente_id;
+	private Integer idCliente;
 
 	/**
-	 * @return the id
+	 * @return the idProdAde
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdProdAde() {
+		return idProdAde;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idProdAde the idProdAde to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdProdAde(Integer idProdAde) {
+		this.idProdAde = idProdAde;
 	}
 
 	/**
-	 * @return the fecha_compra
+	 * @return the fechaCompra
 	 */
-	public Date getFecha_compra() {
-		return fecha_compra;
+	public Date getFechaCompra() {
+		return fechaCompra;
 	}
 
 	/**
-	 * @param fecha_compra the fecha_compra to set
+	 * @param fechaCompra the fechaCompra to set
 	 */
-	public void setFecha_compra(Date fecha_compra) {
-		this.fecha_compra = fecha_compra;
+	public void setFechaCompra(Date fechaCompra) {
+		this.fechaCompra = fechaCompra;
 	}
 
 	/**
-	 * @return the peso_producto
+	 * @return the pesoProducto
 	 */
-	public Integer getPeso_producto() {
-		return peso_producto;
+	public Integer getPesoProducto() {
+		return pesoProducto;
 	}
 
 	/**
-	 * @param peso_producto the peso_producto to set
+	 * @param pesoProducto the pesoProducto to set
 	 */
-	public void setPeso_producto(Integer peso_producto) {
-		this.peso_producto = peso_producto;
+	public void setPesoProducto(Integer pesoProducto) {
+		this.pesoProducto = pesoProducto;
 	}
 
 	/**
@@ -133,17 +133,17 @@ public class ProductoAdeudadoCliente implements Serializable {
 	}
 
 	/**
-	 * @return the cliente_id
+	 * @return the idCliente
 	 */
-	public Integer getCliente_id() {
-		return cliente_id;
+	public Integer getIdCliente() {
+		return idCliente;
 	}
 
 	/**
-	 * @param cliente_id the cliente_id to set
+	 * @param idCliente the idCliente to set
 	 */
-	public void setCliente_id(Integer cliente_id) {
-		this.cliente_id = cliente_id;
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 
 }

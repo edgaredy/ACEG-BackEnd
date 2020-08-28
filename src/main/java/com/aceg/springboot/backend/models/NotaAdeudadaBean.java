@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class NotaAdeudada implements Serializable {
+public class NotaAdeudadaBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -35,22 +35,22 @@ public class NotaAdeudada implements Serializable {
 	/**
 	 * id autoincrement in 1 start by 1
 	 */
-	private Integer id;
+	private Integer idNota;
 
 	/**
 	 * id de la nota adeudada
 	 */
-	private Integer id_nota;
+	private Integer idNotaProv;
 
 	/**
 	 * fecha en que se realiza la compra
 	 */
-	private Date fecha_compra;
+	private Date fechaCompra;
 
 	/**
 	 * peso del producto
 	 */
-	private String peso_producto;
+	private String pesoProducto;
 
 	/**
 	 * costo toatal del producto
@@ -65,67 +65,67 @@ public class NotaAdeudada implements Serializable {
 	/**
 	 * id del carnicero que adeuda la nota
 	 */
-	private Integer carnicero_id;
+	private Integer idCarnicero;
 
 	/**
 	 * id de la carniceria donde trabaja el carnicero que adeuda la nota
 	 */
-	private Integer carnicero_carniceria_id;
+	private Integer idCarniceria;
 
 	/**
-	 * @return the id
+	 * @return the idNota
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdNota() {
+		return idNota;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idNota the idNota to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdNota(Integer idNota) {
+		this.idNota = idNota;
 	}
 
 	/**
-	 * @return the id_nota
+	 * @return the idNotaProv
 	 */
-	public Integer getId_nota() {
-		return id_nota;
+	public Integer getIdNotaProv() {
+		return idNotaProv;
 	}
 
 	/**
-	 * @param id_nota the id_nota to set
+	 * @param idNotaProv the idNotaProv to set
 	 */
-	public void setId_nota(Integer id_nota) {
-		this.id_nota = id_nota;
+	public void setIdNotaProv(Integer idNotaProv) {
+		this.idNotaProv = idNotaProv;
 	}
 
 	/**
-	 * @return the fecha_compra
+	 * @return the fechaCompra
 	 */
-	public Date getFecha_compra() {
-		return fecha_compra;
+	public Date getFechaCompra() {
+		return fechaCompra;
 	}
 
 	/**
-	 * @param fecha_compra the fecha_compra to set
+	 * @param fechaCompra the fechaCompra to set
 	 */
-	public void setFecha_compra(Date fecha_compra) {
-		this.fecha_compra = fecha_compra;
+	public void setFechaCompra(Date fechaCompra) {
+		this.fechaCompra = fechaCompra;
 	}
 
 	/**
-	 * @return the peso_producto
+	 * @return the pesoProducto
 	 */
-	public String getPeso_producto() {
-		return peso_producto;
+	public String getPesoProducto() {
+		return pesoProducto;
 	}
 
 	/**
-	 * @param peso_producto the peso_producto to set
+	 * @param pesoProducto the pesoProducto to set
 	 */
-	public void setPeso_producto(String peso_producto) {
-		this.peso_producto = peso_producto;
+	public void setPesoProducto(String pesoProducto) {
+		this.pesoProducto = pesoProducto;
 	}
 
 	/**
@@ -157,31 +157,31 @@ public class NotaAdeudada implements Serializable {
 	}
 
 	/**
-	 * @return the carnicero_id
+	 * @return the idCarnicero
 	 */
-	public Integer getCarnicero_id() {
-		return carnicero_id;
+	public Integer getIdCarnicero() {
+		return idCarnicero;
 	}
 
 	/**
-	 * @param carnicero_id the carnicero_id to set
+	 * @param idCarnicero the idCarnicero to set
 	 */
-	public void setCarnicero_id(Integer carnicero_id) {
-		this.carnicero_id = carnicero_id;
+	public void setIdCarnicero(Integer idCarnicero) {
+		this.idCarnicero = idCarnicero;
 	}
 
 	/**
-	 * @return the carnicero_carniceria_id
+	 * @return the idCarniceria
 	 */
-	public Integer getCarnicero_carniceria_id() {
-		return carnicero_carniceria_id;
+	public Integer getIdCarniceria() {
+		return idCarniceria;
 	}
 
 	/**
-	 * @param carnicero_carniceria_id the carnicero_carniceria_id to set
+	 * @param idCarniceria the idCarniceria to set
 	 */
-	public void setCarnicero_carniceria_id(Integer carnicero_carniceria_id) {
-		this.carnicero_carniceria_id = carnicero_carniceria_id;
+	public void setIdCarniceria(Integer idCarniceria) {
+		this.idCarniceria = idCarniceria;
 	}
 
 }

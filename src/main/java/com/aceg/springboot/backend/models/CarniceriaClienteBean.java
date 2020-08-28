@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class CarniceriaCliente implements Serializable {
+public class CarniceriaClienteBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -35,39 +35,39 @@ public class CarniceriaCliente implements Serializable {
 	/**
 	 * id del cliente
 	 */
-	private Integer cliente_id;
+	private Integer idCliente;
 
 	/**
 	 * id de la carniceria
 	 */
-	private Integer carniceria_id;
+	private Integer idCarniceria;
 
 	/**
-	 * @return the cliente_id
+	 * @return the idCliente
 	 */
-	public Integer getCliente_id() {
-		return cliente_id;
+	public Integer getIdCliente() {
+		return idCliente;
 	}
 
 	/**
-	 * @param cliente_id the cliente_id to set
+	 * @param idCliente the idCliente to set
 	 */
-	public void setCliente_id(Integer cliente_id) {
-		this.cliente_id = cliente_id;
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	/**
-	 * @return the carniceria_id
+	 * @return the idCarniceria
 	 */
-	public Integer getCarniceria_id() {
-		return carniceria_id;
+	public Integer getIdCarniceria() {
+		return idCarniceria;
 	}
 
 	/**
-	 * @param carniceria_id the carniceria_id to set
+	 * @param idCarniceria the idCarniceria to set
 	 */
-	public void setCarniceria_id(Integer carniceria_id) {
-		this.carniceria_id = carniceria_id;
+	public void setIdCarniceria(Integer idCarniceria) {
+		this.idCarniceria = idCarniceria;
 	}
 
 }

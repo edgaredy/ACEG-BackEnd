@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class Carnicero implements Serializable {
+public class CarniceroBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -34,7 +34,7 @@ public class Carnicero implements Serializable {
 	/**
 	 * id del carnicero
 	 */
-	private Integer id;
+	private Integer idCarnicero;
 
 	/**
 	 * nombre del carnicero
@@ -69,35 +69,35 @@ public class Carnicero implements Serializable {
 	/**
 	 * codigo postal de la vivienda del carnicero
 	 */
-	private String codigo_postal;
+	private String cp;
 
 	/**
 	 * sueldo mensual del carnicero
 	 */
-	private Integer sueldo_mensual;
+	private Integer sueldoMensul;
 
 	/**
 	 * id de la carniceria donde trabaja
 	 */
-	private Integer carniceria_id;
+	private Integer idCarniceria;
 
 	/**
 	 * id del estado en el que vive el carnicero
 	 */
-	private Integer estado_id;
+	private Integer idEstado;
 
 	/**
-	 * @return the id
+	 * @return the idCarnicero
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdCarnicero() {
+		return idCarnicero;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idCarnicero the idCarnicero to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdCarnicero(Integer idCarnicero) {
+		this.idCarnicero = idCarnicero;
 	}
 
 	/**
@@ -185,59 +185,59 @@ public class Carnicero implements Serializable {
 	}
 
 	/**
-	 * @return the codigo_postal
+	 * @return the cp
 	 */
-	public String getCodigo_postal() {
-		return codigo_postal;
+	public String getCp() {
+		return cp;
 	}
 
 	/**
-	 * @param codigo_postal the codigo_postal to set
+	 * @param cp the cp to set
 	 */
-	public void setCodigo_postal(String codigo_postal) {
-		this.codigo_postal = codigo_postal;
+	public void setCp(String cp) {
+		this.cp = cp;
 	}
 
 	/**
-	 * @return the sueldo_mensual
+	 * @return the sueldoMensul
 	 */
-	public Integer getSueldo_mensual() {
-		return sueldo_mensual;
+	public Integer getSueldoMensul() {
+		return sueldoMensul;
 	}
 
 	/**
-	 * @param sueldo_mensual the sueldo_mensual to set
+	 * @param sueldoMensul the sueldoMensul to set
 	 */
-	public void setSueldo_mensual(Integer sueldo_mensual) {
-		this.sueldo_mensual = sueldo_mensual;
+	public void setSueldoMensul(Integer sueldoMensul) {
+		this.sueldoMensul = sueldoMensul;
 	}
 
 	/**
-	 * @return the carniceria_id
+	 * @return the idCarniceria
 	 */
-	public Integer getCarniceria_id() {
-		return carniceria_id;
+	public Integer getIdCarniceria() {
+		return idCarniceria;
 	}
 
 	/**
-	 * @param carniceria_id the carniceria_id to set
+	 * @param idCarniceria the idCarniceria to set
 	 */
-	public void setCarniceria_id(Integer carniceria_id) {
-		this.carniceria_id = carniceria_id;
+	public void setIdCarniceria(Integer idCarniceria) {
+		this.idCarniceria = idCarniceria;
 	}
 
 	/**
-	 * @return the estado_id
+	 * @return the idEstado
 	 */
-	public Integer getEstado_id() {
-		return estado_id;
+	public Integer getIdEstado() {
+		return idEstado;
 	}
 
 	/**
-	 * @param estado_id the estado_id to set
+	 * @param idEstado the idEstado to set
 	 */
-	public void setEstado_id(Integer estado_id) {
-		this.estado_id = estado_id;
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
 	}
 
 }

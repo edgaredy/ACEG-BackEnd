@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class NotaPagada implements Serializable {
+public class NotaPagadaBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -35,27 +35,27 @@ public class NotaPagada implements Serializable {
 	/**
 	 * id autoincrement in 1 start by 1
 	 */
-	private Integer id;
+	private Integer idNota;
 
 	/**
 	 * id de la nota pagada
 	 */
-	private Integer id_nota;
+	private Integer idNotaProv;
 
 	/**
 	 * fecha en la que se realizo la compra del producto
 	 */
-	private Date fecha_compra_producto;
+	private Date fechaCompraProd;
 
 	/**
 	 * fecha en que se realizo el pago del prodcuto
 	 */
-	private Date fecha_pago_producto;
+	private Date fechaPagoProd;
 
 	/**
-	 * peso del prodcuto
+	 * peso del prodcuto en kg
 	 */
-	private String peso_producto;
+	private String pesoProducto;
 
 	/**
 	 * costo total del producto
@@ -70,81 +70,81 @@ public class NotaPagada implements Serializable {
 	/**
 	 * id del carnicero que realizo la compra
 	 */
-	private Integer carnicero_id;
+	private Integer idCarnicero;
 
 	/**
 	 * id de la carniceria del carnicero que realizo la compra
 	 */
-	private Integer carnicero_carniceria_id;
+	private Integer idCarniceria;
 
 	/**
-	 * @return the id
+	 * @return the idNota
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdNota() {
+		return idNota;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idNota the idNota to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdNota(Integer idNota) {
+		this.idNota = idNota;
 	}
 
 	/**
-	 * @return the id_nota
+	 * @return the idNotaProv
 	 */
-	public Integer getId_nota() {
-		return id_nota;
+	public Integer getIdNotaProv() {
+		return idNotaProv;
 	}
 
 	/**
-	 * @param id_nota the id_nota to set
+	 * @param idNotaProv the idNotaProv to set
 	 */
-	public void setId_nota(Integer id_nota) {
-		this.id_nota = id_nota;
+	public void setIdNotaProv(Integer idNotaProv) {
+		this.idNotaProv = idNotaProv;
 	}
 
 	/**
-	 * @return the fecha_compra_producto
+	 * @return the fechaCompraProd
 	 */
-	public Date getFecha_compra_producto() {
-		return fecha_compra_producto;
+	public Date getFechaCompraProd() {
+		return fechaCompraProd;
 	}
 
 	/**
-	 * @param fecha_compra_producto the fecha_compra_producto to set
+	 * @param fechaCompraProd the fechaCompraProd to set
 	 */
-	public void setFecha_compra_producto(Date fecha_compra_producto) {
-		this.fecha_compra_producto = fecha_compra_producto;
+	public void setFechaCompraProd(Date fechaCompraProd) {
+		this.fechaCompraProd = fechaCompraProd;
 	}
 
 	/**
-	 * @return the fecha_pago_producto
+	 * @return the fechaPagoProd
 	 */
-	public Date getFecha_pago_producto() {
-		return fecha_pago_producto;
+	public Date getFechaPagoProd() {
+		return fechaPagoProd;
 	}
 
 	/**
-	 * @param fecha_pago_producto the fecha_pago_producto to set
+	 * @param fechaPagoProd the fechaPagoProd to set
 	 */
-	public void setFecha_pago_producto(Date fecha_pago_producto) {
-		this.fecha_pago_producto = fecha_pago_producto;
+	public void setFechaPagoProd(Date fechaPagoProd) {
+		this.fechaPagoProd = fechaPagoProd;
 	}
 
 	/**
-	 * @return the peso_producto
+	 * @return the pesoProducto
 	 */
-	public String getPeso_producto() {
-		return peso_producto;
+	public String getPesoProducto() {
+		return pesoProducto;
 	}
 
 	/**
-	 * @param peso_producto the peso_producto to set
+	 * @param pesoProducto the pesoProducto to set
 	 */
-	public void setPeso_producto(String peso_producto) {
-		this.peso_producto = peso_producto;
+	public void setPesoProducto(String pesoProducto) {
+		this.pesoProducto = pesoProducto;
 	}
 
 	/**
@@ -176,31 +176,31 @@ public class NotaPagada implements Serializable {
 	}
 
 	/**
-	 * @return the carnicero_id
+	 * @return the idCarnicero
 	 */
-	public Integer getCarnicero_id() {
-		return carnicero_id;
+	public Integer getIdCarnicero() {
+		return idCarnicero;
 	}
 
 	/**
-	 * @param carnicero_id the carnicero_id to set
+	 * @param idCarnicero the idCarnicero to set
 	 */
-	public void setCarnicero_id(Integer carnicero_id) {
-		this.carnicero_id = carnicero_id;
+	public void setIdCarnicero(Integer idCarnicero) {
+		this.idCarnicero = idCarnicero;
 	}
 
 	/**
-	 * @return the carnicero_carniceria_id
+	 * @return the idCarniceria
 	 */
-	public Integer getCarnicero_carniceria_id() {
-		return carnicero_carniceria_id;
+	public Integer getIdCarniceria() {
+		return idCarniceria;
 	}
 
 	/**
-	 * @param carnicero_carniceria_id the carnicero_carniceria_id to set
+	 * @param idCarniceria the idCarniceria to set
 	 */
-	public void setCarnicero_carniceria_id(Integer carnicero_carniceria_id) {
-		this.carnicero_carniceria_id = carnicero_carniceria_id;
+	public void setIdCarniceria(Integer idCarniceria) {
+		this.idCarniceria = idCarniceria;
 	}
 
 }

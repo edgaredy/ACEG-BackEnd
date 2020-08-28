@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class ProductoProvNotaPag implements Serializable {
+public class ProductoProvNotaPagBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -35,58 +35,58 @@ public class ProductoProvNotaPag implements Serializable {
 	/**
 	 * id autoincrement in 1 start by 1
 	 */
-	private Integer nota_pagada_id_nota;
+	private Integer idNotaProv;
 
 	/**
 	 * id de la nota pagada
 	 */
-	private Integer nota_pagada_id;
+	private Integer idNota;
 
 	/**
 	 * id del producto del provedor
 	 */
-	private Integer prod_proveedor_id;
+	private Integer idProdProv;
 
 	/**
-	 * @return the nota_pagada_id_nota
+	 * @return the idNotaProv
 	 */
-	public Integer getNota_pagada_id_nota() {
-		return nota_pagada_id_nota;
+	public Integer getIdNotaProv() {
+		return idNotaProv;
 	}
 
 	/**
-	 * @param nota_pagada_id_nota the nota_pagada_id_nota to set
+	 * @param idNotaProv the idNotaProv to set
 	 */
-	public void setNota_pagada_id_nota(Integer nota_pagada_id_nota) {
-		this.nota_pagada_id_nota = nota_pagada_id_nota;
+	public void setIdNotaProv(Integer idNotaProv) {
+		this.idNotaProv = idNotaProv;
 	}
 
 	/**
-	 * @return the nota_pagada_id
+	 * @return the idNota
 	 */
-	public Integer getNota_pagada_id() {
-		return nota_pagada_id;
+	public Integer getIdNota() {
+		return idNota;
 	}
 
 	/**
-	 * @param nota_pagada_id the nota_pagada_id to set
+	 * @param idNota the idNota to set
 	 */
-	public void setNota_pagada_id(Integer nota_pagada_id) {
-		this.nota_pagada_id = nota_pagada_id;
+	public void setIdNota(Integer idNota) {
+		this.idNota = idNota;
 	}
 
 	/**
-	 * @return the prod_proveedor_id
+	 * @return the idProdProv
 	 */
-	public Integer getProd_proveedor_id() {
-		return prod_proveedor_id;
+	public Integer getIdProdProv() {
+		return idProdProv;
 	}
 
 	/**
-	 * @param prod_proveedor_id the prod_proveedor_id to set
+	 * @param idProdProv the idProdProv to set
 	 */
-	public void setProd_proveedor_id(Integer prod_proveedor_id) {
-		this.prod_proveedor_id = prod_proveedor_id;
+	public void setIdProdProv(Integer idProdProv) {
+		this.idProdProv = idProdProv;
 	}
 
 }

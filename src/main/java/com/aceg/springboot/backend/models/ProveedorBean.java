@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class Proveedor implements Serializable {
+public class ProveedorBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -34,17 +34,17 @@ public class Proveedor implements Serializable {
 	/**
 	 * id del proveedor
 	 */
-	private Integer id;
+	private Integer idProveedor;
 
 	/**
 	 * nombre de la empresa del proveedor
 	 */
-	private String nombre_empresa;
+	private String nombreEmpresa;
 
 	/**
 	 * nombre del proveedor
 	 */
-	private String nombre_proveedor;
+	private String nombreProveedor;
 
 	/**
 	 * apellido del proveedor
@@ -74,48 +74,48 @@ public class Proveedor implements Serializable {
 	/**
 	 * codigo postal del proveedor
 	 */
-	private String codigo_postal;
+	private String cp;
 
 	/**
-	 * @return the id
+	 * @return the idProveedor
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdProveedor() {
+		return idProveedor;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idProveedor the idProveedor to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdProveedor(Integer idProveedor) {
+		this.idProveedor = idProveedor;
 	}
 
 	/**
-	 * @return the nombre_empresa
+	 * @return the nombreEmpresa
 	 */
-	public String getNombre_empresa() {
-		return nombre_empresa;
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
 	}
 
 	/**
-	 * @param nombre_empresa the nombre_empresa to set
+	 * @param nombreEmpresa the nombreEmpresa to set
 	 */
-	public void setNombre_empresa(String nombre_empresa) {
-		this.nombre_empresa = nombre_empresa;
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
 	}
 
 	/**
-	 * @return the nombre_proveedor
+	 * @return the nombreProveedor
 	 */
-	public String getNombre_proveedor() {
-		return nombre_proveedor;
+	public String getNombreProveedor() {
+		return nombreProveedor;
 	}
 
 	/**
-	 * @param nombre_proveedor the nombre_proveedor to set
+	 * @param nombreProveedor the nombreProveedor to set
 	 */
-	public void setNombre_proveedor(String nombre_proveedor) {
-		this.nombre_proveedor = nombre_proveedor;
+	public void setNombreProveedor(String nombreProveedor) {
+		this.nombreProveedor = nombreProveedor;
 	}
 
 	/**
@@ -189,17 +189,17 @@ public class Proveedor implements Serializable {
 	}
 
 	/**
-	 * @return the codigo_postal
+	 * @return the cp
 	 */
-	public String getCodigo_postal() {
-		return codigo_postal;
+	public String getCp() {
+		return cp;
 	}
 
 	/**
-	 * @param codigo_postal the codigo_postal to setF
+	 * @param cp the cp to set
 	 */
-	public void setCodigo_postal(String codigo_postal) {
-		this.codigo_postal = codigo_postal;
+	public void setCp(String cp) {
+		this.cp = cp;
 	}
 
 }

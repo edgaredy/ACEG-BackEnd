@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class ProductoCarniceria implements Serializable {
+public class ProductoCarniceriaBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -34,7 +34,7 @@ public class ProductoCarniceria implements Serializable {
 	/**
 	 * id del producto de la carniceria
 	 */
-	private Integer id;
+	private Integer idProducto;
 
 	/**
 	 * nombre del producto
@@ -44,12 +44,12 @@ public class ProductoCarniceria implements Serializable {
 	/**
 	 * precio del prodcuto por kilo
 	 */
-	private Integer precio_kg;
+	private Integer precio;
 
 	/**
 	 * tipo de carne del producto (res/cerdo)
 	 */
-	private String tipo_carne;
+	private String tipoCarne;
 
 	/**
 	 * descripcion del producto
@@ -57,17 +57,17 @@ public class ProductoCarniceria implements Serializable {
 	private String descripcion;
 
 	/**
-	 * @return the id
+	 * @return the idProducto
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdProducto() {
+		return idProducto;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idProducto the idProducto to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdProducto(Integer idProducto) {
+		this.idProducto = idProducto;
 	}
 
 	/**
@@ -85,31 +85,31 @@ public class ProductoCarniceria implements Serializable {
 	}
 
 	/**
-	 * @return the precio_kg
+	 * @return the precio
 	 */
-	public Integer getPrecio_kg() {
-		return precio_kg;
+	public Integer getPrecio() {
+		return precio;
 	}
 
 	/**
-	 * @param precio_kg the precio_kg to set
+	 * @param precio the precio to set
 	 */
-	public void setPrecio_kg(Integer precio_kg) {
-		this.precio_kg = precio_kg;
+	public void setPrecio(Integer precio) {
+		this.precio = precio;
 	}
 
 	/**
-	 * @return the tipo_carne
+	 * @return the tipoCarne
 	 */
-	public String getTipo_carne() {
-		return tipo_carne;
+	public String getTipoCarne() {
+		return tipoCarne;
 	}
 
 	/**
-	 * @param tipo_carne the tipo_carne to set
+	 * @param tipoCarne the tipoCarne to set
 	 */
-	public void setTipo_carne(String tipo_carne) {
-		this.tipo_carne = tipo_carne;
+	public void setTipoCarne(String tipoCarne) {
+		this.tipoCarne = tipoCarne;
 	}
 
 	/**

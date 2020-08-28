@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class Municipio implements Serializable {
+public class MunicipioBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -34,7 +34,7 @@ public class Municipio implements Serializable {
 	/**
 	 * id del municipio
 	 */
-	private Integer id;
+	private Integer idMunicipio;
 
 	/**
 	 * nombre del municipio
@@ -44,20 +44,20 @@ public class Municipio implements Serializable {
 	/**
 	 * id del estado al que pertenece el municipio
 	 */
-	private Integer estado_id;
+	private Integer idEstado;
 
 	/**
-	 * @return the id
+	 * @return the idMunicipio
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdMunicipio() {
+		return idMunicipio;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idMunicipio the idMunicipio to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdMunicipio(Integer idMunicipio) {
+		this.idMunicipio = idMunicipio;
 	}
 
 	/**
@@ -75,17 +75,17 @@ public class Municipio implements Serializable {
 	}
 
 	/**
-	 * @return the estado_id
+	 * @return the idEstado
 	 */
-	public Integer getEstado_id() {
-		return estado_id;
+	public Integer getIdEstado() {
+		return idEstado;
 	}
 
 	/**
-	 * @param estado_id the estado_id to set
+	 * @param idEstado the idEstado to set
 	 */
-	public void setEstado_id(Integer estado_id) {
-		this.estado_id = estado_id;
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
 	}
 
 }

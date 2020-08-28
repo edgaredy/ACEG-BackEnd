@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class Pedido implements Serializable {
+public class PedidoBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -34,22 +34,22 @@ public class Pedido implements Serializable {
 	/**
 	 * id autoincrement in 1 start by 1
 	 */
-	private Integer id;
+	private Integer idPedido;
 
 	/**
 	 * id del pedido
 	 */
-	private Integer id_pedido;
+	private Integer idNota;
 
 	/**
 	 * peso del producto en kg
 	 */
-	private Integer peso_total_kg;
+	private Integer pesoTotal;
 
 	/**
 	 * fecha de entrega del pedido
 	 */
-	private Date fecha_entrega;
+	private Date fechaEntrega;
 
 	/**
 	 * costo total del pedido
@@ -64,67 +64,67 @@ public class Pedido implements Serializable {
 	/**
 	 * id de la carniceria que tiene el pedido
 	 */
-	private Integer carniceria_id;
+	private Integer idCarniceria;
 
 	/**
 	 * id del cliente que realizo el pedidoF
 	 */
-	private Integer cliente_id;
+	private Integer idCliente;
 
 	/**
-	 * @return the id
+	 * @return the idPedido
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdPedido() {
+		return idPedido;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idPedido the idPedido to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdPedido(Integer idPedido) {
+		this.idPedido = idPedido;
 	}
 
 	/**
-	 * @return the id_pedido
+	 * @return the idNota
 	 */
-	public Integer getId_pedido() {
-		return id_pedido;
+	public Integer getIdNota() {
+		return idNota;
 	}
 
 	/**
-	 * @param id_pedido the id_pedido to set
+	 * @param idNota the idNota to set
 	 */
-	public void setId_pedido(Integer id_pedido) {
-		this.id_pedido = id_pedido;
+	public void setIdNota(Integer idNota) {
+		this.idNota = idNota;
 	}
 
 	/**
-	 * @return the peso_total_kg
+	 * @return the pesoTotal
 	 */
-	public Integer getPeso_total_kg() {
-		return peso_total_kg;
+	public Integer getPesoTotal() {
+		return pesoTotal;
 	}
 
 	/**
-	 * @param peso_total_kg the peso_total_kg to set
+	 * @param pesoTotal the pesoTotal to set
 	 */
-	public void setPeso_total_kg(Integer peso_total_kg) {
-		this.peso_total_kg = peso_total_kg;
+	public void setPesoTotal(Integer pesoTotal) {
+		this.pesoTotal = pesoTotal;
 	}
 
 	/**
-	 * @return the fecha_entrega
+	 * @return the fechaEntrega
 	 */
-	public Date getFecha_entrega() {
-		return fecha_entrega;
+	public Date getFechaEntrega() {
+		return fechaEntrega;
 	}
 
 	/**
-	 * @param fecha_entrega the fecha_entrega to set
+	 * @param fechaEntrega the fechaEntrega to set
 	 */
-	public void setFecha_entrega(Date fecha_entrega) {
-		this.fecha_entrega = fecha_entrega;
+	public void setFechaEntrega(Date fechaEntrega) {
+		this.fechaEntrega = fechaEntrega;
 	}
 
 	/**
@@ -156,31 +156,31 @@ public class Pedido implements Serializable {
 	}
 
 	/**
-	 * @return the carniceria_id
+	 * @return the idCarniceria
 	 */
-	public Integer getCarniceria_id() {
-		return carniceria_id;
+	public Integer getIdCarniceria() {
+		return idCarniceria;
 	}
 
 	/**
-	 * @param carniceria_id the carniceria_id to set
+	 * @param idCarniceria the idCarniceria to set
 	 */
-	public void setCarniceria_id(Integer carniceria_id) {
-		this.carniceria_id = carniceria_id;
+	public void setIdCarniceria(Integer idCarniceria) {
+		this.idCarniceria = idCarniceria;
 	}
 
 	/**
-	 * @return the cliente_id
+	 * @return the idCliente
 	 */
-	public Integer getCliente_id() {
-		return cliente_id;
+	public Integer getIdCliente() {
+		return idCliente;
 	}
 
 	/**
-	 * @param cliente_id the cliente_id to set
+	 * @param idCliente the idCliente to set
 	 */
-	public void setCliente_id(Integer cliente_id) {
-		this.cliente_id = cliente_id;
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 
 }

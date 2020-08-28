@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class Cliente implements Serializable {
+public class ClienteBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -33,7 +33,7 @@ public class Cliente implements Serializable {
 	/**
 	 * id del carnicero
 	 */
-	private Integer id;
+	private Integer idCliente;
 
 	/**
 	 * nombre del carnicero
@@ -68,25 +68,25 @@ public class Cliente implements Serializable {
 	/**
 	 * codigo postal de la vivienda del carnicero
 	 */
-	private String codigo_postal;
+	private String cp;
 
 	/**
 	 * id del estado en el que vive el carnicero
 	 */
-	private Integer estado_id;
+	private Integer idEstado;
 
 	/**
-	 * @return the id
+	 * @return the idCliente
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdCliente() {
+		return idCliente;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idCliente the idCliente to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	/**
@@ -174,31 +174,31 @@ public class Cliente implements Serializable {
 	}
 
 	/**
-	 * @return the codigo_postal
+	 * @return the cp
 	 */
-	public String getCodigo_postal() {
-		return codigo_postal;
+	public String getCp() {
+		return cp;
 	}
 
 	/**
-	 * @param codigo_postal the codigo_postal to set
+	 * @param cp the cp to set
 	 */
-	public void setCodigo_postal(String codigo_postal) {
-		this.codigo_postal = codigo_postal;
+	public void setCp(String cp) {
+		this.cp = cp;
 	}
 
 	/**
-	 * @return the estado_id
+	 * @return the idEstado
 	 */
-	public Integer getEstado_id() {
-		return estado_id;
+	public Integer getIdEstado() {
+		return idEstado;
 	}
 
 	/**
-	 * @param estado_id the estado_id to set
+	 * @param idEstado the idEstado to set
 	 */
-	public void setEstado_id(Integer estado_id) {
-		this.estado_id = estado_id;
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
 	}
 
 }

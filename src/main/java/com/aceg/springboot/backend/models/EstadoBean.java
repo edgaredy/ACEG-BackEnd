@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class Estado implements Serializable {
+public class EstadoBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -33,7 +33,7 @@ public class Estado implements Serializable {
 	/**
 	 * id del estado
 	 */
-	private Integer id;
+	private Integer idEstado;
 
 	/**
 	 * nombre del estado
@@ -46,17 +46,17 @@ public class Estado implements Serializable {
 	private String abreviacion;
 
 	/**
-	 * @return the id
+	 * @return the idEstado
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getIdEstado() {
+		return idEstado;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param idEstado the idEstado to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
 	}
 
 	/**

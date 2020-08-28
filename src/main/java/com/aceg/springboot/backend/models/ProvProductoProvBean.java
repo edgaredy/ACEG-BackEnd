@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class ProvProdcutoProv implements Serializable {
+public class ProvProductoProvBean implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -35,39 +35,39 @@ public class ProvProdcutoProv implements Serializable {
 	/**
 	 * id del proveedor
 	 */
-	private Integer proveedor_id;
+	private Integer idProveedor;
 
 	/**
 	 * id del prodcuto del proveedor
 	 */
-	private Integer prod_proveedor_id;
+	private Integer idProdProv;
 
 	/**
-	 * @return the proveedor_id
+	 * @return the idProveedor
 	 */
-	public Integer getProveedor_id() {
-		return proveedor_id;
+	public Integer getIdProveedor() {
+		return idProveedor;
 	}
 
 	/**
-	 * @param proveedor_id the proveedor_id to set
+	 * @param idProveedor the idProveedor to set
 	 */
-	public void setProveedor_id(Integer proveedor_id) {
-		this.proveedor_id = proveedor_id;
+	public void setIdProveedor(Integer idProveedor) {
+		this.idProveedor = idProveedor;
 	}
 
 	/**
-	 * @return the prod_proveedor_id
+	 * @return the idProdProv
 	 */
-	public Integer getProd_proveedor_id() {
-		return prod_proveedor_id;
+	public Integer getIdProdProv() {
+		return idProdProv;
 	}
 
 	/**
-	 * @param prod_proveedor_id the prod_proveedor_id to set
+	 * @param idProdProv the idProdProv to set
 	 */
-	public void setProd_proveedor_id(Integer prod_proveedor_id) {
-		this.prod_proveedor_id = prod_proveedor_id;
+	public void setIdProdProv(Integer idProdProv) {
+		this.idProdProv = idProdProv;
 	}
 
 }

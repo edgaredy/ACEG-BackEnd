@@ -6,9 +6,11 @@ package com.aceg.springboot.backend.rowmapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.aceg.springboot.backend.models.Carniceria;
+import com.aceg.springboot.backend.models.CarniceriaBean;
 
 /**
  * Clase CarniceriaRowMapper que contiene el mapeo de la tabla CARNICERIA de la
@@ -18,25 +20,37 @@ import com.aceg.springboot.backend.models.Carniceria;
  * @version - 1.0
  * @since - 26/08/2020
  */
-public class CarniceriaRowMapper implements RowMapper<Carniceria> {
+public class CarniceriaRowMapper implements RowMapper<CarniceriaBean> {
+	
+	/**
+	 * La Constante LOGGER obtiene obtiene el Logger de la clase
+	 */
+	private static final Logger LOGGER = LoggerFactory.getLogger(CarniceriaRowMapper.class);
 
 	/**
-	 * Metodo que realiza el mapeo de la tabla CLIENTES de la base de datos
+	 * Metodo que realiza el mapeo de la tabla Carniceria de la DB
 	 * 
-	 * @param 		rs				- 	el nombre de la columna (pre-inicializado por la fila actual)
-	 * @param 		rowNum			-	el numero actual de la fila
-	 * @exception 	SQLException	-	Si una SQLException es encontrada al momento de obtener el valor (no es necesario realiza un catch a SQLException)
-	 * @return		cliente			- 	El valor resultante (puede ser null)
+	 * @param rs     			- 	El nombre de la columna (pre-inicializado por la fila actual)
+	 * @param rowNum 			- 	El numero actual de la fila
+	 * @exception SQLException 	- 	Si una SQLException es encontrada al momento de obtener el valor 
+	 * 							  	(no es necesario realiza un catch a SQLException)
+	 * @return cliente 			- 	El valor resultante (puede ser null)
 	 */
 	@Override
-	public Carniceria mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public CarniceriaBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
-		Carniceria carniceria = new Carniceria();
+		LOGGER.info("-- Ejecutando ROW MAPPER - Carniceria ");
 		
-		carniceria.setId(rs.getInt("ID_CARNICERIA_PK"));
-		
-		
-		return null;
+		CarniceriaBean carniceria = new CarniceriaBean();
+		carniceria.setIdCarniceria(rs.getInt("ID_CARNICERIA_PK"));
+		carniceria.setNombre(rs.getString("NOMBRE"));
+		carniceria.setDireccion(rs.getString("DIRECCION"));
+		carniceria.setCp(rs.getString("CP"));
+		carniceria.setTelefono(rs.getString("TELEFONO"));
+		carniceria.setDescripcion(rs.getString("DESCRIPCION"));
+		carniceria.setIdEstado(rs.getString("ID_ESTADO_FK"));
+
+		return carniceria;
 	}
 
 }
