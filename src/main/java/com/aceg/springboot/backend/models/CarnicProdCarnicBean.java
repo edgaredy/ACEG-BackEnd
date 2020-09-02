@@ -11,11 +11,13 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase CarniceriaProductoCarniceria que contiene los atributos
- * de la tabla CARN_PROD_CARN la cual es resultado de la ralacion n --> m de las
- * tablas CARNICERIA - PROD_CARNICERIA
+ * - Descripcion: Clase CarnicProdCarnicBean que contiene los atributos de la
+ * tabla de la DB la cual es resultado de la ralacion n --> m de las tablas
+ * ACEG_CARNICERIA - ACEG_PROD_CARNICERIA
  * 
- * - Nombre Tabla en DB: CARN_PROD_CARN
+ * - Numero de Metodos: 4
+ * 
+ * - Nombre Tabla en DB: ACEG_CARN_PROD_CARN
  * 
  * @author - edgar.rangel
  * @version - 1.0

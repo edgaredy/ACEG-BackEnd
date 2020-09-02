@@ -11,13 +11,14 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase ProvProdcutoProv que contiene los atributos de la tabla
- * PROV_PROD_PROV la cual es resultado de la ralacion n --> m de las tablas
- * PROVEEDOR - PROD_PROVEEDOR
+ * - Descripcion: Clase ProvProdcutoProvBean que contiene los atributos de la
+ * tabla de la DB la cual es resultado de la ralacion n --> m de las tablas
+ * ACEG_PROVEEDOR - ACEG_PROD_PROVEEDOR
  * 
- * - Nombre Tabla en DB: PROV_PROD_PROV
+ * - Numero de Metodos: 4
  * 
- * @author - edgar.rangel
+ * - Nombre Tabla en DB: ACEG_PROV_PROD_PROV
+ *  * @author - edgar.rangel
  * @version - 1.0
  * @since - 26/08/2020
  */

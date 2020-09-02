@@ -12,20 +12,22 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase NotaAdeudada que contiene los atributos de la tabla
- * NOTA_ADEUDADA
+ * - Descripcion: Clase NotaAdeudadaBean que contiene los atributos de la tabla
+ * de la DB, esta clase hereda los metodos y atributos de la clase
+ * NotaAdeudadaBeanFirstExt
  * 
- * - Nombre Tabla en DB: NOTA_ADEUDADA
+ * - Numero de Metodos: 10
+ * 
+ * - Nombre Tabla en DB: ACEG_NOTA_ADEUDADA
  * 
  * @author - edgar.rangel
  * @version - 1.0
  * @since - 25/08/2020
  */
-
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class NotaAdeudadaBean implements Serializable {
+public class NotaAdeudadaBean extends NotaAdeudadaBeanFirstExt implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -56,21 +58,6 @@ public class NotaAdeudadaBean implements Serializable {
 	 * costo toatal del producto
 	 */
 	private Integer total;
-
-	/**
-	 * descripcion de la nota adeudada
-	 */
-	private String descripcion;
-
-	/**
-	 * id del carnicero que adeuda la nota
-	 */
-	private Integer idCarnicero;
-
-	/**
-	 * id de la carniceria donde trabaja el carnicero que adeuda la nota
-	 */
-	private Integer idCarniceria;
 
 	/**
 	 * @return the idNota
@@ -140,48 +127,6 @@ public class NotaAdeudadaBean implements Serializable {
 	 */
 	public void setTotal(Integer total) {
 		this.total = total;
-	}
-
-	/**
-	 * @return the descripcion
-	 */
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	/**
-	 * @param descripcion the descripcion to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	/**
-	 * @return the idCarnicero
-	 */
-	public Integer getIdCarnicero() {
-		return idCarnicero;
-	}
-
-	/**
-	 * @param idCarnicero the idCarnicero to set
-	 */
-	public void setIdCarnicero(Integer idCarnicero) {
-		this.idCarnicero = idCarnicero;
-	}
-
-	/**
-	 * @return the idCarniceria
-	 */
-	public Integer getIdCarniceria() {
-		return idCarniceria;
-	}
-
-	/**
-	 * @param idCarniceria the idCarniceria to set
-	 */
-	public void setIdCarniceria(Integer idCarniceria) {
-		this.idCarniceria = idCarniceria;
 	}
 
 }

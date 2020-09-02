@@ -11,11 +11,13 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase ProductoProvNotaPag que contiene los atributos de la
- * tabla PROD_PROV_NOTA_PAG la cual es resultado de la ralacion n --> m de las
- * tablas PROD_PROVEEDOR - NOTA_PAGADA
+ * - Descripcion: Clase ProductoProvNotaPagBean que contiene los atributos de la
+ * tabla de la DB la cual es resultado de la ralacion n --> m de las tablas
+ * ACEG_PROD_PROVEEDOR - ACEG_NOTA_PAGADA
  * 
- * - Nombre Tabla en DB: PROD_PROV_NOTA_PAG
+ * - Numero de Metodos: 6
+ * 
+ * - Nombre Tabla en DB: ACEG_PROD_PROV_NOTA_PAG
  * 
  * @author - edgar.rangel
  * @version - 1.0

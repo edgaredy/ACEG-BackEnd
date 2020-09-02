@@ -11,10 +11,12 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase Municipio que contiene los atributos de la tabla
- * MUNICIPIO
+ * - Descripcion: Clase MunicipioBean que contiene los atributos de la tabla de
+ * la DB
  * 
- * - Nombre Tabla en DB: MUNICIPIO
+ * - Numero de Metodos: 6
+ * 
+ * - Nombre Tabla en DB: ACEG_MUNICIPIO
  * 
  * @author - edgar.rangel
  * @version - 1.0

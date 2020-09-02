@@ -11,10 +11,13 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase Proveedor que contiene los atributos de la tabla
- * PROVEEDOR
+ * - Descripcion: Clase ProveedorBean que contiene los atributos de la tabla de
+ * la DB, esta clase hereda los metodos y atributos de la clase
+ * ProveedorBeanFirstExt
  * 
- * - Nombre Tabla en DB: PROVEEDOR
+ * - Numero de Metodos: 10
+ * 
+ * - Nombre Tabla en DB: ACEG_PROVEEDOR
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -24,7 +27,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class ProveedorBean implements Serializable {
+public class ProveedorBean extends ProveedorBeanFirstExt implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -55,26 +58,6 @@ public class ProveedorBean implements Serializable {
 	 * genero del proveedor
 	 */
 	private char genero;
-
-	/**
-	 * email del proveedor
-	 */
-	private String email;
-
-	/**
-	 * telefono del proveedor
-	 */
-	private String telefono;
-
-	/**
-	 * direccion del proveedor
-	 */
-	private String direccion;
-
-	/**
-	 * codigo postal del proveedor
-	 */
-	private String cp;
 
 	/**
 	 * @return the idProveedor
@@ -144,62 +127,6 @@ public class ProveedorBean implements Serializable {
 	 */
 	public void setGenero(char genero) {
 		this.genero = genero;
-	}
-
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	/**
-	 * @return the telefono
-	 */
-	public String getTelefono() {
-		return telefono;
-	}
-
-	/**
-	 * @param telefono the telefono to set
-	 */
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	/**
-	 * @return the direccion
-	 */
-	public String getDireccion() {
-		return direccion;
-	}
-
-	/**
-	 * @param direccion the direccion to set
-	 */
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	/**
-	 * @return the cp
-	 */
-	public String getCp() {
-		return cp;
-	}
-
-	/**
-	 * @param cp the cp to set
-	 */
-	public void setCp(String cp) {
-		this.cp = cp;
 	}
 
 }

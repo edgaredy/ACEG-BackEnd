@@ -12,10 +12,13 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase ProductoAdeudadoCliente que contiene los atributos de la
- * tabla PROD_ADE_CLIENTE
+ * - Descripcion: Clase ProductoAdeudadoClienteBean que contiene los atributos
+ * de la tabla de la DB, esta clase hereda los metodos y atributos de la clase
+ * ProductoAdeudadoClienteBeanFirstExt
  * 
- * - Nombre Tabla en DB: PROD_ADE_CLIENTE
+ * - Numero de Metodos: 10
+ * 
+ * - Nombre Tabla en DB: ACEG_PROD_ADE_CLIENTE
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -25,7 +28,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class ProductoAdeudadoClienteBean implements Serializable {
+public class ProductoAdeudadoClienteBean extends ProductoAdeudadoClienteBeanFirstExt implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -56,11 +59,6 @@ public class ProductoAdeudadoClienteBean implements Serializable {
 	 * descripcion del producto adeudado
 	 */
 	private String descripcion;
-
-	/**
-	 * id del cliente que adeuda el producto
-	 */
-	private Integer idCliente;
 
 	/**
 	 * @return the idProdAde
@@ -130,20 +128,6 @@ public class ProductoAdeudadoClienteBean implements Serializable {
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	/**
-	 * @return the idCliente
-	 */
-	public Integer getIdCliente() {
-		return idCliente;
-	}
-
-	/**
-	 * @param idCliente the idCliente to set
-	 */
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
 	}
 
 }

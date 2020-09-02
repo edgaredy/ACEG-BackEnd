@@ -12,9 +12,12 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase Pedido que contiene los atributos de la tabla PEDIDO
+ * - Descripcion: Clase PedidoBean que contiene los atributos de la tabla de la
+ * DB, esta clase hereda los metodos y atributos de la clase PedidoBeanFirstExt
  * 
- * - Nombre Tabla en DB: PEDIDO
+ * - Numero de Metodos: 10
+ * 
+ * - Nombre Tabla en DB: ACEG_PEDIDO
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -24,7 +27,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class PedidoBean implements Serializable {
+public class PedidoBean extends PedidoBeanFirstExt implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -55,21 +58,6 @@ public class PedidoBean implements Serializable {
 	 * costo total del pedido
 	 */
 	private Integer total;
-
-	/**
-	 * descricpion del pedido
-	 */
-	private String descripcion;
-
-	/**
-	 * id de la carniceria que tiene el pedido
-	 */
-	private Integer idCarniceria;
-
-	/**
-	 * id del cliente que realizo el pedidoF
-	 */
-	private Integer idCliente;
 
 	/**
 	 * @return the idPedido
@@ -139,48 +127,6 @@ public class PedidoBean implements Serializable {
 	 */
 	public void setTotal(Integer total) {
 		this.total = total;
-	}
-
-	/**
-	 * @return the descripcion
-	 */
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	/**
-	 * @param descripcion the descripcion to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	/**
-	 * @return the idCarniceria
-	 */
-	public Integer getIdCarniceria() {
-		return idCarniceria;
-	}
-
-	/**
-	 * @param idCarniceria the idCarniceria to set
-	 */
-	public void setIdCarniceria(Integer idCarniceria) {
-		this.idCarniceria = idCarniceria;
-	}
-
-	/**
-	 * @return the idCliente
-	 */
-	public Integer getIdCliente() {
-		return idCliente;
-	}
-
-	/**
-	 * @param idCliente the idCliente to set
-	 */
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
 	}
 
 }

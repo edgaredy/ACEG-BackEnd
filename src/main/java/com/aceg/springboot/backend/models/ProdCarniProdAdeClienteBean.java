@@ -11,11 +11,13 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase ProdCarniProdAdeCliente que contiene los atributos de la
- * tabla PROD_CAR_PRO_ADE_CLI la cual es resultado de la ralacion n --> m de las
- * tablas PROD_CARNICERIA - PRO_ADE_CLIENTE
+ * - Descripcion: Clase ProdCarniProdAdeClienteBean que contiene los atributos
+ * de la tabla de la DB la cual es resultado de la ralacion n --> m de las
+ * tablas ACEG_PROD_CARNICERIA - ACEG_PRO_ADE_CLIENTE
  * 
- * - Nombre Tabla en DB: PROD_CAR_PRO_ADE_CLI
+ * - Numero de Metodos: 6
+ * 
+ * - Nombre Tabla en DB: ACEG_PROD_CAR_PRO_ADE_CLI
  * 
  * @author - edgar.rangel
  * @version - 1.0

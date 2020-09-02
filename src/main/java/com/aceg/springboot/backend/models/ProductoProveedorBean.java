@@ -11,10 +11,12 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase ProductoProveedor que contiene los atributos de la tabla
- * PROD_PROVEEDOR
+ * - Descripcion: Clase ProductoProveedorBean que contiene los atributos de la
+ * tabla de la DB
  * 
- * - Nombre Tabla en DB: PROD_PROVEEDOR
+ * - Numero de Metodos: 10
+ * 
+ * - Nombre Tabla en DB: ACEG_PROD_PROVEEDOR
  * 
  * @author - edgar.rangel
  * @version - 1.0

@@ -11,9 +11,12 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase Estado que contiene los atributos de la tabla ESTADO
+ * - Descripcion: Clase EstadoBean que contiene los atributos de la tabla de la
+ * DB
  * 
- * - Nombre Tabla en DB: ESTADO
+ * - Numero de Metodos: 6
+ * 
+ * - Nombre Tabla en DB: ACEG_ESTADO
  * 
  * @author - edgar.rangel
  * @version - 1.0

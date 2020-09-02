@@ -11,11 +11,13 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase ProveedorCarniceria que contiene los atributos de la
- * tabla PROVEEDOR_CARNICERIA la cual es resultado de la ralacion n --> m de las
- * tablas CARNICERIA - PROVEEDOR
+ * - Descripcion: Clase CarniceriaProveedorBean que contiene los atributos de la
+ * tabla de la DB la cual es resultado de la ralacion n --> m de las tablas
+ * ACEG_CARNICERIA - ACEG_PROVEEDOR
  * 
- * - Nombre Tabla en DB: PROVEEDOR_CARNICERIA
+ * - Numero de Metodos: 4
+ * 
+ * - Nombre Tabla en DB: ACEG_PROVEEDOR_CARNICERIA
  * 
  * @author - edgar.rangel
  * @version - 1.0

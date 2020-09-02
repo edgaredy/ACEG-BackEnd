@@ -11,10 +11,13 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 /**
- * - Descripcion: Clase Carniceria que contiene los atributos de la tabla
- * CARNICERIA
+ * - Descripcion: Clase CarniceriaBean que contiene algunos atributos de la
+ * tabla de la DB, esta clase hereda los metodos y atributos de la clase
+ * CarniceriaBeanFirstExt
  * 
- * - Nombre Tabla en DB: CARNICERIA
+ * - Numero de Metodos: 10
+ * 
+ * - Nombre Tabla en DB: ACEG_CARNICERIA
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -24,7 +27,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class CarniceriaBean implements Serializable {
+public class CarniceriaBean extends CarniceriaBeanFirstExt implements Serializable {
 
 	/**
 	 * SerialUID de la clase
@@ -55,16 +58,6 @@ public class CarniceriaBean implements Serializable {
 	 * telefono de la carniceria
 	 */
 	private String telefono;
-
-	/**
-	 * descripcion de la carniceria
-	 */
-	private String descripcion;
-
-	/**
-	 * id del estado al que pertenece la carniceria
-	 */
-	private String idEstado;
 
 	/**
 	 * @return the idCarniceria
@@ -134,34 +127,6 @@ public class CarniceriaBean implements Serializable {
 	 */
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-
-	/**
-	 * @return the descripcion
-	 */
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	/**
-	 * @param descripcion the descripcion to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	/**
-	 * @return the idEstado
-	 */
-	public String getIdEstado() {
-		return idEstado;
-	}
-
-	/**
-	 * @param idEstado the idEstado to set
-	 */
-	public void setIdEstado(String idEstado) {
-		this.idEstado = idEstado;
 	}
 
 }
