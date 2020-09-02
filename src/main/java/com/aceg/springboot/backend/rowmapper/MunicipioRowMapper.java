@@ -27,12 +27,26 @@ public class MunicipioRowMapper implements RowMapper<MunicipioBean> {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(MunicipioRowMapper.class);
 
+	/**
+	 * Metodo que realiza el mapeo de la tabla ACEG_MUNICIPIO de la DB
+	 * 
+	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
+	 * @param rowNum 		   -  El numero actual de la fila
+	 * @exception SQLException -  Si una SQLException es encontrada al momento de
+	 *                         	  obtener el valor (no es necesario realiza un catch a
+	 *                         	  SQLException)
+	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 */
 	@Override
 	public MunicipioBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		LOGGER.info("-- Ejecutando ROW MAPPER - Municipio");
-		
+
 		MunicipioBean municipio = new MunicipioBean();
+
+		municipio.setIdMunicipio(rs.getInt("ID_MUNICIPIO_PK"));
+		municipio.setMunicipio(rs.getString("MUNICIPIO"));
+		municipio.setIdEstado(rs.getInt("ID_ESTADO_FK"));
 
 		return municipio;
 	}

@@ -41,7 +41,7 @@ public class ProductoProveedorBean implements Serializable {
 	/**
 	 * nombre del producto
 	 */
-	private String prodcuto;
+	private String producto;
 
 	/**
 	 * precio del producto en kg
@@ -75,15 +75,15 @@ public class ProductoProveedorBean implements Serializable {
 	/**
 	 * @return the prodcuto
 	 */
-	public String getProdcuto() {
-		return prodcuto;
+	public String getProducto() {
+		return producto;
 	}
 
 	/**
 	 * @param prodcuto the prodcuto to set
 	 */
-	public void setProdcuto(String prodcuto) {
-		this.prodcuto = prodcuto;
+	public void setProducto(String producto) {
+		this.producto = producto;
 	}
 
 	/**

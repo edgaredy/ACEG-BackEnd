@@ -51,7 +51,7 @@ public class ClienteBean extends ClienteBeanFirstExt implements Serializable {
 	/**
 	 * genero del carnicero
 	 */
-	private char genero;
+	private String genero;
 
 	/**
 	 * email del carnicero
@@ -103,14 +103,14 @@ public class ClienteBean extends ClienteBeanFirstExt implements Serializable {
 	/**
 	 * @return the genero
 	 */
-	public char getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
 	/**
 	 * @param genero the genero to set
 	 */
-	public void setGenero(char genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 

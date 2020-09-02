@@ -27,12 +27,31 @@ public class PedidoRowMapper implements RowMapper<PedidoBean> {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(PedidoRowMapper.class);
 
+	/**
+	 * Metodo que realiza el mapeo de la tabla ACEG_PEDIDO de la DB
+	 * 
+	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
+	 * @param rowNum 		   -  El numero actual de la fila
+	 * @exception SQLException -  Si una SQLException es encontrada al momento de
+	 *                         	  obtener el valor (no es necesario realiza un catch a
+	 *                         	  SQLException)
+	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 */
 	@Override
 	public PedidoBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		LOGGER.info("-- Ejecutando ROW MAPPER - Pedido");
-		
+
 		PedidoBean pedido = new PedidoBean();
+
+		pedido.setIdPedido(rs.getInt("ID_PEDIDO_PK"));
+		pedido.setIdNota(rs.getInt("ID_NOTA_PK"));
+		pedido.setPesoTotal(rs.getInt("PESO_TOTAL_KG"));
+		pedido.setFechaEntrega(rs.getDate("FECHA_ENTREGA"));
+		pedido.setTotal(rs.getInt("TOTAL"));
+		pedido.setDescripcion(rs.getString("DESCRIPCION"));
+		pedido.setIdCarniceria(rs.getInt("ID_CARNICERIA_FK"));
+		pedido.setIdCliente(rs.getInt("ID_CLIENTE_FK"));
 
 		return pedido;
 	}

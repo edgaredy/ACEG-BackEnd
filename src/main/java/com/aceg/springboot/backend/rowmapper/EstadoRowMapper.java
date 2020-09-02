@@ -27,12 +27,26 @@ public class EstadoRowMapper implements RowMapper<EstadoBean> {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EstadoRowMapper.class);
 
+	/**
+	 * Metodo que realiza el mapeo de la tabla ACEG_ESTADO de la DB
+	 * 
+	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
+	 * @param rowNum 		   -  El numero actual de la fila
+	 * @exception SQLException -  Si una SQLException es encontrada al momento de
+	 *                         	  obtener el valor (no es necesario realiza un catch a
+	 *                         	  SQLException)
+	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 */
 	@Override
 	public EstadoBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		LOGGER.info("-- Ejecutando ROW MAPPER - Estado");
-		
+
 		EstadoBean estado = new EstadoBean();
+
+		estado.setIdEstado(rs.getInt("ID_ESTADO_PK"));
+		estado.setEstado(rs.getString("ESTADO"));
+		estado.setAbreviacion(rs.getString("ABREVIACION"));
 
 		return estado;
 	}

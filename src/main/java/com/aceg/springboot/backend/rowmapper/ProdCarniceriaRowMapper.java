@@ -27,13 +27,29 @@ public class ProdCarniceriaRowMapper implements RowMapper<ProductoCarniceriaBean
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProdCarniceriaRowMapper.class);
 
+	/**
+	 * Metodo que realiza el mapeo de la tabla ACEG_PROD_CARNICERIA de la DB
+	 * 
+	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
+	 * @param rowNum 		   -  El numero actual de la fila
+	 * @exception SQLException -  Si una SQLException es encontrada al momento de
+	 *                         	  obtener el valor (no es necesario realiza un catch a
+	 *                         	  SQLException)
+	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 */
 	@Override
 	public ProductoCarniceriaBean mapRow(ResultSet rs, int rowNum) throws SQLException {
-		
+
 		LOGGER.info("-- Ejecutando ROW MAPPER - ProductoCarniceria");
-		
+
 		ProductoCarniceriaBean productoCarniceria = new ProductoCarniceriaBean();
-		
+
+		productoCarniceria.setIdProducto(rs.getInt("ID_PRODUCTO_PK"));
+		productoCarniceria.setProducto(rs.getString("PRODUCTO"));
+		productoCarniceria.setPrecio(rs.getInt("PRECIO_KG"));
+		productoCarniceria.setTipoCarne(rs.getString("TIPO_CARNE"));
+		productoCarniceria.setDescripcion(rs.getString("DESCRIPCION"));
+
 		return productoCarniceria;
 	}
 

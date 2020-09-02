@@ -28,14 +28,14 @@ public class CarniceriaRowMapper implements RowMapper<CarniceriaBean> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CarniceriaRowMapper.class);
 
 	/**
-	 * Metodo que realiza el mapeo de la tabla Carniceria de la DB
+	 * Metodo que realiza el mapeo de la tabla ACEG_CARNICERIA de la DB
 	 * 
 	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
 	 * @param rowNum 		   -  El numero actual de la fila
 	 * @exception SQLException -  Si una SQLException es encontrada al momento de
 	 *                         	  obtener el valor (no es necesario realiza un catch a
 	 *                         	  SQLException)
-	 * @return cliente - El valor resultante (puede ser null)
+	 * @return cliente 		   -  El valor resultante (puede ser null)
 	 */
 	@Override
 	public CarniceriaBean mapRow(ResultSet rs, int rowNum) throws SQLException {

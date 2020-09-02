@@ -27,12 +27,26 @@ public class ProdCarnProdAdeClieRowMapper implements RowMapper<ProdCarniProdAdeC
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProdCarnProdAdeClieRowMapper.class);
 
+	/**
+	 * Metodo que realiza el mapeo de la tabla ACEG_PROD_CAR_PROD_ADE_CLI de la DB
+	 * 
+	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
+	 * @param rowNum 		   -  El numero actual de la fila
+	 * @exception SQLException -  Si una SQLException es encontrada al momento de
+	 *                         	  obtener el valor (no es necesario realiza un catch a
+	 *                         	  SQLException)
+	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 */
 	@Override
 	public ProdCarniProdAdeClienteBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		LOGGER.info("-- Ejecutando ROW MAPPER - ProdCarniProdAdeCliente");
 
 		ProdCarniProdAdeClienteBean prodCarnProdAdeCli = new ProdCarniProdAdeClienteBean();
+
+		prodCarnProdAdeCli.setIdProduAdeu(rs.getInt("ID_PROD_ADE_FK"));
+		prodCarnProdAdeCli.setIdCliente(rs.getInt("ID_CLIENTE_FK"));
+		prodCarnProdAdeCli.setIdProducto(rs.getInt("ID_PRODUCTO_FK"));
 
 		return prodCarnProdAdeCli;
 	}

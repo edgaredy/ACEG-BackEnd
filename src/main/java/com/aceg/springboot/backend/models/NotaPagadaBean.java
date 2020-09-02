@@ -28,7 +28,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
 															// separados por guion bajo, ejemplo_nombre_json
 @JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
-public class NotaPagadaBean implements Serializable {
+public class NotaPagadaBean extends NotaPagadaBeanFirstExt implements Serializable {
 
 	/**
 	 * SerialUID de la clase

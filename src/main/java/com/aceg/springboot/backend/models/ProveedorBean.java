@@ -57,7 +57,7 @@ public class ProveedorBean extends ProveedorBeanFirstExt implements Serializable
 	/**
 	 * genero del proveedor
 	 */
-	private char genero;
+	private String genero;
 
 	/**
 	 * @return the idProveedor
@@ -118,14 +118,14 @@ public class ProveedorBean extends ProveedorBeanFirstExt implements Serializable
 	/**
 	 * @return the genero
 	 */
-	public char getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
 	/**
 	 * @param genero the genero to set
 	 */
-	public void setGenero(char genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 

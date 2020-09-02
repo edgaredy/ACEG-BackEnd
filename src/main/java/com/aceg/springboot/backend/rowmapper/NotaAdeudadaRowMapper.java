@@ -27,12 +27,31 @@ public class NotaAdeudadaRowMapper implements RowMapper<NotaAdeudadaBean> {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotaAdeudadaRowMapper.class);
 
+	/**
+	 * Metodo que realiza el mapeo de la tabla ACEG_NOTA_ADEUDADA de la DB
+	 * 
+	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
+	 * @param rowNum 		   -  El numero actual de la fila
+	 * @exception SQLException -  Si una SQLException es encontrada al momento de
+	 *                         	  obtener el valor (no es necesario realiza un catch a
+	 *                         	  SQLException)
+	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 */
 	@Override
 	public NotaAdeudadaBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		LOGGER.info("-- Ejecutando ROW MAPPER - NotaAdeudada");
-		
+
 		NotaAdeudadaBean notaAdeudada = new NotaAdeudadaBean();
+
+		notaAdeudada.setIdNota(rs.getInt("ID_NOTA_PK"));
+		notaAdeudada.setIdNotaProv(rs.getInt("ID_NOTA_PROV_PK"));
+		notaAdeudada.setFechaCompra(rs.getDate("FECHA_COMPRA"));
+		notaAdeudada.setPesoProducto(rs.getString("PESO_PRODUCTO"));
+		notaAdeudada.setTotal(rs.getInt("TOTAL"));
+		notaAdeudada.setDescripcion(rs.getString("DESCRIPCION"));
+		notaAdeudada.setIdCarnicero(rs.getInt("ID_CARNICERO_FK"));
+		notaAdeudada.setIdCarniceria(rs.getInt("ID_CARNICERIA_FK"));
 
 		return notaAdeudada;
 	}

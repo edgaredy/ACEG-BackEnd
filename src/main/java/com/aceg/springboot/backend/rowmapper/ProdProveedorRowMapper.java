@@ -27,12 +27,28 @@ public class ProdProveedorRowMapper implements RowMapper<ProductoProveedorBean> 
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProdProveedorRowMapper.class);
 
+	/**
+	 * Metodo que realiza el mapeo de la tabla ACEG_PROD_PROVEEDOR de la DB
+	 * 
+	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
+	 * @param rowNum 		   -  El numero actual de la fila
+	 * @exception SQLException -  Si una SQLException es encontrada al momento de
+	 *                         	  obtener el valor (no es necesario realiza un catch a
+	 *                         	  SQLException)
+	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 */
 	@Override
 	public ProductoProveedorBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		LOGGER.info("-- Ejecutando ROW MAPPER - ProductoProveedor");
 
 		ProductoProveedorBean productoProveedor = new ProductoProveedorBean();
+
+		productoProveedor.setIdProduProv(rs.getInt("ID_PROD_PROV_PK"));
+		productoProveedor.setProducto(rs.getString("PRODUCTO"));
+		productoProveedor.setPrecio(rs.getInt("PRECIO_KG"));
+		productoProveedor.setTipoCarne(rs.getString("TIPO_CARNE"));
+		productoProveedor.setDescripcion(rs.getString("DESCRIPCION"));
 
 		return productoProveedor;
 	}

@@ -13,27 +13,47 @@ import org.springframework.jdbc.core.RowMapper;
 import com.aceg.springboot.backend.models.ClienteBean;
 
 /**
- * Clase ClienteRowMapper que contiene el mapeo de la tabla ACEG_CARNICERIA de la
- * base de datos
+ * Clase ClienteRowMapper que contiene el mapeo de la tabla ACEG_CARNICERIA de
+ * la base de datos
  * 
  * @author - edgar.rangel
  * @version - 1.0
  * @since - 01/09/2020
  */
 public class ClienteRowMapper implements RowMapper<ClienteBean> {
-	
+
 	/**
 	 * La Constante LOGGER que obtiene el Logger de la clase
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClienteRowMapper.class);
 
+	/**
+	 * Metodo que realiza el mapeo de la tabla ACEG_CLIENTE de la DB
+	 * 
+	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
+	 * @param rowNum 		   -  El numero actual de la fila
+	 * @exception SQLException -  Si una SQLException es encontrada al momento de
+	 *                         	  obtener el valor (no es necesario realiza un catch a
+	 *                         	  SQLException)
+	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 */
 	@Override
 	public ClienteBean mapRow(ResultSet rs, int rowNum) throws SQLException {
-		
+
 		LOGGER.info("-- Ejecutando ROW MAPPER - Cliente");
-		
+
 		ClienteBean cliente = new ClienteBean();
-		
+
+		cliente.setIdCliente(rs.getInt("ID_CLIENTE_PK"));
+		cliente.setNombre(rs.getString("NOMBRE"));
+		cliente.setApellido(rs.getString("APELLIDO"));
+		cliente.setGenero(rs.getString("GENERO"));
+		cliente.setEmail(rs.getString("EMAIL"));
+		cliente.setTelefono(rs.getString("TELEFONO"));
+		cliente.setDireccion(rs.getString("DIRECCION"));
+		cliente.setCp(rs.getString("CP"));
+		cliente.setIdEstado(rs.getInt("ID_ESTADO_FK"));
+
 		return cliente;
 	}
 
