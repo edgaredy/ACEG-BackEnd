@@ -55,6 +55,7 @@ public class CarniceroRowMapper implements RowMapper<CarniceroBean> {
 		carnicero.setSueldoMensul(rs.getInt("SUELDO_MENSUAL"));
 		carnicero.setIdCarniceria(rs.getInt("ID_CARNICERIA_FK"));
 		carnicero.setIdEstado(rs.getInt("ID_ESTADO_FK"));
+		carnicero.setPassword(rs.getString("PASSWORD"));
 
 		return carnicero;
 	}

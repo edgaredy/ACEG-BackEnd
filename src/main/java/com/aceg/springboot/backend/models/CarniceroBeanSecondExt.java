@@ -38,6 +38,11 @@ public class CarniceroBeanSecondExt implements Serializable {
 	private Integer idEstado;
 
 	/**
+	 * contraseña de acceso del carnicero
+	 */
+	private String password;
+
+	/**
 	 * @return the idEstado
 	 */
 	public Integer getIdEstado() {
@@ -49,6 +54,20 @@ public class CarniceroBeanSecondExt implements Serializable {
 	 */
 	public void setIdEstado(Integer idEstado) {
 		this.idEstado = idEstado;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

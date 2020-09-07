@@ -8,13 +8,13 @@
 	</Properties>
 
 	<Appenders>
-	
-		
-		
-		<Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
-			<PatternLayout disableAnsi="false" pattern="%d{${LOG_DATEFORMAT_PATTERN:-dd-MM-yy HH:mm:ss.SSS}},  %highlight{${LOG_LEVEL_PATTERN:-%5p}},  %style{${sys:PID}}{red},  [%25.25t],  %style{%-40.40C{1.}}{} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+		<Console name="ConsoleAppender" target="SYSTEM_OUT"
+			follow="true">
+			<PatternLayout disableAnsi="false"
+				pattern="%d{${LOG_DATEFORMAT_PATTERN:-dd-MM-yy HH:mm:ss.SSS}},  %highlight{${LOG_LEVEL_PATTERN:-%5p}},  %style{${sys:PID}}{red},  [%25.25t],  %style{%-40.40C{1.}}{} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
 		</Console>
-		
+
 		<RollingFile name="FileAppender" fileName="logs/aceg.log"
 			filePattern="logs/aceg-%d{yyyy-MM-dd}-%i.log">
 			<PatternLayout>

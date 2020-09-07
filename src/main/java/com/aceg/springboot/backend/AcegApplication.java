@@ -8,9 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Esta es la clase principal que inicia la aplicacion de Spring Boot. En ella
- * se puede agregar el escaneo de distintos paquetes para que sean cargados en
- * el contexto de Spring
+ * - Descripcion: Esta es la clase principal que inicia la aplicacion de Spring
+ * Boot. En ella se puede agregar el escaneo de distintos paquetes para que sean
+ * cargados en el contexto de Spring
+ * 
+ * - Numero de Metodos: 2
  * 
  * @author - edgar.rangel
  * @version - 1.0
