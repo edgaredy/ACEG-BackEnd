@@ -5,17 +5,10 @@ package com.aceg.springboot.backend.models;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
-
 /**
- * - Descripcion: Clase EstadoBean que contiene los atributos de la tabla de la
- * DB
- * 
+ * - Descripcion: Clase EstadoBean que contiene los atributos de la tabla 
+ * de la DB
  * - Numero de Metodos: 6
- * 
  * - Nombre Tabla en DB: ACEG_ESTADO
  * 
  * @author - edgar.rangel
@@ -23,9 +16,6 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
  * @since - 25/08/2020
  */
 
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class) // los atributos del json siempre seran en minusculas y
-															// separados por guion bajo, ejemplo_nombre_json
-@JsonInclude(Include.NON_EMPTY) // el json no retorna valores vacios
 public class EstadoBean implements Serializable {
 
 	/**

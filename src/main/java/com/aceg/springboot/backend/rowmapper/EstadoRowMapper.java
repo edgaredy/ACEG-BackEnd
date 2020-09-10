@@ -20,10 +20,11 @@ import com.aceg.springboot.backend.models.EstadoBean;
  * @version - 1.0
  * @since - 01/09/2020
  */
+
 public class EstadoRowMapper implements RowMapper<EstadoBean> {
 
 	/**
-	 * La Constante LOGGER que obtiene el Logger de la clase
+	 * La Constante LOGGER para registro de logs
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EstadoRowMapper.class);
 
@@ -35,7 +36,7 @@ public class EstadoRowMapper implements RowMapper<EstadoBean> {
 	 * @exception SQLException -  Si una SQLException es encontrada al momento de
 	 *                         	  obtener el valor (no es necesario realiza un catch a
 	 *                         	  SQLException)
-	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 * @return estado 		   -  El valor resultante (puede ser null)
 	 */
 	@Override
 	public EstadoBean mapRow(ResultSet rs, int rowNum) throws SQLException {

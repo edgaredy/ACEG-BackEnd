@@ -10,23 +10,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.aceg.springboot.backend.models.MunicipioBean;
+import com.aceg.springboot.backend.models.RoleBean;
 
 /**
- * Clase MunicipioRowMapper que contiene el mapeo de la tabla ACEG_CARNICERIA de
- * la base de datos
+ * Clase RolRowMapper que contiene el mapeo de la tabla ACEG_ROLE de la base de
+ * datos
  * 
  * @author - edgar.rangel
  * @version - 1.0
- * @since - 01/09/2020
+ * @since - 10/09/2020
  */
 
-public class MunicipioRowMapper implements RowMapper<MunicipioBean> {
-
+public class RolRowMapper implements RowMapper<RoleBean> {
+	
 	/**
 	 * La Constante LOGGER para registro de logs
 	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(MunicipioRowMapper.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RolRowMapper.class);
 
 	/**
 	 * Metodo que realiza el mapeo de la tabla ACEG_MUNICIPIO de la DB
@@ -36,20 +36,19 @@ public class MunicipioRowMapper implements RowMapper<MunicipioBean> {
 	 * @exception SQLException -  Si una SQLException es encontrada al momento de
 	 *                         	  obtener el valor (no es necesario realiza un catch a
 	 *                         	  SQLException)
-	 * @return municipio 	   -  El valor resultante (puede ser null)
+	 * @return roleBean 	   -  El valor resultante (puede ser null)
 	 */
 	@Override
-	public MunicipioBean mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-		LOGGER.info("-- Ejecutando ROW MAPPER - Municipio");
-
-		MunicipioBean municipio = new MunicipioBean();
-
-		municipio.setIdMunicipio(rs.getInt("ID_MUNICIPIO_PK"));
-		municipio.setMunicipio(rs.getString("MUNICIPIO"));
-		municipio.setIdEstado(rs.getInt("ID_ESTADO_FK"));
-
-		return municipio;
+	public RoleBean mapRow(ResultSet rs, int rowNum) throws SQLException {
+		
+		LOGGER.info("-- Ejecutando ROW MAPPER - ROLE");
+		
+		RoleBean roleBean = new RoleBean();
+		
+		roleBean.setRole(rs.getString("ROLE_PK"));
+		roleBean.setDescripcion(rs.getString("DESCRIPCION"));
+		
+		return roleBean;
 	}
 
 }

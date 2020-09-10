@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.aceg.springboot.backend.models.PedidoBean;
+import com.aceg.springboot.backend.models.pedido.PedidoBean;
 
 /**
  * Clase PedidoRowMapper que contiene el mapeo de la tabla ACEG_CARNICERIA de la
@@ -20,10 +20,11 @@ import com.aceg.springboot.backend.models.PedidoBean;
  * @version - 1.0
  * @since - 01/09/2020
  */
+
 public class PedidoRowMapper implements RowMapper<PedidoBean> {
 
 	/**
-	 * La Constante LOGGER que obtiene el Logger de la clase
+	 * La Constante LOGGER para registro de logs
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(PedidoRowMapper.class);
 
@@ -35,7 +36,7 @@ public class PedidoRowMapper implements RowMapper<PedidoBean> {
 	 * @exception SQLException -  Si una SQLException es encontrada al momento de
 	 *                         	  obtener el valor (no es necesario realiza un catch a
 	 *                         	  SQLException)
-	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 * @return pedido 		   -  El valor resultante (puede ser null)
 	 */
 	@Override
 	public PedidoBean mapRow(ResultSet rs, int rowNum) throws SQLException {

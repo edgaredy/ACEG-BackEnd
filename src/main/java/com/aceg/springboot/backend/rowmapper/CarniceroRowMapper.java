@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.aceg.springboot.backend.models.CarniceroBean;
+import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
 
 /**
  * Clase CarniceroRowMapper que contiene el mapeo de la tabla ACEG_CARNICERIA de
@@ -20,10 +20,11 @@ import com.aceg.springboot.backend.models.CarniceroBean;
  * @version - 1.0
  * @since - 01/09/2020
  */
+
 public class CarniceroRowMapper implements RowMapper<CarniceroBean> {
 
 	/**
-	 * La Constante LOGGER que obtiene el Logger de la clase
+	 * La Constante LOGGER para registro de logs
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(CarniceroRowMapper.class);
 
@@ -35,7 +36,7 @@ public class CarniceroRowMapper implements RowMapper<CarniceroBean> {
 	 * @exception SQLException -  Si una SQLException es encontrada al momento de
 	 *                         	  obtener el valor (no es necesario realiza un catch a
 	 *                         	  SQLException)
-	 * @return cliente 		   -  El valor resultante (puede ser null)
+	 * @return carnicero 	   -  El valor resultante (puede ser null)
 	 */
 	@Override
 	public CarniceroBean mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -52,7 +53,7 @@ public class CarniceroRowMapper implements RowMapper<CarniceroBean> {
 		carnicero.setTelefono(rs.getString("TELEFONO"));
 		carnicero.setDireccion(rs.getString("DIRECCION"));
 		carnicero.setCp(rs.getString("CP"));
-		carnicero.setSueldoMensul(rs.getInt("SUELDO_MENSUAL"));
+		carnicero.setSueldoMensual(rs.getInt("SUELDO_MENSUAL"));
 		carnicero.setIdCarniceria(rs.getInt("ID_CARNICERIA_FK"));
 		carnicero.setIdEstado(rs.getInt("ID_ESTADO_FK"));
 		carnicero.setPassword(rs.getString("PASSWORD"));

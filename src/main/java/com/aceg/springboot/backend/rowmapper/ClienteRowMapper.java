@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.aceg.springboot.backend.models.ClienteBean;
+import com.aceg.springboot.backend.models.cliente.ClienteBean;
 
 /**
  * Clase ClienteRowMapper que contiene el mapeo de la tabla ACEG_CARNICERIA de
@@ -20,10 +20,11 @@ import com.aceg.springboot.backend.models.ClienteBean;
  * @version - 1.0
  * @since - 01/09/2020
  */
+
 public class ClienteRowMapper implements RowMapper<ClienteBean> {
 
 	/**
-	 * La Constante LOGGER que obtiene el Logger de la clase
+	 * La Constante LOGGER para registro de logs
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClienteRowMapper.class);
 
