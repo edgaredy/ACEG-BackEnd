@@ -14,14 +14,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.jwt.JwtTokenUtil;
 import com.aceg.springboot.backend.models.JwtRequest;
 import com.aceg.springboot.backend.models.JwtResponse;
@@ -75,15 +75,15 @@ public class LoginController {
 	/**
 	 * Pagina de prueba de funcionamiento de seguridad JWT
 	 * 
-	 * @param name - nombre, valor por defecto es world
 	 * @return - hello + name
+	 * @exception AcegServiceException - excepcion de capa de servicio
 	 */
-	@RequestMapping("hello")
-	public String helloWorld(@RequestParam(value = "name", defaultValue = "World") String name) {
+	@GetMapping("/hello")
+	public String helloWorld() throws AcegServiceException {
 
 		LOGGER.info("Ejecutando LoginController - helloWorld()");
 
-		return "Hello " + name + "!!";
+		return "Hello World!!";
 	}
 
 	/**
@@ -93,17 +93,18 @@ public class LoginController {
 	 * @param username - nombre de usuario
 	 * @param password - contraseña
 	 * @return - usuario y contraseña
+	 * @exception AcegServiceException - excepcion de capa de servicio
 	 */
 	@PostMapping("/validar/datos/{username}/{password}")
 	public ResponseEntity<UsuarioBean> verifyUsernamePassword(@PathVariable String username,
-			@PathVariable String password) {
+			@PathVariable String password) throws AcegServiceException {
 
 		LOGGER.info("Ejecutando LoginController - verifyUsernamePassword()");
 
-		UsuarioBean loginBean = new UsuarioBean();
-		loginBean = iLoginService.getUsernamePassword(username, password);
+		UsuarioBean usuarioBean = new UsuarioBean();
+		usuarioBean = iLoginService.getUsernamePassword(username, password);
 
-		return new ResponseEntity<>(loginBean, HttpStatus.OK);
+		return new ResponseEntity<>(usuarioBean, HttpStatus.OK);
 	}
 
 	/**
@@ -112,9 +113,10 @@ public class LoginController {
 	 * @param authenticationRequest - bean con usuario y contraseña
 	 * @return - token
 	 * @throws Exception - excepcion en caso de que ocurra algun error
+	 * @exception AcegServiceException - excepcion de capa de servicio
 	 */
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+	@PostMapping("/authenticate")
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws AcegServiceException {
 		
 		LOGGER.info("Ejecutando LoginController - createAuthenticationToken()");
 
@@ -134,8 +136,9 @@ public class LoginController {
 	 * @param username - nombre de usuario
 	 * @param password - contraseña
 	 * @throws Exception - excepcion en caso de que ocurra algun error
+	 * @exception AcegServiceException - excepcion de capa de servicio
 	 */
-	private void authenticate(String username, String password) throws Exception {
+	private void authenticate(String username, String password) throws AcegServiceException {
 		
 		LOGGER.info("Ejecutando LoginController - authenticate()");
 		

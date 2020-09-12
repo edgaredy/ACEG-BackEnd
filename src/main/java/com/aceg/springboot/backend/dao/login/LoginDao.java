@@ -10,8 +10,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.aceg.springboot.backend.exception.AcegDaoException;
+import com.aceg.springboot.backend.exception.AcegRegistroInexistenteException;
 import com.aceg.springboot.backend.models.UsuarioBean;
 import com.aceg.springboot.backend.rowmapper.UsuarioRowMapper;
+import com.aceg.springboot.backend.util.ErrorEnum;
 import com.aceg.springboot.backend.util.LoginDbConstantes;
 
 /**
@@ -46,9 +49,10 @@ public class LoginDao implements ILoginDao {
 	 * @param username - nombre de usuario
 	 * @param password - contraseña
 	 * @return - nombre de usuario y contraseña
+	 * @throws AcegDaoException - error de base de datos
 	 */
 	@Override
-	public UsuarioBean getUsernamePassword(String username, String password) {
+	public UsuarioBean getUsernamePassword(String username, String password) throws AcegDaoException {
 
 		LOGGER.info("Ejecutando getUserbyUsernameAndPassword()");
 
@@ -58,10 +62,9 @@ public class LoginDao implements ILoginDao {
 			loginBean = jdbcTemplate.queryForObject(LoginDbConstantes.GETBYUSERNAME,
 					new Object[] { username, password }, new UsuarioRowMapper());
 		} catch (EmptyResultDataAccessException ex) {
-			LOGGER.debug("ERROR getUserbyUsernameAndPassword(): EmptyResultDataAccessException", ex);
-		} catch (RuntimeException re) {
-			LOGGER.debug("ERROR getUserbyUsernameAndPassword(): RuntimeException", re);
-		}
+			LOGGER.error("ERROR: ", ex);
+			throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERRO_AUT);
+		} 
 
 		return loginBean;
 	}

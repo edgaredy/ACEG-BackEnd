@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aceg.springboot.backend.dao.registro.IRegistroDao;
+import com.aceg.springboot.backend.exception.AcegDaoException;
+import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
 
 /**
@@ -41,13 +43,19 @@ public class RegistroService implements IRegistroService {
 	 * 
 	 * @param carnicero - Los datos del carnicero
 	 * @return - El carnicero registrado
+	 * @throws AcegServiceException - excepcion de servicio
 	 */
 	@Override
-	public CarniceroBean registrarCarnicero(CarniceroBean carnicero) {
+	public CarniceroBean registrarCarnicero(CarniceroBean carnicero) throws AcegServiceException {
 
-		LOGGER.debug("Entra registrarCarnicero()");
+		LOGGER.info("Entra registrarCarnicero()");
 
-		return registroDao.registrarCarnicero(carnicero);
+		try {
+			return registroDao.registrarCarnicero(carnicero);
+		} catch (AcegDaoException ex) {
+			LOGGER.error("ERROR: ", ex);
+			throw new AcegServiceException(ex.getError());
+		}
 	}
 
 }

@@ -3,6 +3,7 @@
  */
 package com.aceg.springboot.backend.dao.registro;
 
+import com.aceg.springboot.backend.exception.AcegDaoException;
 import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
 
 /**
@@ -23,7 +24,8 @@ public interface IRegistroDao {
 	 * 
 	 * @param carnicero - Los datos del carnicero
 	 * @return - El carnicero registrado
+	 * @throws AcegDaoException - error de base de datos
 	 */
-	public CarniceroBean registrarCarnicero(CarniceroBean carnicero);
+	public CarniceroBean registrarCarnicero(CarniceroBean carnicero) throws AcegDaoException;
 
 }

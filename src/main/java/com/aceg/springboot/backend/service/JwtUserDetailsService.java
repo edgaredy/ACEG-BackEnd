@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,11 @@ public class JwtUserDetailsService implements UserDetailsService {
 	 * Varible para registro de logs
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(JwtUserDetailsService.class);
+	
+	/**
+	 * Variable para mostar error de credenciales de acceso de usuario
+	 */
+	private static final String USER_NOT_EXIST = "Error de Autenticacion, El usuario o contraseña no existen, verifica tus credenciales";
 
 	/**
 	 * Referencia hacia JdbcTemplate
@@ -49,37 +55,39 @@ public class JwtUserDetailsService implements UserDetailsService {
 	 * Verifica la existencia del usuario y contraseña realizando una consulta a la DB
 	 * 
 	 * @param username - nombre del usuario
-	 * @exception RuntimeException - excepcion en caso de algun fallo
-	 * @exception UsernameNotFoundException - excepcion en caso de que no se encuentra el usuario / contraseña
 	 * @return - el usuario y contraseña
+	 * @throws UsernameNotFoundException - en caso de que no se encuentra el usuario / contraseña
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		LOGGER.debug("Ejecutando UserDetails - loadUserByUsername()");
+		LOGGER.info("Ejecutando UserDetails - loadUserByUsername()");
 
 		UsuarioBean loginBean = null;
 
 		try {
 			loginBean = jdbcTemplate.queryForObject(LoginDbConstantes.GETBYUSERNAME, new Object[] { username },
 					new UsuarioRowMapper());
-		} catch (Exception ex) {
-			LOGGER.error("El usuario o contraseña no existen, verifica tus credenciales");
-			throw new RuntimeException("El usuario o contraseña no existen, verifica tus credenciales");
+		} catch (EmptyResultDataAccessException ex) {
+			LOGGER.error("ERROR: ", ex);
+			throw new UsernameNotFoundException(USER_NOT_EXIST); 
 		}
 
 		if (loginBean.getUsername().equals(username)) {
 			return new User(username, "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
 					new ArrayList<>());
 		} else {
-			throw new UsernameNotFoundException("El usuario o contraseña no existen, verifica tus credenciales");
+			throw new UsernameNotFoundException(USER_NOT_EXIST);
 		}
 
 		/*
-		 * if ("javainuse".equals(username)) { return new User("javainuse",
-		 * "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6", new
-		 * ArrayList<>()); } else { throw new
-		 * UsernameNotFoundException("User not found with username: " + username); }
+		 * if ("javainuse".equals(username)) { 
+		 * 	return new User("javainuse","$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6", 
+		 *  		new ArrayList<>()); 
+		 * } else { 
+		 * 	throw new UsernameNotFoundException("User not found with username: " + username); 
+		 * }
+		 * 
 		 */
 	}
 

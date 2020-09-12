@@ -11,7 +11,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.aceg.springboot.backend.exception.AcegDaoException;
+import com.aceg.springboot.backend.exception.AcegRegistroInexistenteException;
 import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
+import com.aceg.springboot.backend.util.ErrorEnum;
 import com.aceg.springboot.backend.util.LoginDbConstantes;
 
 /**
@@ -44,12 +47,13 @@ public class RegistroDao implements IRegistroDao {
 	 * 
 	 * @param carnicero - Los datos del carnicero
 	 * @return - El carnicero registrado
+	 * @throws AcegDaoException - error de base de datos
 	 */
 	@Override
 	@Transactional
-	public CarniceroBean registrarCarnicero(CarniceroBean carnicero) {
+	public CarniceroBean registrarCarnicero(CarniceroBean carnicero) throws AcegDaoException {
 
-		LOGGER.info("Ejecutando insertCarnicero()");
+		LOGGER.info("Ejecutando registrarCarnicero()");
 
 		try {
 			jdbcTemplate.update(LoginDbConstantes.INSERT_CARNICERO, carnicero.getNombre(), carnicero.getApellido(),
@@ -57,10 +61,9 @@ public class RegistroDao implements IRegistroDao {
 					carnicero.getCp(), carnicero.getSueldoMensual(), carnicero.getIdCarniceria(),
 					carnicero.getIdEstado());
 		} catch (EmptyResultDataAccessException ex) {
-			LOGGER.error("ERROR insertCarnicero(): EmptyResultDataAccessException", ex);
-		} catch (RuntimeException re) {
-			LOGGER.error("ERROR insertCarnicero(): RuntimeException", re);
-		}
+			LOGGER.error("ERROR: ", ex);
+			throw new AcegRegistroInexistenteException(ErrorEnum.EXC_INEXISTENTE_BD);
+		} 
 
 		return carnicero;
 	}

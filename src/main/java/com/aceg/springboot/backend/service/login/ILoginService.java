@@ -3,6 +3,7 @@
  */
 package com.aceg.springboot.backend.service.login;
 
+import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.models.UsuarioBean;
 
 /**
@@ -23,7 +24,8 @@ public interface ILoginService {
 	 * @param username - nombre de usuario
 	 * @param password - contraseña
 	 * @return - nombre de usuario y contraseña
+	 * @throws AcegServiceException - excepcion de servicio
 	 */
-	public UsuarioBean getUsernamePassword(String username, String password);
+	public UsuarioBean getUsernamePassword(String username, String password) throws AcegServiceException;
 
 }

@@ -69,6 +69,12 @@ public final class LoginDbConstantes {
 	 * Constante que realiza un select por username 
 	 */
 	public static final String GETBYUSERNAME = "SELECT * FROM LOGIN WHERE USERNAME = ?";
+	
+	/**
+	 * Constructor privado de la clase
+	 */
+	private LoginDbConstantes () {
+	}
 
 	/**
 	 * - Metodo que contiene la consulta para insertar un nuevo carnicero en la DB -

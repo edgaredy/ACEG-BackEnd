@@ -3,6 +3,7 @@
  */
 package com.aceg.springboot.backend.service.registro;
 
+import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
 
 /**
@@ -23,7 +24,8 @@ public interface IRegistroService {
 	 * 
 	 * @param carnicero - Los datos del carnicero
 	 * @return - El carnicero registrado
+	 * @throws AcegServiceException - excepcion de servicio
 	 */
-	public CarniceroBean registrarCarnicero(CarniceroBean carnicero);
+	public CarniceroBean registrarCarnicero(CarniceroBean carnicero) throws AcegServiceException;
 
 }

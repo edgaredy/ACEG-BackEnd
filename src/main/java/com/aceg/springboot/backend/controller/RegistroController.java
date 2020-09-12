@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
 import com.aceg.springboot.backend.service.registro.IRegistroService;
 
@@ -50,9 +51,10 @@ public class RegistroController {
 	 * 
 	 * @param carnicero - Los datos del carnicero
 	 * @return - El carnicero registrado
+	 * @exception AcegServiceException - excepcion de capa de servicio
 	 */
 	@PostMapping("/insert/new/carnicero")
-	public ResponseEntity<CarniceroBean> registrarCarnicero(@RequestBody CarniceroBean carnicero) {
+	public ResponseEntity<CarniceroBean> registrarCarnicero(@RequestBody CarniceroBean carnicero) throws AcegServiceException {
 
 		LOGGER.info("-- Ejecutando CarniceroController - registrarCarnicero()");
 		

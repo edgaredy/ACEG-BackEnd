@@ -36,9 +36,9 @@ public class AcegApplication {
 	 */
 	public static void main(String[] args) {
 
-		SpringApplication.run(AcegApplication.class, args);
+		// sonar marca error con esto idk why "SpringApplication.run(AcegApplication.class, args);"
+		SpringApplication.run(AcegApplication.class);
 
-		LOGGER.debug("Debug Message!");
 		LOGGER.info("Info Message!");
 		LOGGER.warn("Warn Message!");
 		LOGGER.error("Error Message!");

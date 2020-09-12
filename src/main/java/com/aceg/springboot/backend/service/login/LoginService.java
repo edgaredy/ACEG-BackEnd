@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aceg.springboot.backend.dao.login.ILoginDao;
+import com.aceg.springboot.backend.exception.AcegDaoException;
+import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.models.UsuarioBean;
 
 /**
@@ -42,16 +44,24 @@ public class LoginService implements ILoginService {
 	 * @param username - nombre de usuario
 	 * @param password - contraseña
 	 * @return - nombre de usuario y contraseña
+	 * @throws AcegServiceException - excepcion de servicio
 	 */
 	@Override
-	public UsuarioBean getUsernamePassword(String username, String password) {
+	public UsuarioBean getUsernamePassword(String username, String password) throws AcegServiceException {
 
-		LOGGER.debug("Entra getUsernamePassword()");
+		LOGGER.info("Entra LoginService - getUsernamePassword()");
 
-		UsuarioBean loginBean = null;
+		UsuarioBean usuarioBean = null;
+		
+		try {
+			usuarioBean = loginDao.getUsernamePassword(username, password);
+		} catch(AcegDaoException ex) {
+			LOGGER.error("ERROR: ", ex);
+			throw new AcegServiceException(ex.getError());
+		}
 
-		loginBean = loginDao.getUsernamePassword(username, password);
+		LOGGER.info("Sale LoginService - getUsernamePassword()");
 
-		return loginBean;
+		return usuarioBean;
 	}
 }
