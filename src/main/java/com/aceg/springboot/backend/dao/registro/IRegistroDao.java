@@ -4,7 +4,9 @@
 package com.aceg.springboot.backend.dao.registro;
 
 import com.aceg.springboot.backend.exception.AcegDaoException;
-import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
+import com.aceg.springboot.backend.exception.AcegServiceException;
+import com.aceg.springboot.backend.models.usuario.UsuarioBean;
+import com.aceg.springboot.backend.util.ERole;
 
 /**
  * - Descripcion: Interfaz IRegistroDao de la aplicacion que realiza consultas a la
@@ -19,13 +21,19 @@ import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
 public interface IRegistroDao {
 
 	/**
-	 * Metodo que registra a un nuevo carnicero en la DB (INSERT)
-	 * Nombre de la tabla: ACEG_CARNICERO
+	 * Metodo que registra a un nuevo usuario en la DB (INSERT)
+	 * Nombre de la tabla: ACEG_USUARIO, ACEG_CLIENTE, ACEG_CARNICERO, ACEG_PROVEEDOR
+	 * dependiendo el tipo de usuario
 	 * 
-	 * @param carnicero - Los datos del carnicero
-	 * @return - El carnicero registrado
-	 * @throws AcegDaoException - error de base de datos
+	 * @param usuario - Bean con los datos del usuario
+	 * @param role - Role del usuario
+	 * @return - Bean con los datos del usuario registrado
+	 * @throws AcegServiceException - excepcion de servicio
 	 */
-	public CarniceroBean registrarCarnicero(CarniceroBean carnicero) throws AcegDaoException;
+	public UsuarioBean registrarUsuario(UsuarioBean usuario, ERole role) throws AcegDaoException;
+	
+	public boolean existsByUsername(String email) throws AcegDaoException;
+	
+	public boolean findByRole(ERole role) throws AcegDaoException;
 
 }

@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.aceg.springboot.backend.models.UsuarioBean;
+import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 
 /**
  * Clase UsuarioRowMapper que contiene el mapeo de la tabla ACEG_USUARIO de la
@@ -43,14 +43,14 @@ public class UsuarioRowMapper implements RowMapper<UsuarioBean> {
 
 		LOGGER.info("-- Ejecutando ROW MAPPER - LoginBean");
 
-		UsuarioBean loginBean = new UsuarioBean();
+		UsuarioBean usuario = new UsuarioBean();
 
-		loginBean.setPassword(rs.getString("ID_USUARIO_PK"));
-		loginBean.setUsername(rs.getString("EMAIL"));
-		loginBean.setPassword(rs.getString("PASSWORD"));
-		loginBean.setPassword(rs.getString("ROLE_FK"));
+		usuario.setIdUsuario(rs.getInt("ID_USUARIO_PK"));
+		usuario.setEmail(rs.getString("EMAIL"));
+		usuario.setPassword(rs.getString("PASSWORD"));
+		usuario.setRoleDb(rs.getString("ROLE_FK"));
 
-		return loginBean;
+		return usuario;
 	}
 
 }

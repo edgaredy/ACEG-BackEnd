@@ -12,10 +12,10 @@ import org.springframework.stereotype.Repository;
 
 import com.aceg.springboot.backend.exception.AcegDaoException;
 import com.aceg.springboot.backend.exception.AcegRegistroInexistenteException;
-import com.aceg.springboot.backend.models.UsuarioBean;
+import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 import com.aceg.springboot.backend.rowmapper.UsuarioRowMapper;
 import com.aceg.springboot.backend.util.ErrorEnum;
-import com.aceg.springboot.backend.util.LoginDbConstantes;
+import com.aceg.springboot.backend.util.LoginDbConstants;
 
 /**
  * - Descripcion: Clase LoginDao de la aplicacion que implementa la interfaz
@@ -52,15 +52,15 @@ public class LoginDao implements ILoginDao {
 	 * @throws AcegDaoException - error de base de datos
 	 */
 	@Override
-	public UsuarioBean getUsernamePassword(String username, String password) throws AcegDaoException {
+	public UsuarioBean getByUsername(String username) throws AcegDaoException {
 
-		LOGGER.info("Ejecutando getUserbyUsernameAndPassword()");
+		LOGGER.info("Ejecutando getByUsername()");
 
 		UsuarioBean loginBean = null;
 
 		try {
-			loginBean = jdbcTemplate.queryForObject(LoginDbConstantes.GETBYUSERNAME,
-					new Object[] { username, password }, new UsuarioRowMapper());
+			loginBean = jdbcTemplate.queryForObject(LoginDbConstants.GETBYUSERNAME,
+					new Object[] { username }, new UsuarioRowMapper());
 		} catch (EmptyResultDataAccessException ex) {
 			LOGGER.error("ERROR: ", ex);
 			throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERRO_AUT);

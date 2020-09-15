@@ -4,12 +4,13 @@
 package com.aceg.springboot.backend.service.registro;
 
 import com.aceg.springboot.backend.exception.AcegServiceException;
-import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
+import com.aceg.springboot.backend.models.usuario.UsuarioBean;
+import com.aceg.springboot.backend.util.ERole;
 
 /**
  * - Descripcion: Interfaz IRegistroService de la aplicacion que realiza consultas a la
  * DB para el registro de nuevos usuarios
- * - Numero de Metodos: 1
+ * - Numero de Metodos: 3
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -19,13 +20,31 @@ import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
 public interface IRegistroService {
 
 	/**
-	 * Metodo que registra a un nuevo carnicero en la DB (INSERT)
-	 * Nombre de la tabla: ACEG_CARNICERO
+	 * Metodo que registra a un nuevo usuario en la DB (INSERT)
+	 * Nombre de la tabla: ACEG_USUARIO, ACEG_CLIENTE, ACEG_CARNICERO, ACEG_PROVEEDOR
+	 * dependiendo el tipo de usuario
 	 * 
-	 * @param carnicero - Los datos del carnicero
-	 * @return - El carnicero registrado
+	 * @param usuario - Bean con los datos del usuario
+	 * @param role - Role del usuario
+	 * @return - Bean con los datos del usuario registrado
 	 * @throws AcegServiceException - excepcion de servicio
 	 */
-	public CarniceroBean registrarCarnicero(CarniceroBean carnicero) throws AcegServiceException;
+	public UsuarioBean registrarUsuario(UsuarioBean usuario, ERole role) throws AcegServiceException;
+	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 * @throws AcegServiceException
+	 */
+	public boolean existsByUsername(String email) throws AcegServiceException;
+	
+	/**
+	 * 
+	 * @param role
+	 * @return
+	 * @throws AcegServiceException
+	 */
+	public boolean findByRole(ERole role) throws AcegServiceException;
 
 }

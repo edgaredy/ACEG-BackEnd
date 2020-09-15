@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import com.aceg.springboot.backend.dao.registro.IRegistroDao;
 import com.aceg.springboot.backend.exception.AcegDaoException;
 import com.aceg.springboot.backend.exception.AcegServiceException;
-import com.aceg.springboot.backend.models.carnicero.CarniceroBean;
+import com.aceg.springboot.backend.models.usuario.UsuarioBean;
+import com.aceg.springboot.backend.util.ERole;
 
 /**
  * - Descripcion: Clase RegistroService de la aplicacion que implementa la interfaz
@@ -38,24 +39,65 @@ public class RegistroService implements IRegistroService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegistroService.class);
 
 	/**
-	 * Metodo que registra a un nuevo carnicero en la DB (INSERT)
-	 * Nombre de la tabla: ACEG_CARNICERO
+	 * Metodo que registra a un nuevo usuario en la DB (INSERT)
+	 * Nombre de la tabla: ACEG_USUARIO, ACEG_CLIENTE, ACEG_CARNICERO, ACEG_PROVEEDOR
+	 * dependiendo el tipo de usuario
 	 * 
-	 * @param carnicero - Los datos del carnicero
-	 * @return - El carnicero registrado
+	 * @param usuario - Bean con los datos del usuario
+	 * @param role - Role del usuario
+	 * @return - Bean con los datos del usuario registrado
 	 * @throws AcegServiceException - excepcion de servicio
 	 */
 	@Override
-	public CarniceroBean registrarCarnicero(CarniceroBean carnicero) throws AcegServiceException {
+	public UsuarioBean registrarUsuario(UsuarioBean usuario, ERole role) throws AcegServiceException {
 
-		LOGGER.info("Entra registrarCarnicero()");
+		LOGGER.info("Entra registrarUsuario()");
+		
+		UsuarioBean usuarioBean = null;	
 
 		try {
-			return registroDao.registrarCarnicero(carnicero);
+			usuarioBean = registroDao.registrarUsuario(usuario, role);
 		} catch (AcegDaoException ex) {
 			LOGGER.error("ERROR: ", ex);
 			throw new AcegServiceException(ex.getError());
 		}
+		
+		return usuarioBean;
+	}
+
+	@Override
+	public boolean existsByUsername(String email) throws AcegServiceException {
+		
+		LOGGER.info("Entra existsByUsername()");
+		
+		boolean resultado;
+		
+		try {
+			resultado = registroDao.existsByUsername(email);
+		} catch (AcegDaoException ex) {
+			LOGGER.error("ERROR: ", ex);
+			throw new AcegServiceException(ex.getError());
+		}
+		
+		return resultado;
+		
+	}
+
+	@Override
+	public boolean findByRole(ERole role) throws AcegServiceException {
+		
+		LOGGER.info("Entra findByRole()");
+		
+		boolean resultado;
+		
+		try {
+			resultado = registroDao.findByRole(role);
+		} catch (AcegDaoException ex) {
+			LOGGER.error("ERROR: ", ex);
+			throw new AcegServiceException(ex.getError());
+		}
+		
+		return resultado;
 	}
 
 }

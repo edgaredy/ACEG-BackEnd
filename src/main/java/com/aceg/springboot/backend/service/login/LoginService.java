@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.aceg.springboot.backend.dao.login.ILoginDao;
 import com.aceg.springboot.backend.exception.AcegDaoException;
 import com.aceg.springboot.backend.exception.AcegServiceException;
-import com.aceg.springboot.backend.models.UsuarioBean;
+import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 
 /**
  * - Descripcion: Clase LoginService de la aplicacion que implementa la interfaz
@@ -39,22 +39,21 @@ public class LoginService implements ILoginService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);
 
 	/**
-	 * Obtiene el nombre de usuario y contraseña del usuario
+	 * Obtiene el nombre de usuario 
 	 * 
 	 * @param username - nombre de usuario
-	 * @param password - contraseña
 	 * @return - nombre de usuario y contraseña
 	 * @throws AcegServiceException - excepcion de servicio
 	 */
 	@Override
-	public UsuarioBean getUsernamePassword(String username, String password) throws AcegServiceException {
+	public UsuarioBean getByUsername(String username) throws AcegServiceException {
 
 		LOGGER.info("Entra LoginService - getUsernamePassword()");
 
 		UsuarioBean usuarioBean = null;
 		
 		try {
-			usuarioBean = loginDao.getUsernamePassword(username, password);
+			usuarioBean = loginDao.getByUsername(username);
 		} catch(AcegDaoException ex) {
 			LOGGER.error("ERROR: ", ex);
 			throw new AcegServiceException(ex.getError());

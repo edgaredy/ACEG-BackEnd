@@ -5,11 +5,14 @@ package com.aceg.springboot.backend.models;
 
 import java.io.Serializable;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import com.aceg.springboot.backend.util.ERole;
+
 /**
- * - Descripcion: Clase RoleBean que contiene los atributos de la tabla de
- * la DB 
- * - Numero de Metodos: 4
- * - Nombre de la tabla: ACEG_ROLE
+ * - Descripcion: Clase RoleBean que contiene los atributos de la tabla de la DB
+ * - Numero de Metodos: 4 - Nombre de la tabla: ACEG_ROLE
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -32,6 +35,9 @@ public class RoleBean implements Serializable {
 	 * descripcion del role
 	 */
 	private String descripcion;
+
+	@Enumerated(EnumType.STRING)
+	private ERole name;
 
 	/**
 	 * @return the role
@@ -59,6 +65,22 @@ public class RoleBean implements Serializable {
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public RoleBean() {
+
+	}
+	
+	public RoleBean(ERole name) {
+		this.name = name;
+	}
+	
+	public ERole getName() {
+		return name;
+	}
+
+	public void setName(ERole name) {
+		this.name = name;
 	}
 
 }

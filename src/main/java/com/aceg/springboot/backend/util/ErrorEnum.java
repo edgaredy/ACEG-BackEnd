@@ -39,6 +39,8 @@ public enum ErrorEnum {
 	EXC_ERROR_BBDD("BD.200", "Error de Base de datos", "Error de Base de datos", AcegConstantes.ERROR, "", false),
 	
 	EXC_INEXISTENTE_BD("BD.201", "Registro inexistente", "Registro no existe, intente con otro valor", AcegConstantes.WARNING, "", false),
+	
+	EXC_ERROR_REGISTRO("BD.201", "Error al registrar el usuario", "Error al registrar el usuario, comprueba los campos", AcegConstantes.ERROR, "", false),
 
 	EXC_ERROR_CACHE("BD.202", "Error de Cache", "Error de Cache", AcegConstantes.ERROR, "", false)
 	

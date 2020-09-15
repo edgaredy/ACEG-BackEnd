@@ -4,7 +4,7 @@
 package com.aceg.springboot.backend.dao.login;
 
 import com.aceg.springboot.backend.exception.AcegDaoException;
-import com.aceg.springboot.backend.models.UsuarioBean;
+import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 
 /**
  * - Descripcion: Interfaz ILoginDao de la aplicacion que realiza consultas a la
@@ -19,13 +19,12 @@ import com.aceg.springboot.backend.models.UsuarioBean;
 public interface ILoginDao {
 
 	/**
-	 * Obtiene el nombre de usuario y contraseña del usuario
+	 * Obtiene el nombre de usuario 
 	 * 
 	 * @param username - nombre de usuario
-	 * @param password - contraseña
 	 * @return - nombre de usuario y contraseña
 	 * @throws AcegDaoException - error de base de datos
 	 */
-	public UsuarioBean getUsernamePassword(String username, String password) throws AcegDaoException;
+	public UsuarioBean getByUsername(String username) throws AcegDaoException;
 
 }
