@@ -45,6 +45,8 @@ public class JwtUtils {
 	 * @return
 	 */
 	public String generateJwtToken(Authentication authentication) {
+		
+		LOGGER.info("Ejecutando JwtUtils - generateJwtToken()");
 
 		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
@@ -70,6 +72,9 @@ public class JwtUtils {
 	 * @return - true si el token es valido, false si no es valido
 	 */
 	public boolean validateJwtToken(String authToken) {
+		
+		LOGGER.info("Ejecutando JwtUtils - validateJwtToken()");
+		
 		try {
 			Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(authToken);
 			return true;

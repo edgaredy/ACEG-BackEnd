@@ -23,13 +23,15 @@ import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.models.RoleBean;
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 import com.aceg.springboot.backend.service.registro.IRegistroService;
+import com.aceg.springboot.backend.util.AcegConstantes;
 import com.aceg.springboot.backend.util.ERole;
+import com.aceg.springboot.backend.util.ErrorEnum;
 import com.aceg.springboot.backend.util.MessageResponse;
 
 /**
  * - Descripcion: Clase RegistroController para le gestion de registro de un
- * nuevo usuario asi como la validacion de la existencia del mismo
- *  - Numero de Metodos: 4
+ * nuevo usuario asi como la validacion de la existencia del mismo 
+ * - Numero de Metodos: 4
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -39,6 +41,11 @@ import com.aceg.springboot.backend.util.MessageResponse;
 @RestController
 @RequestMapping("/aceg/api")
 public class RegistroController {
+	
+	/**
+	 * Constante Parametro invalido
+	 */
+	private static final String INVALID_PARAM = "Parametro invalido";
 
 	/**
 	 * Referencia hacia IRegistroService
@@ -57,11 +64,10 @@ public class RegistroController {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegistroController.class);
 
-	
 	/**
 	 * Metodo que registra a un nuevo usuario en la DB
 	 * 
-	 * Valida existencia del usuario en la DB
+	 * Valida existencia del usuario en la DB 
 	 * Valida existencia del rol del usuario
 	 * Registra al nuevo usuario
 	 * 
@@ -78,7 +84,7 @@ public class RegistroController {
 		exmailExiste = registroService.existsByUsername(usuario.getEmail());
 
 		if (exmailExiste) {
-			return ResponseEntity.badRequest().body(new MessageResponse("Error: El email ya esta registrado"));
+			return ResponseEntity.badRequest().body(new MessageResponse(AcegConstantes.ERROR_EX + "El email ya esta registrado"));
 		}
 
 		Set<RoleBean> roles = new HashSet<>();
@@ -86,57 +92,64 @@ public class RegistroController {
 		UsuarioBean datosUsuario = null;
 
 		switch (role) {
-		case "ADMINISTRADOR":
+		case AcegConstantes.ADMINISTRADOR:
 			UsuarioBean usrAdmin = null;
 			try {
-				roles.add(findByRole(ERole.ADMINISTRADOR));
-				usrAdmin = createInstance(usuario, "ADMINISTRADOR");
-				usrAdmin.setRole("ADMINISTRADOR");
+				roles.add(findByRole(ERole.ROLE_ADMINISTRADOR));
+				usrAdmin = createInstance(usuario, AcegConstantes.ADMINISTRADOR);
+				usrAdmin.setRole("ROLE_ADMINISTRADOR");
 				usrAdmin.setRoles(roles);
 				datosUsuario = usrAdmin;
-				registrarUsuario(usrAdmin, "ADMINISTRADOR");
-			} catch (AcegServiceException e) {
-				e.printStackTrace();
+				registrarUsuario(usrAdmin, AcegConstantes.ADMINISTRADOR);
+			} catch (AcegServiceException ex) {
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
+				throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 			}
 			break;
-		case "CARNICERO":
+		case AcegConstantes.CARNICERO:
 			UsuarioBean usrCarnicero = null;
 			try {
-				roles.add(findByRole(ERole.CARNICERO));
-				usrCarnicero = createInstance(usuario, "CARNICERO");
-				usrCarnicero.setRole("CARNICERO");
+				roles.add(findByRole(ERole.ROLE_CARNICERO));
+				usrCarnicero = createInstance(usuario, AcegConstantes.CARNICERO);
+				usrCarnicero.setRole("ROLE_CARNICERO");
 				usrCarnicero.setRoles(roles);
 				datosUsuario = usrCarnicero;
-				registrarUsuario(usrCarnicero, "CARNICERO");
-			} catch (AcegServiceException e) {
-				e.printStackTrace();
+				registrarUsuario(usrCarnicero, AcegConstantes.CARNICERO);
+			} catch (AcegServiceException ex) {
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
+				throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 			}
 			break;
-		case "CLIENTE":
+		case AcegConstantes.CLIENTE:
 			UsuarioBean usrCliente = null;
 			try {
-				roles.add(findByRole(ERole.CLIENTE));
-				usrCliente = createInstance(usuario, "CLIENTE");
-				usrCliente.setRole("CLIENTE");
+				roles.add(findByRole(ERole.ROLE_CLIENTE));
+				usrCliente = createInstance(usuario, AcegConstantes.CLIENTE);
+				usrCliente.setRole("ROLE_CLIENTE");
 				usrCliente.setRoles(roles);
 				datosUsuario = usrCliente;
-				registrarUsuario(usrCliente, "CLIENTE");
-			} catch (AcegServiceException e) {
-				e.printStackTrace();
+				registrarUsuario(usrCliente, AcegConstantes.CLIENTE);
+			} catch (AcegServiceException ex) {
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
+				throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 			}
 			break;
-		case "PROVEEDOR":
+		case AcegConstantes.PROVEEDOR:
 			UsuarioBean usrProveedor = null;
 			try {
-				roles.add(findByRole(ERole.PROVEEDOR));
-				usrProveedor = createInstance(usuario, "PROVEEDOR");
-				usrProveedor.setRole("PROVEEDOR");
+				roles.add(findByRole(ERole.ROLE_PROVEEDOR));
+				usrProveedor = createInstance(usuario, AcegConstantes.PROVEEDOR);
+				usrProveedor.setRole("ROLE_PROVEEDOR");
 				usrProveedor.setRoles(roles);
 				datosUsuario = usrProveedor;
-				registrarUsuario(usrProveedor, "PROVEEDOR");
-			} catch (AcegServiceException e) {
-				e.printStackTrace();
+				registrarUsuario(usrProveedor, AcegConstantes.PROVEEDOR);
+			} catch (AcegServiceException ex) {
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
+				throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 			}
+			break;
+		default:
+			LOGGER.error(INVALID_PARAM);
 			break;
 		}
 
@@ -144,11 +157,11 @@ public class RegistroController {
 	}
 
 	/**
-	 * Metodo que crea un nueva instancia de la clase UsuarioBean dependiendo del  
+	 * Metodo que crea un nueva instancia de la clase UsuarioBean dependiendo del
 	 * tipo de rol del usuario (CARNICERO, ADMINISTRADOR, CLIENTE, PROVEEDOR)
 	 * 
 	 * @param usuario - bean con los datos del usuario
-	 * @param role - rol del usuario
+	 * @param role    - rol del usuario
 	 * @return - bean con los datos especificos del usuario
 	 * @throws AcegServiceException - excepcion de capa de servicio
 	 */
@@ -158,22 +171,22 @@ public class RegistroController {
 
 		UsuarioBean usuarioBean = null;
 
-		if (role.equals("CARNICERO") || role.equals("ADMINISTRADOR")) {
+		if (role.equals(AcegConstantes.CARNICERO) || role.equals(AcegConstantes.ADMINISTRADOR)) {
 			usuarioBean = new UsuarioBean(usuario.getNombre(), usuario.getApellido(), usuario.getGenero(),
 					usuario.getEmail(), encoder.encode(usuario.getPassword()), usuario.getTelefono(),
 					usuario.getDireccion(), usuario.getCp(), usuario.getSueldoMensual(), usuario.getIdCarniceria(),
 					usuario.getIdEstado(), usuario.getRole());
-		} else if (role.equals("CLIENTE")) {
+		} else if (role.equals(AcegConstantes.CLIENTE)) {
 			usuarioBean = new UsuarioBean(usuario.getNombre(), usuario.getApellido(), usuario.getGenero(),
 					usuario.getEmail(), encoder.encode(usuario.getPassword()), usuario.getTelefono(),
 					usuario.getDireccion(), usuario.getCp(), usuario.getIdEstado(), usuario.getRole());
-		} else if (role.equals("PROVEEDOR")) {
+		} else if (role.equals(AcegConstantes.PROVEEDOR)) {
 			usuarioBean = new UsuarioBean(usuario.getNombreEmpresa(), usuario.getNombre(), usuario.getApellido(),
 					usuario.getGenero(), usuario.getEmail(), encoder.encode(usuario.getPassword()),
 					usuario.getTelefono(), usuario.getDireccion(), usuario.getCp(), usuario.getRole());
 		} else {
-			LOGGER.error("Error, no se pudo obtener el rol");
-			throw new AcegServiceException("Error, no se encontro el rol");
+			LOGGER.error(INVALID_PARAM);
+			throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 		}
 
 		return usuarioBean;
@@ -184,7 +197,7 @@ public class RegistroController {
 	 * Metodo que valida la existencia del rol del usuario en la DB
 	 * 
 	 * @param role - rol del usuario
-	 * @return - beanRole con los datos del rol 
+	 * @return - beanRole con los datos del rol
 	 * @throws AcegServiceException - excepcion de capa de servicio
 	 */
 	private RoleBean findByRole(ERole role) throws AcegServiceException {
@@ -200,7 +213,8 @@ public class RegistroController {
 			roleBean.setRole(role.name());
 			roleBean.setName(role);
 		} else {
-			throw new AcegServiceException("Error, no se encontro el rol");
+			LOGGER.error(INVALID_PARAM);
+			throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 		}
 
 		return roleBean;
@@ -209,8 +223,8 @@ public class RegistroController {
 	/**
 	 * Metodo que realiza el registro de un usuario en la DB
 	 * 
-	 * @param usuario - bean con los datos del usuario a registrar 
-	 * @param role - rol del usuario
+	 * @param usuario - bean con los datos del usuario a registrar
+	 * @param role    - rol del usuario
 	 * @throws AcegServiceException - excepcion de capa de servicio
 	 */
 	private void registrarUsuario(UsuarioBean usuario, String role) throws AcegServiceException {
@@ -218,33 +232,40 @@ public class RegistroController {
 		LOGGER.info("-- Ejecutando RegistroController - registrarUsuario()");
 
 		switch (role) {
-		case "ADMINISTRADOR":
+		case AcegConstantes.ADMINISTRADOR:
 			try {
-				registroService.registrarUsuario(usuario, ERole.ADMINISTRADOR);
-			} catch (AcegServiceException e) {
-				e.printStackTrace();
+				registroService.registrarUsuario(usuario, ERole.ROLE_ADMINISTRADOR);
+			} catch (AcegServiceException ex) {
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
+				throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 			}
 			break;
-		case "CARNICERO":
+		case AcegConstantes.CARNICERO:
 			try {
-				registroService.registrarUsuario(usuario, ERole.CARNICERO);
-			} catch (AcegServiceException e) {
-				e.printStackTrace();
+				registroService.registrarUsuario(usuario, ERole.ROLE_CARNICERO);
+			} catch (AcegServiceException ex) {
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
+				throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 			}
 			break;
-		case "CLIENTE":
+		case AcegConstantes.CLIENTE:
 			try {
-				registroService.registrarUsuario(usuario, ERole.CLIENTE);
-			} catch (AcegServiceException e) {
-				e.printStackTrace();
+				registroService.registrarUsuario(usuario, ERole.ROLE_CLIENTE);
+			} catch (AcegServiceException ex) {
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
+				throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 			}
 			break;
-		case "PROVEEDOR":
+		case AcegConstantes.PROVEEDOR:
 			try {
-				registroService.registrarUsuario(usuario, ERole.PROVEEDOR);
-			} catch (AcegServiceException e) {
-				e.printStackTrace();
+				registroService.registrarUsuario(usuario, ERole.ROLE_PROVEEDOR);
+			} catch (AcegServiceException ex) {
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
+				throw new AcegServiceException(ErrorEnum.EXC_ERROR_PARAMS);
 			}
+			break;
+		default:
+			LOGGER.error(INVALID_PARAM);
 			break;
 		}
 

@@ -13,8 +13,8 @@ package com.aceg.springboot.backend.util;
  */
 
 public enum ERole {
-	ADMINISTRADOR,
-    CARNICERO,
-    CLIENTE,
-    PROVEEDOR
+	ROLE_ADMINISTRADOR,
+	ROLE_CARNICERO,
+	ROLE_CLIENTE,
+	ROLE_PROVEEDOR
 }

@@ -110,9 +110,10 @@ public class ACEGSecurityConfig extends WebSecurityConfigurerAdapter {
 		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authorizeRequests()
-					.antMatchers("/aceg/api/home/carnicero/").hasRole("CARNICERO")
-					.antMatchers("/aceg/api/home/cliente/").hasRole("CLIENTE")
-					.antMatchers("/aceg/api/home/proveedor/").hasRole("PROVEEDOR")
+					.antMatchers("/aceg/api/home/carnicero").hasRole("CARNICERO")
+					.antMatchers("/aceg/api/home/cliente").hasRole("CLIENTE")
+					.antMatchers("/aceg/api/home/proveedor").hasRole("PROVEEDOR")
+					.antMatchers("/aceg/api/home/admin").hasRole("ADMINISTRADOR")
 					.antMatchers("/aceg/api/login").permitAll()
 					.antMatchers("/aceg/api/registro").permitAll()
 					.anyRequest().authenticated();

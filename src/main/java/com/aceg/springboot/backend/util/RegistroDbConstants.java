@@ -56,20 +56,25 @@ public final class RegistroDbConstants {
 
 		StringBuilder query = new StringBuilder();
 
-		query.append(LoginDbConstants.INSERT);
-		query.append(LoginDbConstants.IN_TO);
+		query.append(DbConstants.INSERT);
+		query.append(DbConstants.IN_TO);
 		query.append("ACEG_CARNICERO ");
 		query.append("(NOMBRE, ");
-		query.append("APELLIDO, ");
-		query.append("GENERO, ");
-		query.append("EMAIL, ");
-		query.append("TELEFONO, ");
-		query.append("DIRECCION, ");
+		query.append(DbConstants.APELLIDO);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.GENERO);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.EMAIL);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.TELEFONO);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.DIRECCION);
+		query.append(DbConstants.COMA);
 		query.append("CP, ");
 		query.append("SUELDO_MENSUAL, ");
 		query.append("ID_CARNICERIA_FK, ");
 		query.append("ID_ESTADO_FK) ");
-		query.append(LoginDbConstants.VALUES);
+		query.append(DbConstants.VALUES);
 		query.append("(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		return query.toString();
@@ -85,18 +90,23 @@ public final class RegistroDbConstants {
 
 		StringBuilder query = new StringBuilder();
 
-		query.append(LoginDbConstants.INSERT);
-		query.append(LoginDbConstants.IN_TO);
+		query.append(DbConstants.INSERT);
+		query.append(DbConstants.IN_TO);
 		query.append("ACEG_CLIENTE ");
 		query.append("(NOMBRE, ");
-		query.append("APELLIDO, ");
-		query.append("GENERO, ");
-		query.append("EMAIL, ");
-		query.append("TELEFONO, ");
-		query.append("DIRECCION, ");
+		query.append(DbConstants.APELLIDO);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.GENERO);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.EMAIL);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.TELEFONO);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.DIRECCION);
+		query.append(DbConstants.COMA);
 		query.append("CP, ");
 		query.append("ID_ESTADO_FK) ");
-		query.append(LoginDbConstants.VALUES);
+		query.append(DbConstants.VALUES);
 		query.append("(?, ?, ?, ?, ?, ?, ?, ?)");
 
 		return query.toString();
@@ -112,18 +122,23 @@ public final class RegistroDbConstants {
 
 		StringBuilder query = new StringBuilder();
 
-		query.append(LoginDbConstants.INSERT);
-		query.append(LoginDbConstants.IN_TO);
+		query.append(DbConstants.INSERT);
+		query.append(DbConstants.IN_TO);
 		query.append("ACEG_PROVEEDOR ");
 		query.append("(NOMBRE_EMPRESA, ");
 		query.append("NOMBRE_PROVEEDOR, ");
-		query.append("APELLIDO, ");
-		query.append("GENERO, ");
-		query.append("EMAIL, ");
-		query.append("TELEFONO, ");
-		query.append("DIRECCION, ");
+		query.append(DbConstants.APELLIDO);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.GENERO);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.EMAIL);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.TELEFONO);
+		query.append(DbConstants.COMA);
+		query.append(DbConstants.DIRECCION);
+		query.append(DbConstants.COMA);
 		query.append("CP) ");
-		query.append(LoginDbConstants.VALUES);
+		query.append(DbConstants.VALUES);
 		query.append("(?, ?, ?, ?, ?, ?, ?, ?)");
 
 		return query.toString();
@@ -139,13 +154,14 @@ public final class RegistroDbConstants {
 
 		StringBuilder query = new StringBuilder();
 
-		query.append(LoginDbConstants.INSERT);
-		query.append(LoginDbConstants.IN_TO);
-		query.append("ACEG_USUARIO ");
-		query.append("(EMAIL, ");
+		query.append(DbConstants.INSERT);
+		query.append(DbConstants.IN_TO);
+		query.append("ACEG_USUARIO (");
+		query.append(DbConstants.EMAIL);
+		query.append(DbConstants.COMA);
 		query.append("PASSWORD, ");
 		query.append("ROLE_FK) ");
-		query.append(LoginDbConstants.VALUES);
+		query.append(DbConstants.VALUES);
 		query.append("(?, ?, ?)");
 
 		return query.toString();

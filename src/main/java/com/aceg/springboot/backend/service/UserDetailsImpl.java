@@ -87,19 +87,21 @@ public class UserDetailsImpl implements UserDetails {
 	 * @return - datos del usuario
 	 */
 	public static UserDetailsImpl build(UsuarioBean usuario) {
+		
+		LOGGER.info("Ejecutando UserDetailsImpl - build()");
 
 		RoleBean roleUsuario = new RoleBean();
 		String role = usuario.getRole();
 		Set<RoleBean> roles = new HashSet<>();
 
-		if (role.equals("CARNICERO")) {
-			roleUsuario.setName(ERole.CARNICERO);
-		} else if (role.equals("CLIENTE")) {
-			roleUsuario.setName(ERole.CLIENTE);
-		} else if (role.equals("PROVEEDOR")) {
-			roleUsuario.setName(ERole.PROVEEDOR);
-		} else if (role.equals("ADMINISTRADOR")) {
-			roleUsuario.setName(ERole.ADMINISTRADOR);
+		if (role.equals("ROLE_CARNICERO")) {
+			roleUsuario.setName(ERole.ROLE_CARNICERO);
+		} else if (role.equals("ROLE_CLIENTE")) {
+			roleUsuario.setName(ERole.ROLE_CLIENTE);
+		} else if (role.equals("ROLE_PROVEEDOR")) {
+			roleUsuario.setName(ERole.ROLE_PROVEEDOR);
+		} else if (role.equals("ROLE_ADMINISTRADOR")) {
+			roleUsuario.setName(ERole.ROLE_ADMINISTRADOR);
 		} else {
 			LOGGER.error("Error, No se pudo obtener el rol del usuario");
 		}

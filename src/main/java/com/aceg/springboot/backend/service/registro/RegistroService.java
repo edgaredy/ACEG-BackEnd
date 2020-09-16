@@ -12,6 +12,7 @@ import com.aceg.springboot.backend.dao.registro.IRegistroDao;
 import com.aceg.springboot.backend.exception.AcegDaoException;
 import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
+import com.aceg.springboot.backend.util.AcegConstantes;
 import com.aceg.springboot.backend.util.ERole;
 
 /**
@@ -58,7 +59,7 @@ public class RegistroService implements IRegistroService {
 		try {
 			usuarioBean = registroDao.registrarUsuario(usuario, role);
 		} catch (AcegDaoException ex) {
-			LOGGER.error("ERROR: ", ex);
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
 			throw new AcegServiceException(ex.getError());
 		}
 		
@@ -83,7 +84,7 @@ public class RegistroService implements IRegistroService {
 		try {
 			exmailExiste = registroDao.existsByUsername(email);
 		} catch (AcegDaoException ex) {
-			LOGGER.error("ERROR: ", ex);
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
 			throw new AcegServiceException(ex.getError());
 		}
 		
@@ -109,7 +110,7 @@ public class RegistroService implements IRegistroService {
 		try {
 			resultado = registroDao.findByRole(role);
 		} catch (AcegDaoException ex) {
-			LOGGER.error("ERROR: ", ex);
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
 			throw new AcegServiceException(ex.getError());
 		}
 		

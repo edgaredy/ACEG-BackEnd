@@ -15,6 +15,7 @@ import com.aceg.springboot.backend.exception.AcegRegistroInexistenteException;
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 import com.aceg.springboot.backend.rowmapper.RolRowMapper;
 import com.aceg.springboot.backend.rowmapper.UsuarioRowMapper;
+import com.aceg.springboot.backend.util.AcegConstantes;
 import com.aceg.springboot.backend.util.ERole;
 import com.aceg.springboot.backend.util.ErrorEnum;
 import com.aceg.springboot.backend.util.RegistroDbConstants;
@@ -60,44 +61,44 @@ public class RegistroDao implements IRegistroDao {
 
 		LOGGER.info("Ejecutando RegistroDao- registrarUsuario()");
 
-		if (role.name().equals(ERole.CLIENTE.name())) {
+		if (role.name().equals(ERole.ROLE_CLIENTE.name())) {
 			// si el rol del usuario es cliente, realiza un insert en la tabla ACEG_CLIENTE
 			try {
 				jdbcTemplate.update(RegistroDbConstants.INSERT_CLIENTE, usuario.getNombre(), usuario.getApellido(),
 						usuario.getGenero(), usuario.getEmail(), usuario.getTelefono(), usuario.getDireccion(),
 						usuario.getCp(), usuario.getIdEstado());
 			} catch (EmptyResultDataAccessException ex) {
-				LOGGER.error("ERROR: ", ex);
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
 				throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
 			}
-		} else if (role.name().equals(ERole.CARNICERO.name())) {
+		} else if (role.name().equals(ERole.ROLE_CARNICERO.name())) {
 			// si el rol del usuario es carnicero, realiza un insert en la tabla ACEG_CARNICERO
 			try {
 				jdbcTemplate.update(RegistroDbConstants.INSERT_CARNICERO, usuario.getNombre(), usuario.getApellido(),
 						usuario.getGenero(), usuario.getEmail(), usuario.getTelefono(), usuario.getDireccion(),
 						usuario.getCp(), usuario.getSueldoMensual(), usuario.getIdCarniceria(), usuario.getIdEstado());
 			} catch (EmptyResultDataAccessException ex) {
-				LOGGER.error("ERROR: ", ex);
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
 				throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
 			}
-		} else if (role.name().equals(ERole.PROVEEDOR.name())) {
+		} else if (role.name().equals(ERole.ROLE_PROVEEDOR.name())) {
 			// si el rol del usuario es proveedor, realiza un insert en la tabla ACEG_PROVEEDOR
 			try {
 				jdbcTemplate.update(RegistroDbConstants.INSERT_PROVEEDOR, usuario.getNombreEmpresa(),
 						usuario.getNombre(), usuario.getApellido(), usuario.getGenero(), usuario.getEmail(),
 						usuario.getTelefono(), usuario.getDireccion(), usuario.getCp());
 			} catch (EmptyResultDataAccessException ex) {
-				LOGGER.error("ERROR: ", ex);
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
 				throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
 			}
-		} else if (role.name().equals(ERole.ADMINISTRADOR.name())) {
+		} else if (role.name().equals(ERole.ROLE_ADMINISTRADOR.name())) {
 			// si el rol del usuario es administrador, realiza un insert en la tabla ACEG_CARNICERO
 			try {
 				jdbcTemplate.update(RegistroDbConstants.INSERT_CARNICERO, usuario.getNombre(), usuario.getApellido(),
 						usuario.getGenero(), usuario.getEmail(), usuario.getTelefono(), usuario.getDireccion(),
 						usuario.getCp(), usuario.getSueldoMensual(), usuario.getIdCarniceria(), usuario.getIdEstado());
 			} catch (EmptyResultDataAccessException ex) {
-				LOGGER.error("ERROR: ", ex);
+				LOGGER.error(AcegConstantes.ERROR_EX, ex);
 				throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
 			}
 		} else {
@@ -111,7 +112,7 @@ public class RegistroDao implements IRegistroDao {
 			jdbcTemplate.update(RegistroDbConstants.INSERT_USUARIO, usuario.getEmail(), usuario.getPassword(),
 					usuario.getRole());
 		} catch (EmptyResultDataAccessException ex) {
-			LOGGER.error("ERROR: ", ex);
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
 			throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
 		}
 

@@ -31,9 +31,34 @@ public final class AcegConstantes {
 	public static final String COMA = ",";
 
 	/**
-	 * Constante Correcta ,
+	 * Constante Exitosa
 	 */
 	public static final String SUCCESS = "Exitosa";
+	
+	/**
+	 * Constante CARNICERO
+	 */
+	public static final String CARNICERO = "CARNICERO";
+	
+	/**
+	 * Constante CLIENTE
+	 */
+	public static final String CLIENTE = "CLIENTE";
+	
+	/**
+	 * Constante PROVEEDOR
+	 */
+	public static final String PROVEEDOR = "PROVEEDOR";
+	
+	/**
+	 * Constante ADMINISTRADOR
+	 */
+	public static final String ADMINISTRADOR = "ADMINISTRADOR";
+	
+	/**
+	 * Constante ERROR_EX
+	 */
+	public static final String ERROR_EX = "ERROR: ";
 
 	/**
 	 * Constructor privado
