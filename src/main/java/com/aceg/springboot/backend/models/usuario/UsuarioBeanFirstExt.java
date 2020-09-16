@@ -4,6 +4,11 @@
 package com.aceg.springboot.backend.models.usuario;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.aceg.springboot.backend.models.RoleBean;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * - Descripcion: Clase UsuarioBeanFirstExt que contiene los atributos de las 
@@ -16,7 +21,7 @@ import java.io.Serializable;
  * @since - 14/09/2020
  */
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UsuarioBeanFirstExt extends UsuarioBeanSecondExt implements Serializable {
 
 	/**
@@ -42,14 +47,14 @@ public class UsuarioBeanFirstExt extends UsuarioBeanSecondExt implements Seriali
 	public String genero;
 	
 	/**
-	 * email del usuario
-	 */
-	public String email;
-	
-	/**
 	 * telefono del usuario (10 digitos)
 	 */
 	public String telefono;
+	
+	/**
+	 * roles del usuario
+	 */
+	private Set<RoleBean> roles = new HashSet<>();
 
 	/**
 	 * @return the nombre
@@ -94,20 +99,6 @@ public class UsuarioBeanFirstExt extends UsuarioBeanSecondExt implements Seriali
 	}
 
 	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	/**
 	 * @return the telefono
 	 */
 	public String getTelefono() {
@@ -119,6 +110,20 @@ public class UsuarioBeanFirstExt extends UsuarioBeanSecondExt implements Seriali
 	 */
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	/**
+	 * @return the roles
+	 */
+	public Set<RoleBean> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(Set<RoleBean> roles) {
+		this.roles = roles;
 	}
 
 }

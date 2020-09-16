@@ -4,7 +4,8 @@
 package com.aceg.springboot.backend.models.usuario;
 
 import java.io.Serializable;
-import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * - Descripcion: Clase UsuarioBeanThridExt que contiene los atributos de las
@@ -17,6 +18,7 @@ import java.util.Set;
  * @since - 14/09/2020
  */
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UsuarioBeanThridExt implements Serializable {
 
 	/**
@@ -28,16 +30,11 @@ public class UsuarioBeanThridExt implements Serializable {
 	 * nombre de la empresa del usuario - proveedor
 	 */
 	public String nombreEmpresa;
-
-	/**
-	 * role del usuario
-	 */
-	private Set<String> role;
 	
 	/**
 	 * rol del usuario de la DB
 	 */
-	public String roleDb;
+	public String role;
 
 	/**
 	 * @return the nombreEmpresa
@@ -54,31 +51,17 @@ public class UsuarioBeanThridExt implements Serializable {
 	}
 
 	/**
-	 * @return the role
-	 */
-	public Set<String> getRole() {
-		return role;
-	}
-
-	/**
-	 * @param role the role to set
-	 */
-	public void setRole(Set<String> role) {
-		this.role = role;
-	}
-
-	/**
 	 * @return the roleDb
 	 */
-	public String getRoleDb() {
-		return roleDb;
+	public String getRole() {
+		return role;
 	}
 
 	/**
 	 * @param roleDb the roleDb to set
 	 */
-	public void setRoleDb(String roleDb) {
-		this.roleDb = roleDb;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

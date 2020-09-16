@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +28,8 @@ import com.aceg.springboot.backend.util.MessageResponse;
 
 /**
  * - Descripcion: Clase RegistroController para le gestion de registro de un
- * nuevo usuario asi como la validacion de la existencia del mismo - Numero de
- * Metodos: 4
+ * nuevo usuario asi como la validacion de la existencia del mismo
+ *  - Numero de Metodos: 4
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -45,6 +46,9 @@ public class RegistroController {
 	@Autowired
 	private IRegistroService registroService;
 
+	/**
+	 * Referencia hacia PasswordEncoder
+	 */
 	@Autowired
 	PasswordEncoder encoder;
 
@@ -53,83 +57,102 @@ public class RegistroController {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegistroController.class);
 
+	
 	/**
+	 * Metodo que registra a un nuevo usuario en la DB
+	 * 
+	 * Valida existencia del usuario en la DB
+	 * Valida existencia del rol del usuario
+	 * Registra al nuevo usuario
 	 * 
 	 * @param usuario
 	 * @return
+	 * @throws AcegServiceException - excepcion de capa de servicio
 	 */
-	@PostMapping("/signup")
+	@PostMapping("/registro")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody UsuarioBean usuario) throws AcegServiceException {
 
 		LOGGER.info("-- Ejecutando RegistroController - registerUser()");
 
-		boolean resultado;
-		resultado = registroService.existsByUsername(usuario.getEmail());
+		boolean exmailExiste;
+		exmailExiste = registroService.existsByUsername(usuario.getEmail());
 
-		if (resultado) {
+		if (exmailExiste) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: El email ya esta registrado"));
 		}
 
-		Set<String> strRoles = usuario.getRole();
 		Set<RoleBean> roles = new HashSet<>();
+		String role = usuario.getRole();
+		UsuarioBean datosUsuario = null;
 
-		strRoles.forEach(role -> {
-			switch (role) {
-			case "ADMINISTRADOR":
-				UsuarioBean usrAdmin = null;
-				try {
-					roles.add(findByRole(ERole.ADMINISTRADOR));
-					usuario.setRoleDb("ADMINISTRADOR");
-					usrAdmin = getDataUser(usuario, "ADMINISTRADOR");
-					usrAdmin.setRoles(roles);
-					registrarUsuario(usrAdmin, "ADMINISTRADOR");
-				} catch (AcegServiceException e) {
-					e.printStackTrace();
-				}
-				break;
-			case "CARNICERO":
-				UsuarioBean usrCarnicero = null;
-				try {
-					roles.add(findByRole(ERole.CARNICERO));
-					usuario.setRoleDb("CARNICERO");
-					usrCarnicero = getDataUser(usuario, "CARNICERO");
-					usrCarnicero.setRoles(roles);
-					registrarUsuario(usrCarnicero, "CARNICERO");
-				} catch (AcegServiceException e) {
-					e.printStackTrace();
-				}
-				break;
-			case "CLIENTE":
-				UsuarioBean usrCliente = null;
-				try {
-					roles.add(findByRole(ERole.CLIENTE));
-					usuario.setRoleDb("CLIENTE");
-					usrCliente = getDataUser(usuario, "CLIENTE");
-					usrCliente.setRoles(roles);
-					registrarUsuario(usrCliente, "CLIENTE");
-				} catch (AcegServiceException e) {
-					e.printStackTrace();
-				}
-				break;
-			case "PROVEEDOR":
-				UsuarioBean usrProveedor = null;
-				try {
-					roles.add(findByRole(ERole.PROVEEDOR));
-					usuario.setRoleDb("PROVEEDOR");
-					usrProveedor = getDataUser(usuario, "PROVEEDOR");
-					usrProveedor.setRoles(roles);
-					registrarUsuario(usrProveedor, "PROVEEDOR");
-				} catch (AcegServiceException e) {
-					e.printStackTrace();
-				}
-				break;
+		switch (role) {
+		case "ADMINISTRADOR":
+			UsuarioBean usrAdmin = null;
+			try {
+				roles.add(findByRole(ERole.ADMINISTRADOR));
+				usrAdmin = createInstance(usuario, "ADMINISTRADOR");
+				usrAdmin.setRole("ADMINISTRADOR");
+				usrAdmin.setRoles(roles);
+				datosUsuario = usrAdmin;
+				registrarUsuario(usrAdmin, "ADMINISTRADOR");
+			} catch (AcegServiceException e) {
+				e.printStackTrace();
 			}
-		});
+			break;
+		case "CARNICERO":
+			UsuarioBean usrCarnicero = null;
+			try {
+				roles.add(findByRole(ERole.CARNICERO));
+				usrCarnicero = createInstance(usuario, "CARNICERO");
+				usrCarnicero.setRole("CARNICERO");
+				usrCarnicero.setRoles(roles);
+				datosUsuario = usrCarnicero;
+				registrarUsuario(usrCarnicero, "CARNICERO");
+			} catch (AcegServiceException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "CLIENTE":
+			UsuarioBean usrCliente = null;
+			try {
+				roles.add(findByRole(ERole.CLIENTE));
+				usrCliente = createInstance(usuario, "CLIENTE");
+				usrCliente.setRole("CLIENTE");
+				usrCliente.setRoles(roles);
+				datosUsuario = usrCliente;
+				registrarUsuario(usrCliente, "CLIENTE");
+			} catch (AcegServiceException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "PROVEEDOR":
+			UsuarioBean usrProveedor = null;
+			try {
+				roles.add(findByRole(ERole.PROVEEDOR));
+				usrProveedor = createInstance(usuario, "PROVEEDOR");
+				usrProveedor.setRole("PROVEEDOR");
+				usrProveedor.setRoles(roles);
+				datosUsuario = usrProveedor;
+				registrarUsuario(usrProveedor, "PROVEEDOR");
+			} catch (AcegServiceException e) {
+				e.printStackTrace();
+			}
+			break;
+		}
 
-		return ResponseEntity.ok(new MessageResponse("Se registro al usuario correctamente"));
+		return new ResponseEntity<>(datosUsuario, HttpStatus.OK);
 	}
 
-	private UsuarioBean getDataUser(UsuarioBean usuario, String role) throws AcegServiceException {
+	/**
+	 * Metodo que crea un nueva instancia de la clase UsuarioBean dependiendo del  
+	 * tipo de rol del usuario (CARNICERO, ADMINISTRADOR, CLIENTE, PROVEEDOR)
+	 * 
+	 * @param usuario - bean con los datos del usuario
+	 * @param role - rol del usuario
+	 * @return - bean con los datos especificos del usuario
+	 * @throws AcegServiceException - excepcion de capa de servicio
+	 */
+	private UsuarioBean createInstance(UsuarioBean usuario, String role) throws AcegServiceException {
 
 		LOGGER.info("-- Ejecutando RegistroController - getDataUser()");
 
@@ -139,15 +162,15 @@ public class RegistroController {
 			usuarioBean = new UsuarioBean(usuario.getNombre(), usuario.getApellido(), usuario.getGenero(),
 					usuario.getEmail(), encoder.encode(usuario.getPassword()), usuario.getTelefono(),
 					usuario.getDireccion(), usuario.getCp(), usuario.getSueldoMensual(), usuario.getIdCarniceria(),
-					usuario.getIdEstado(), usuario.getRoleDb());
+					usuario.getIdEstado(), usuario.getRole());
 		} else if (role.equals("CLIENTE")) {
 			usuarioBean = new UsuarioBean(usuario.getNombre(), usuario.getApellido(), usuario.getGenero(),
 					usuario.getEmail(), encoder.encode(usuario.getPassword()), usuario.getTelefono(),
-					usuario.getDireccion(), usuario.getCp(), usuario.getIdEstado(), usuario.getRoleDb());
+					usuario.getDireccion(), usuario.getCp(), usuario.getIdEstado(), usuario.getRole());
 		} else if (role.equals("PROVEEDOR")) {
 			usuarioBean = new UsuarioBean(usuario.getNombreEmpresa(), usuario.getNombre(), usuario.getApellido(),
 					usuario.getGenero(), usuario.getEmail(), encoder.encode(usuario.getPassword()),
-					usuario.getTelefono(), usuario.getDireccion(), usuario.getCp(), usuario.getRoleDb());
+					usuario.getTelefono(), usuario.getDireccion(), usuario.getCp(), usuario.getRole());
 		} else {
 			LOGGER.error("Error, no se pudo obtener el rol");
 			throw new AcegServiceException("Error, no se encontro el rol");
@@ -157,16 +180,23 @@ public class RegistroController {
 
 	}
 
+	/**
+	 * Metodo que valida la existencia del rol del usuario en la DB
+	 * 
+	 * @param role - rol del usuario
+	 * @return - beanRole con los datos del rol 
+	 * @throws AcegServiceException - excepcion de capa de servicio
+	 */
 	private RoleBean findByRole(ERole role) throws AcegServiceException {
 
 		LOGGER.info("-- Ejecutando RegistroController - findByRole()");
 
-		boolean existe = false;
+		boolean rolExiste = false;
 		RoleBean roleBean = new RoleBean();
 
-		existe = registroService.findByRole(role);
+		rolExiste = registroService.findByRole(role);
 
-		if (existe == true) {
+		if (rolExiste) {
 			roleBean.setRole(role.name());
 			roleBean.setName(role);
 		} else {
@@ -176,6 +206,13 @@ public class RegistroController {
 		return roleBean;
 	}
 
+	/**
+	 * Metodo que realiza el registro de un usuario en la DB
+	 * 
+	 * @param usuario - bean con los datos del usuario a registrar 
+	 * @param role - rol del usuario
+	 * @throws AcegServiceException - excepcion de capa de servicio
+	 */
 	private void registrarUsuario(UsuarioBean usuario, String role) throws AcegServiceException {
 
 		LOGGER.info("-- Ejecutando RegistroController - registrarUsuario()");

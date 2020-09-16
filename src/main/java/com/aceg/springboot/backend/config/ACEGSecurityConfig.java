@@ -29,7 +29,8 @@ import com.aceg.springboot.backend.service.UserDetailsServiceImpl;
 /**
  * - Descripcion: Clase ACEGSecurityConfig que permite por medio de sus
  * anotaciones inyectar las configuraciones personalizadas externalizadas por el
- * servicio de configuracion referenciado por el mismo - Numero de Metodos: 5
+ * servicio de configuracion referenciado por el mismo 
+ * - Numero de Metodos: 6
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -41,50 +42,87 @@ import com.aceg.springboot.backend.service.UserDetailsServiceImpl;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ACEGSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	/**
+	 * Referencia hacia UserDetailsServiceImpl
+	 */
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
 
+	/**
+	 * Referencia hacia AuthEntryPointJwt
+	 */
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
 
+	/**
+	 * verifica la autenticacion de un usuario
+	 * autentica al usuario por medio de su usario y contraseña
+	 * valida el token
+	 * obtiene el rol del usuario
+	 * 
+	 * @return 
+	 */
 	@Bean
 	public AuthTokenFilter authenticationJwtTokenFilter() {
 		return new AuthTokenFilter();
 	}
 
+	/**
+	 * verifica la autentidad/existencia de un usuario por medio del metodo loadUserByUsername
+	 * obtiene el rol del usuario
+	 */
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
+	/**
+	 * Autentica a un usuario
+	 */
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
 
+	/**
+	 * Encripta la contraseña del usuario
+	 * @return - contraseña encriptada
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
+	/**
+	 * Habilta CORS
+	 * Deshabilita CSRF
+	 * Muestra una excepcion al usuario en caso de que acceda a contenido no disponible para el
+	 * Habilita el inicio del sesion por STATELESS (no se almacena informacion del usuario en memoria)
+	 * Sobrecarga de la configuracion por Roles
+	 * Verifica la autenticidad del usuario
+	 * 
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable()
-			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests().antMatchers("/aceg/api/**").permitAll()
-			.antMatchers("/aceg/api/test/**").permitAll()
-			.antMatchers("/aceg/api/signin/**").permitAll()
-			.anyRequest().authenticated();
+		http.cors().and()
+		.csrf().disable()
+		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.authorizeRequests()
+					.antMatchers("/aceg/api/home/carnicero/").hasRole("CARNICERO")
+					.antMatchers("/aceg/api/home/cliente/").hasRole("CLIENTE")
+					.antMatchers("/aceg/api/home/proveedor/").hasRole("PROVEEDOR")
+					.antMatchers("/aceg/api/login").permitAll()
+					.antMatchers("/aceg/api/registro").permitAll()
+					.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 
 	/**
 	 * Personalizacion de la configuracion CORS
-	 * 
-	 * @return custom Cors
+	 * @return - custom Cors
 	 */
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {

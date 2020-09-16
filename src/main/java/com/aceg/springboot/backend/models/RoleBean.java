@@ -9,16 +9,19 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import com.aceg.springboot.backend.util.ERole;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * - Descripcion: Clase RoleBean que contiene los atributos de la tabla de la DB
- * - Numero de Metodos: 4 - Nombre de la tabla: ACEG_ROLE
+ * - Numero de Metodos: 8
+ * - Nombre de la tabla: ACEG_ROLE
  * 
  * @author - edgar.rangel
  * @version - 1.0
  * @since - 25/08/2020
  */
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RoleBean implements Serializable {
 
 	/**
@@ -36,8 +39,26 @@ public class RoleBean implements Serializable {
 	 */
 	private String descripcion;
 
+	/**
+	 * nombre del rol del usuario
+	 */
 	@Enumerated(EnumType.STRING)
 	private ERole name;
+	
+	/**
+	 * Constructor vacio de la clase
+	 */
+	public RoleBean() {
+	}
+	
+	/**
+	 * Constructor de la clase con 1 parametro
+	 * 
+	 * @param name - nombre del rol del usuario
+	 */
+	public RoleBean(ERole name) {
+		this.name = name;
+	}
 
 	/**
 	 * @return the role
@@ -66,19 +87,18 @@ public class RoleBean implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public RoleBean() {
-
-	}
 	
-	public RoleBean(ERole name) {
-		this.name = name;
-	}
-	
+	/**
+	 * 
+	 * @return the name
+	 */
 	public ERole getName() {
 		return name;
 	}
 
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(ERole name) {
 		this.name = name;
 	}

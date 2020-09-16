@@ -14,8 +14,8 @@ import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 
 /**
- * - Descripcion: Clase LoginService de la aplicacion que implementa la interfaz
- * ILoginService que realiza consultas a la DB para el acceso de usuario mediante el
+ * - Descripcion: Clase LoginService que contiene los metodos relacionados
+ * al logeo de un usuario al aplicativo ACEG
  * login 
  * - Numero de Metodos: 1
  * 
@@ -28,7 +28,7 @@ import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 public class LoginService implements ILoginService {
 
 	/**
-	 * Referencia hacia loginDao
+	 * Referencia hacia ILoginDao
 	 */
 	@Autowired
 	private ILoginDao loginDao;
@@ -39,10 +39,11 @@ public class LoginService implements ILoginService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);
 
 	/**
-	 * Obtiene el nombre de usuario 
+	 * - Verifica la existencia de el nombre de usuario en la DB
+	 * - Nombre de tabla: ACEG_USUARIO
 	 * 
 	 * @param username - nombre de usuario
-	 * @return - nombre de usuario y contraseña
+	 * @return - bean con datos del usuario
 	 * @throws AcegServiceException - excepcion de servicio
 	 */
 	@Override

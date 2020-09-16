@@ -19,8 +19,8 @@ import com.aceg.springboot.backend.util.LoginDbConstants;
 
 /**
  * - Descripcion: Clase LoginDao de la aplicacion que implementa la interfaz
- * ILoginDao que realiza consultas a la DB para el acceso de usuario mediante el
- * login 
+ * ILoginDao que realiza consultas a la DB para el acceso de usuario mediante 
+ * el login 
  * - Numero de Metodos: 1
  * 
  * @author - edgar.rangel
@@ -36,35 +36,34 @@ public class LoginDao implements ILoginDao {
 	 */
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	/**
 	 * La Constante LOGGER para registro de logs
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginDao.class);
 
 	/**
-	 * Obtiene el nombre de usuario y contraseña del usuario 
-	 * Nombre de tabla: ACEG_USUARIO
+	 * - Verifica la existencia del email en la DB, obtiene los datos del usuario 
+	 * - Nombre de tabla: ACEG_USUARIO
 	 * 
-	 * @param username - nombre de usuario
-	 * @param password - contraseña
-	 * @return - nombre de usuario y contraseña
+	 * @param username - email del usuario
+	 * @return loginBean - bean con datos del usuario
 	 * @throws AcegDaoException - error de base de datos
 	 */
 	@Override
 	public UsuarioBean getByUsername(String username) throws AcegDaoException {
 
-		LOGGER.info("Ejecutando getByUsername()");
+		LOGGER.info("Ejecutando LoginDao - getByUsername()");
 
 		UsuarioBean loginBean = null;
 
 		try {
-			loginBean = jdbcTemplate.queryForObject(LoginDbConstants.GETBYUSERNAME,
-					new Object[] { username }, new UsuarioRowMapper());
+			loginBean = jdbcTemplate.queryForObject(LoginDbConstants.GETBYUSERNAME, new Object[] { username },
+					new UsuarioRowMapper());
 		} catch (EmptyResultDataAccessException ex) {
 			LOGGER.error("ERROR: ", ex);
 			throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERRO_AUT);
-		} 
+		}
 
 		return loginBean;
 	}

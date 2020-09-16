@@ -15,8 +15,8 @@ import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 import com.aceg.springboot.backend.util.ERole;
 
 /**
- * - Descripcion: Clase RegistroService de la aplicacion que implementa la interfaz
- * IRegistroService que realiza consultas a la DB para el registro de nuevos usuarios
+ * - Descripcion: Clase RegistroService que contiene los metodos relacionados
+ * al registro de un usuario
  * - Numero de Metodos: 1
  * 
  * @author - edgar.rangel
@@ -39,12 +39,12 @@ public class RegistroService implements IRegistroService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegistroService.class);
 
 	/**
-	 * Metodo que registra a un nuevo usuario en la DB (INSERT)
-	 * Nombre de la tabla: ACEG_USUARIO, ACEG_CLIENTE, ACEG_CARNICERO, ACEG_PROVEEDOR
-	 * dependiendo el tipo de usuario
+	 * - Registra a un nuevo usuario en la DB (INSERT) en la tabla correspondiente
+	 * - Nombre de las tablas: ACEG_USUARIO, ACEG_CLIENTE, ACEG_CARNICERO, ACEG_PROVEEDOR 
+	 * dependiendo del tipo de usuario
 	 * 
 	 * @param usuario - Bean con los datos del usuario
-	 * @param role - Role del usuario
+	 * @param role    - Role del usuario
 	 * @return - Bean con los datos del usuario registrado
 	 * @throws AcegServiceException - excepcion de servicio
 	 */
@@ -65,24 +65,40 @@ public class RegistroService implements IRegistroService {
 		return usuarioBean;
 	}
 
+	/**
+	 * - Verifica la existencia de un usuario en la DB
+	 * - Nombre de tabla: ACEG_USUARIO
+	 * 
+	 * @param email - email del usuario
+	 * @return - boolean, true si existe, false si no existe
+	 * @throws AcegServiceException - excepcion de servicio
+	 */
 	@Override
 	public boolean existsByUsername(String email) throws AcegServiceException {
 		
 		LOGGER.info("Entra existsByUsername()");
 		
-		boolean resultado;
+		boolean exmailExiste;
 		
 		try {
-			resultado = registroDao.existsByUsername(email);
+			exmailExiste = registroDao.existsByUsername(email);
 		} catch (AcegDaoException ex) {
 			LOGGER.error("ERROR: ", ex);
 			throw new AcegServiceException(ex.getError());
 		}
 		
-		return resultado;
+		return exmailExiste;
 		
 	}
 
+	/**
+	 * - Verifica la existencia del rol del usaurio en la DB
+	 * - Nombre de tabla: ACEG_ROLE
+	 * 
+	 * @param role - rol del usuario
+	 * @return - boolean, true si existe, false si no existe
+	 * @throws AcegServiceException - excepcion de servicio
+	 */
 	@Override
 	public boolean findByRole(ERole role) throws AcegServiceException {
 		

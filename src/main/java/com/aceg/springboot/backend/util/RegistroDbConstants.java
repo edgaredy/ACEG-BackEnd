@@ -4,9 +4,9 @@
 package com.aceg.springboot.backend.util;
 
 /**
- * - Descripcion: Clase RegistroDbConstants que contiene las consultas
- * para el registro de un nuevo usuario 
- * - Numero de Metodos: 1
+ * - Descripcion: Clase RegistroDbConstants que contiene las contantes 
+ * con las consultas para el registro de un nuevo usuario 
+ * - Numero de Metodos: 5
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -22,27 +22,33 @@ public final class RegistroDbConstants {
 	public static final String INSERT_CARNICERO = queryInsertCarnicero();
 	
 	/**
-	 * Constante que contiene el query para insertar un carnicero
+	 * Constante que contiene el query para insertar un cliente
 	 */
 	public static final String INSERT_CLIENTE = queryInsertCliente();
 	
 	/**
-	 * Constante que contiene el query para insertar un carnicero
+	 * Constante que contiene el query para insertar un proveedor
 	 */
 	public static final String INSERT_PROVEEDOR = queryInsertProveedor();
 	
 	/**
-	 * Constante que contiene el query para insertar un carnicero
+	 * Constante que contiene el query para insertar un usuario
 	 */
 	public static final String INSERT_USUARIO = queryInsertUsuario();
 	
+	/**
+	 * Constante que contiene el query para verificar la existencia del email de un usuario
+	 */
 	public static final String GETBYEMAIL = "SELECT * FROM ACEG_USUARIO WHERE EMAIL = ?";
 	
+	/**
+	 * Constante que contiene el query para verificar la existencia del role de un usuario
+	 */
 	public static final String GETBYROL = "SELECT * FROM ACEG_ROLE WHERE ROLE_PK = ?";
 
 	/**
-	 * - Metodo que contiene la consulta para insertar un nuevo carnicero en la DB -
-	 * Nombre de tabla: ACEG_CARNICERO
+	 * - Metodo que contiene la consulta para insertar un nuevo carnicero en la DB 
+	 * - Nombre de tabla: ACEG_CARNICERO
 	 * 
 	 * @return - InsertCarnicero query en formato string
 	 */
@@ -70,8 +76,8 @@ public final class RegistroDbConstants {
 	}
 
 	/**
-	 * - Metodo que contiene la consulta para insertar un nuevo cliente en la DB -
-	 * Nombre de tabla: ACEG_CLIENTE
+	 * - Metodo que contiene la consulta para insertar un nuevo cliente en la DB 
+	 * - Nombre de tabla: ACEG_CLIENTE
 	 * 
 	 * @return - InsertCliente query en formato string
 	 */
@@ -97,8 +103,8 @@ public final class RegistroDbConstants {
 	}
 
 	/**
-	 * - Metodo que contiene la consulta para insertar un nuevo proveedor en la DB -
-	 * Nombre de tabla: ACEG_PROVEEDOR
+	 * - Metodo que contiene la consulta para insertar un nuevo proveedor en la DB 
+	 * - Nombre de tabla: ACEG_PROVEEDOR
 	 * 
 	 * @return - InsertProveedor query en formato string
 	 */
@@ -124,8 +130,8 @@ public final class RegistroDbConstants {
 	}
 
 	/**
-	 * - Metodo que contiene la consulta para insertar un nuevo proveedor en la DB -
-	 * Nombre de tabla: ACEG_USUARIO
+	 * - Metodo que contiene la consulta para insertar un nuevo proveedor en la DB 
+	 * - Nombre de tabla: ACEG_USUARIO
 	 * 
 	 * @return - InsertUsuario query en formato string
 	 */

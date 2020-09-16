@@ -48,7 +48,7 @@ public class UsuarioRowMapper implements RowMapper<UsuarioBean> {
 		usuario.setIdUsuario(rs.getInt("ID_USUARIO_PK"));
 		usuario.setEmail(rs.getString("EMAIL"));
 		usuario.setPassword(rs.getString("PASSWORD"));
-		usuario.setRoleDb(rs.getString("ROLE_FK"));
+		usuario.setRole(rs.getString("ROLE_FK"));
 
 		return usuario;
 	}

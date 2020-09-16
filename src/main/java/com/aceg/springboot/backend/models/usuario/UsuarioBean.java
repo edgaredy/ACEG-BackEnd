@@ -4,10 +4,7 @@
 package com.aceg.springboot.backend.models.usuario;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
-import com.aceg.springboot.backend.models.RoleBean;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * - Descripcion: Clase UsuarioBean que contiene los atributos de las tablas de
@@ -20,6 +17,7 @@ import com.aceg.springboot.backend.models.RoleBean;
  * @since - 09/09/2020
  */
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UsuarioBean extends UsuarioBeanFirstExt implements Serializable {
 
 	/**
@@ -41,11 +39,6 @@ public class UsuarioBean extends UsuarioBeanFirstExt implements Serializable {
 	 * password del usuario
 	 */
 	private String password;
-
-	/**
-	 * roles del usuario
-	 */
-	private Set<RoleBean> roles = new HashSet<>();
 
 	/**
 	 * contructor vacion de la clase
@@ -72,7 +65,7 @@ public class UsuarioBean extends UsuarioBeanFirstExt implements Serializable {
 		this.sueldoMensual = sueldoMensual;
 		this.idCarniceria = idCarniceria;
 		this.idEstado = idEstado;
-		this.roleDb = roleDb;
+		this.role = roleDb;
 	}
 
 	/**
@@ -92,7 +85,7 @@ public class UsuarioBean extends UsuarioBeanFirstExt implements Serializable {
 		this.direccion = direccion;
 		this.cp = cp;
 		this.idEstado = idEstado;
-		this.roleDb = roleDb;
+		this.role = roleDb;
 	}
 
 	/**
@@ -112,7 +105,7 @@ public class UsuarioBean extends UsuarioBeanFirstExt implements Serializable {
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.cp = cp;
-		this.roleDb = roleDb;
+		this.role = roleDb;
 	}
 
 	/**
@@ -155,22 +148,6 @@ public class UsuarioBean extends UsuarioBeanFirstExt implements Serializable {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	/**
-	 * 
-	 * @return the roles
-	 */
-	public Set<RoleBean> getRoles() {
-		return roles;
-	}
-
-	/**
-	 * 
-	 * @param roles the roles to set
-	 */
-	public void setRoles(Set<RoleBean> roles) {
-		this.roles = roles;
 	}
 
 }

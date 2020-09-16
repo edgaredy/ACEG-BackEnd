@@ -34,13 +34,13 @@ public enum ErrorEnum {
 
 	EXC_OPER_CON_ERRORES("EXC.103", "Operacion con errores", "Operacion con errores", AcegConstantes.ERROR, "", false),
 	
-	EXC_ERRO_AUT("EXC.103", "Error de autenticacion", "Uusario o contraseña invalidos", AcegConstantes.ERROR, "Verifica tus credeciales", false),
+	EXC_ERRO_AUT("EXC.103", "Error de autenticacion", "Usuario o contraseña invalidos", AcegConstantes.ERROR, "Verifica tus credeciales", false),
 	
 	EXC_ERROR_BBDD("BD.200", "Error de Base de datos", "Error de Base de datos", AcegConstantes.ERROR, "", false),
 	
 	EXC_INEXISTENTE_BD("BD.201", "Registro inexistente", "Registro no existe, intente con otro valor", AcegConstantes.WARNING, "", false),
 	
-	EXC_ERROR_REGISTRO("BD.201", "Error al registrar el usuario", "Error al registrar el usuario, comprueba los campos", AcegConstantes.ERROR, "", false),
+	EXC_ERROR_REGISTRO("BD.201", "Error de registro de usuario", "Error al registrar el usuario, comprueba los campos", AcegConstantes.ERROR, "", false),
 
 	EXC_ERROR_CACHE("BD.202", "Error de Cache", "Error de Cache", AcegConstantes.ERROR, "", false)
 	
@@ -76,6 +76,16 @@ public enum ErrorEnum {
 	 */
 	private final Boolean ok;
 
+	/**
+	 * constructor de tipo enum
+	 * 
+	 * @param code - el codigo del error
+	 * @param message - mensaje del error
+	 * @param description - descripcion del error
+	 * @param level - nivel del error
+	 * @param moreInfo - mas informacion acerca del error
+	 * @param ok - verifica si es valido (true), caso contrario false
+	 */
 	ErrorEnum(final String code, final String message, final String description, final String level,
 			final String moreInfo, Boolean ok) {
 		this.code = code;

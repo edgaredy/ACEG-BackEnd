@@ -5,6 +5,8 @@ package com.aceg.springboot.backend.models.usuario;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * - Descripcion: Clase UsuarioBeanSecondExt que contiene los atributos de las 
  * tablas de la DB 
@@ -16,6 +18,7 @@ import java.io.Serializable;
  * @since - 14/09/2020
  */
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UsuarioBeanSecondExt extends UsuarioBeanThridExt implements Serializable {
 
 	/**
