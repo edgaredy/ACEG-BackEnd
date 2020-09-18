@@ -32,24 +32,24 @@ public class UsuarioBeanFirstExt extends UsuarioBeanSecondExt implements Seriali
 	/**
 	 * nombre del usuario
 	 */
-	public String nombre;
+	private String nombre;
 	
 	/**
 	 * apellidos del usuario
 	 */
-	public String apellido;
+	private String apellido;
 	
 	/**
 	 * genero del usuario
 	 * M - mujer
 	 * H - hombre
 	 */
-	public String genero;
+	private String genero;
 	
 	/**
 	 * telefono del usuario (10 digitos)
 	 */
-	public String telefono;
+	private String telefono;
 	
 	/**
 	 * roles del usuario

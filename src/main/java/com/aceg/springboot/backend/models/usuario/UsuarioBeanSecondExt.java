@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UsuarioBeanSecondExt extends UsuarioBeanThridExt implements Serializable {
+public class UsuarioBeanSecondExt implements Serializable {
 
 	/**
 	 * Serial UID de la clase
@@ -29,27 +29,27 @@ public class UsuarioBeanSecondExt extends UsuarioBeanThridExt implements Seriali
 	/**
 	 * direccion del usuario
 	 */
-	public String direccion;
+	private String direccion;
 
 	/**
 	 * codigo postal del usuario
 	 */
-	public String cp;
+	private String cp;
 
 	/**
 	 * id del estado de la direccion del usuario
 	 */
-	public Integer idEstado;
+	private Integer idEstado;
 
 	/**
 	 * sueldo mensual del usuario - carnicero
 	 */
-	public Integer sueldoMensual;
+	private Integer sueldoMensual;
 
 	/**
 	 * id de la carniceria donde trabaja el carnicero
 	 */
-	public Integer idCarniceria;
+	private Integer idCarniceria;
 
 	/**
 	 * @return the direccion

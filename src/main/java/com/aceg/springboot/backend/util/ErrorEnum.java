@@ -40,9 +40,9 @@ public enum ErrorEnum {
 	
 	EXC_INEXISTENTE_BD("BD.201", "Registro inexistente", "Registro no existe, intente con otro valor", AcegConstantes.WARNING, "", false),
 	
-	EXC_ERROR_REGISTRO("BD.201", "Error de registro de usuario", "Error al registrar el usuario, comprueba los campos", AcegConstantes.ERROR, "", false),
-
-	EXC_ERROR_CACHE("BD.202", "Error de Cache", "Error de Cache", AcegConstantes.ERROR, "", false)
+	EXC_ERROR_REGISTRO("BD.202", "Error de registro de usuario", "Error al registrar el usuario, comprueba los campos", AcegConstantes.ERROR, "", false),
+	
+	EXC_ERROR_LOGIN("BD.203", "El email ya esta registrado", "Error de login, el emial ya esta registrado", AcegConstantes.ERROR, "", false)
 	
 	;
 	

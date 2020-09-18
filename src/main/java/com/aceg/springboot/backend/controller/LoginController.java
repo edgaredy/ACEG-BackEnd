@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -73,12 +74,12 @@ public class LoginController {
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
-		return ResponseEntity.ok(new LoginResponse(jwt, userDetails.getId(), userDetails.getUsername(),
-				userDetails.getPassword(), roles));
+		return new ResponseEntity<>(new LoginResponse(jwt, userDetails.getId(), userDetails.getUsername(),
+				userDetails.getPassword(), roles), HttpStatus.OK);
 	}
 
 	/**
-	 * Metodo de prueba para el funcionamiero del rol carnicero
+	 * Metodo de prueba para el funcionamiento del rol carnicero
 	 * @return - String Solo Carniceros
 	 */
 	@GetMapping("/home/carnicero")

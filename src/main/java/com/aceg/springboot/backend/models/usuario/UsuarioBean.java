@@ -39,74 +39,16 @@ public class UsuarioBean extends UsuarioBeanFirstExt implements Serializable {
 	 * password del usuario
 	 */
 	private String password;
-
+	
 	/**
-	 * contructor vacion de la clase
+	 * nombre de la empresa del usuario - proveedor
 	 */
-	public UsuarioBean() {
-	}
-
+	private String nombreEmpresa;
+	
 	/**
-	 * Constructor de la clase para registro de un CARNICERO
-	 * 
-	 * @param email    - email del usuario
-	 * @param password - contraseña del usuario
+	 * rol del usuario de la DB
 	 */
-	public UsuarioBean(String nombre, String apellido, String genero, String email, String password, String telefono,
-			String direccion, String cp, Integer sueldoMensual, Integer idCarniceria, Integer idEstado, String roleDb) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.genero = genero;
-		this.email = email;
-		this.password = password;
-		this.telefono = telefono;
-		this.direccion = direccion;
-		this.cp = cp;
-		this.sueldoMensual = sueldoMensual;
-		this.idCarniceria = idCarniceria;
-		this.idEstado = idEstado;
-		this.role = roleDb;
-	}
-
-	/**
-	 * Constructor de la clase para registro de un CLIENTE
-	 * 
-	 * @param email    - email del usuario
-	 * @param password - contraseña del usuario
-	 */
-	public UsuarioBean(String nombre, String apellido, String genero, String email, String password, String telefono,
-			String direccion, String cp, Integer idEstado, String roleDb) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.genero = genero;
-		this.email = email;
-		this.password = password;
-		this.telefono = telefono;
-		this.direccion = direccion;
-		this.cp = cp;
-		this.idEstado = idEstado;
-		this.role = roleDb;
-	}
-
-	/**
-	 * Constructor de la clase para registro de un PROVEEDOR
-	 * 
-	 * @param email    - email del usuario
-	 * @param password - contraseña del usuario
-	 */
-	public UsuarioBean(String nombreEmpresa, String nombre, String apellido, String genero, String email,
-			String password, String telefono, String direccion, String cp, String roleDb) {
-		this.nombreEmpresa = nombreEmpresa;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.genero = genero;
-		this.email = email;
-		this.password = password;
-		this.telefono = telefono;
-		this.direccion = direccion;
-		this.cp = cp;
-		this.role = roleDb;
-	}
+	private String role;
 
 	/**
 	 * @return the idUsuario
@@ -148,6 +90,34 @@ public class UsuarioBean extends UsuarioBeanFirstExt implements Serializable {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	/**
+	 * @return the nombreEmpresa
+	 */
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
+	}
+
+	/**
+	 * @param nombreEmpresa the nombreEmpresa to set
+	 */
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
+	}
+
+	/**
+	 * @return the roleDb
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 * @param roleDb the roleDb to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

@@ -38,22 +38,22 @@ public final class AcegConstantes {
 	/**
 	 * Constante CARNICERO
 	 */
-	public static final String CARNICERO = "CARNICERO";
+	public static final String ROLE_CARNICERO = "ROLE_CARNICERO";
 	
 	/**
 	 * Constante CLIENTE
 	 */
-	public static final String CLIENTE = "CLIENTE";
+	public static final String ROLE_CLIENTE = "ROLE_CLIENTE";
 	
 	/**
 	 * Constante PROVEEDOR
 	 */
-	public static final String PROVEEDOR = "PROVEEDOR";
+	public static final String ROLE_PROVEEDOR = "ROLE_PROVEEDOR";
 	
 	/**
 	 * Constante ADMINISTRADOR
 	 */
-	public static final String ADMINISTRADOR = "ADMINISTRADOR";
+	public static final String ROLE_ADMINISTRADOR = "ROLE_ADMINISTRADOR";
 	
 	/**
 	 * Constante ERROR_EX

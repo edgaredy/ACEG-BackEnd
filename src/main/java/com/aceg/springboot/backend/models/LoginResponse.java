@@ -9,14 +9,14 @@ import java.util.List;
 /**
  * - Descripcion: Clase LoginResponse que contiene el response del metodo login
  * ubicado en LoginController 
- * - Numero de Metodos: 10
+ * - Numero de Metodos: 7
  * 
  * @author - edgar.rangel
  * @version - 1.0
  * @since - 13/09/2020
  */
 
-public class LoginResponse extends LoginResponseExt implements Serializable {
+public class LoginResponse implements Serializable {
 
 	/**
 	 * Serial UID de la clase
@@ -42,6 +42,16 @@ public class LoginResponse extends LoginResponseExt implements Serializable {
 	 * email del usuario
 	 */
 	private String email;
+	
+	/**
+	 * contraseña del usuario
+	 */
+	private String password;
+
+	/**
+	 * Lista de roles del usuario
+	 */
+	private List<String> roles;
 
 	/**
 	 * Constructor publico de la clase
@@ -51,7 +61,6 @@ public class LoginResponse extends LoginResponseExt implements Serializable {
 	 * @param username - nombre de usuario
 	 * @param password - contraseña
 	 * @param roles - lista de roles del usuario
-	 * @param role - rol del usuario
 	 */
 	public LoginResponse(String accessToken, Integer id, String username, String password, List<String> roles) {
 		this.token = accessToken;
@@ -71,26 +80,10 @@ public class LoginResponse extends LoginResponseExt implements Serializable {
 
 	/**
 	 * 
-	 * @param accessToken the accessToken to set
-	 */
-	public void setAccessToken(String accessToken) {
-		this.token = accessToken;
-	}
-
-	/**
-	 * 
 	 * @return the type
 	 */
 	public String getTokenType() {
 		return type;
-	}
-
-	/**
-	 * 
-	 * @param tokenType the tokenType to set
-	 */
-	public void setTokenType(String tokenType) {
-		this.type = tokenType;
 	}
 
 	/**
@@ -103,27 +96,26 @@ public class LoginResponse extends LoginResponseExt implements Serializable {
 
 	/**
 	 * 
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	 * 
 	 * @return the email
 	 */
 	public String getUsername() {
 		return email;
 	}
-
-	/**
-	 * @param username the username to set
-	 */
-	public void setUsername(String username) {
-		this.email = username;
-	}
-
 	
+	/**
+	 * 
+	 * @return the password
+	 */
+	public String getpassword() {
+		return password;
+	}
+	
+	/**
+	 * 
+	 * @return the roles
+	 */
+	public List<String> getRoles() {
+		return roles;
+	}
 
 }

@@ -24,7 +24,7 @@ import com.aceg.springboot.backend.util.RegistroDbConstants;
  * - Descripcion: Clase RegistroDao de la aplicacion que implementa la interfaz
  * IRegistroDao que realiza consultas a la DB para el registro de nuevos
  * usuarios 
- * - Numero de Metodos: 1
+ * - Numero de Metodos: 6
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -33,6 +33,11 @@ import com.aceg.springboot.backend.util.RegistroDbConstants;
 
 @Repository
 public class RegistroDao implements IRegistroDao {
+
+	/**
+	 * Constante Parametro invalido
+	 */
+	private static final String INVALID_PARAM = "Parametro invalido";
 
 	/**
 	 * Referencia hacia JdbcTemplate
@@ -45,7 +50,6 @@ public class RegistroDao implements IRegistroDao {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegistroDao.class);
 
-	
 	/**
 	 * - Registra a un nuevo usuario en la DB (INSERT) en la tabla correspondiente 
 	 * - Nombre de las tablas: ACEG_USUARIO, ACEG_CLIENTE, ACEG_CARNICERO,
@@ -61,53 +65,22 @@ public class RegistroDao implements IRegistroDao {
 
 		LOGGER.info("Ejecutando RegistroDao- registrarUsuario()");
 
-		if (role.name().equals(ERole.ROLE_CLIENTE.name())) {
-			// si el rol del usuario es cliente, realiza un insert en la tabla ACEG_CLIENTE
-			try {
-				jdbcTemplate.update(RegistroDbConstants.INSERT_CLIENTE, usuario.getNombre(), usuario.getApellido(),
-						usuario.getGenero(), usuario.getEmail(), usuario.getTelefono(), usuario.getDireccion(),
-						usuario.getCp(), usuario.getIdEstado());
-			} catch (EmptyResultDataAccessException ex) {
-				LOGGER.error(AcegConstantes.ERROR_EX, ex);
-				throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
+		// mientras el usuario no sea admisnitrador realizo el insert en su tabla correspondiente 
+		if (!role.name().equals(ERole.ROLE_ADMINISTRADOR.name())) {
+			if (role.name().equals(ERole.ROLE_CLIENTE.name())) {
+				registrarCliente(usuario);
+			} else if (role.name().equals(ERole.ROLE_CARNICERO.name())) {
+				registrarCarnicero(usuario);
+			} else if (role.name().equals(ERole.ROLE_PROVEEDOR.name())) {
+				registrarProvedor(usuario);
+			} else {
+				// en caso de que no se encuentre el rol del usuario se lanza una excepcion
+				LOGGER.error(INVALID_PARAM);
+				throw new AcegDaoException(ErrorEnum.EXC_ERROR_PARAMS);
 			}
-		} else if (role.name().equals(ERole.ROLE_CARNICERO.name())) {
-			// si el rol del usuario es carnicero, realiza un insert en la tabla ACEG_CARNICERO
-			try {
-				jdbcTemplate.update(RegistroDbConstants.INSERT_CARNICERO, usuario.getNombre(), usuario.getApellido(),
-						usuario.getGenero(), usuario.getEmail(), usuario.getTelefono(), usuario.getDireccion(),
-						usuario.getCp(), usuario.getSueldoMensual(), usuario.getIdCarniceria(), usuario.getIdEstado());
-			} catch (EmptyResultDataAccessException ex) {
-				LOGGER.error(AcegConstantes.ERROR_EX, ex);
-				throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
-			}
-		} else if (role.name().equals(ERole.ROLE_PROVEEDOR.name())) {
-			// si el rol del usuario es proveedor, realiza un insert en la tabla ACEG_PROVEEDOR
-			try {
-				jdbcTemplate.update(RegistroDbConstants.INSERT_PROVEEDOR, usuario.getNombreEmpresa(),
-						usuario.getNombre(), usuario.getApellido(), usuario.getGenero(), usuario.getEmail(),
-						usuario.getTelefono(), usuario.getDireccion(), usuario.getCp());
-			} catch (EmptyResultDataAccessException ex) {
-				LOGGER.error(AcegConstantes.ERROR_EX, ex);
-				throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
-			}
-		} else if (role.name().equals(ERole.ROLE_ADMINISTRADOR.name())) {
-			// si el rol del usuario es administrador, realiza un insert en la tabla ACEG_CARNICERO
-			try {
-				jdbcTemplate.update(RegistroDbConstants.INSERT_CARNICERO, usuario.getNombre(), usuario.getApellido(),
-						usuario.getGenero(), usuario.getEmail(), usuario.getTelefono(), usuario.getDireccion(),
-						usuario.getCp(), usuario.getSueldoMensual(), usuario.getIdCarniceria(), usuario.getIdEstado());
-			} catch (EmptyResultDataAccessException ex) {
-				LOGGER.error(AcegConstantes.ERROR_EX, ex);
-				throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
-			}
-		} else {
-			// en caso de que no se encuentre el rol del usuario se lanza una excepcion
-			LOGGER.error("ERROR: Rol del usuario no encontrado");
-			throw new AcegDaoException("Rol del usuario no encontrado");
 		}
 
-		// realizo el insert en la tabla ACEG_USUARIO
+		// realizo el insert en la tabla ACEG_USUARIO para todos los roles
 		try {
 			jdbcTemplate.update(RegistroDbConstants.INSERT_USUARIO, usuario.getEmail(), usuario.getPassword(),
 					usuario.getRole());
@@ -118,9 +91,64 @@ public class RegistroDao implements IRegistroDao {
 
 		return usuario;
 	}
+	
+	/**
+	 * - Registra a un nuevo usuario de tipo Cliente en la DB
+	 * - Nombre de tabla: ACEG_CLIENTE
+	 * 
+	 * @param usuario - datos del usuario
+	 * @throws AcegDaoException - error de base de datos
+	 */
+	private void registrarCliente(UsuarioBean usuario) throws AcegDaoException {
+		try {
+			jdbcTemplate.update(RegistroDbConstants.INSERT_CLIENTE, usuario.getNombre(), usuario.getApellido(),
+					usuario.getGenero(), usuario.getEmail(), usuario.getTelefono(), usuario.getDireccion(),
+					usuario.getCp(), usuario.getIdEstado());
+		} catch (EmptyResultDataAccessException ex) {
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
+			throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
+		}
+	}
+	
+	/**
+	 * - Registra a un nuevo usuario de tipo Carnicero en la DB
+	 * - Nombre de tabla: ACEG_CARNICERO
+	 * 
+	 * @param usuario - datos del usuario
+	 * @throws AcegDaoException - error de base de datos
+	 */
+	private void registrarCarnicero(UsuarioBean usuario) throws AcegDaoException {
+		try {
+			jdbcTemplate.update(RegistroDbConstants.INSERT_CARNICERO, usuario.getNombre(),
+					usuario.getApellido(), usuario.getGenero(), usuario.getEmail(), usuario.getTelefono(),
+					usuario.getDireccion(), usuario.getCp(), usuario.getSueldoMensual(),
+					usuario.getIdCarniceria(), usuario.getIdEstado());
+		} catch (EmptyResultDataAccessException ex) {
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
+			throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
+		}
+	}
+	
+	/**
+	 * - Registra a un nuevo usuario de tipo Proveedor en la DB
+	 * - Nombre de tabla: ACEG_PROVEEDOR
+	 * 
+	 * @param usuario - datos del usuario
+	 * @throws AcegDaoException - error de base de datos
+	 */
+	private void registrarProvedor(UsuarioBean usuario) throws AcegDaoException {
+		try {
+			jdbcTemplate.update(RegistroDbConstants.INSERT_PROVEEDOR, usuario.getNombreEmpresa(),
+					usuario.getNombre(), usuario.getApellido(), usuario.getGenero(), usuario.getEmail(),
+					usuario.getTelefono(), usuario.getDireccion(), usuario.getCp());
+		} catch (EmptyResultDataAccessException ex) {
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
+			throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERROR_REGISTRO);
+		}
+	}
 
 	/**
-	 * - Verifica la existencia de un usuario en la DB
+	 * - Verifica la existencia de un usuario en la DB 
 	 * - Nombre de tabla: ACEG_USUARIO
 	 * 
 	 * @param email - email del usuario
@@ -143,8 +171,8 @@ public class RegistroDao implements IRegistroDao {
 	}
 
 	/**
-	 * - Verifica la existencia del rol del usaurio en la DB
-	 * - Nombre de tabla: ACEG_ROLE
+	 * - Verifica la existencia del rol del usaurio en la DB - Nombre de tabla:
+	 * ACEG_ROLE
 	 * 
 	 * @param role - rol del usuario
 	 * @return - boolean, true si existe, false si no existe
