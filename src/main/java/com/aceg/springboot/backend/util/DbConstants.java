@@ -1,12 +1,17 @@
 /**
- * 
+ * Package y Librerias de utilidad de la Clase
  */
 package com.aceg.springboot.backend.util;
 
 /**
- * @author edgar
- *
+ * - Descripcion: Clase de constantes generales para consultas de la base de datos
+ * 
+ * @author - edgar.rangel
+ * @version - 1.0
+ * @since - 11/09/2020
  */
+
+
 public final class DbConstants {
 	
 	/**
@@ -59,6 +64,22 @@ public final class DbConstants {
 	 * Constante ORDER BY
 	 */
 	public static final String ORDER_BY = "ORDER BY ";
+	
+	/**
+	 * Constante INNER JOIN
+	 */
+	public static final String INNER_JOIN = "INNER JOIN ";
+	
+	/**
+	 * Constante ON
+	 */
+	public static final String ON = "ON ";
+	
+	/**
+	 * Constante AND
+	 */
+	public static final String AND = "AND ";
+	
 	
 	/**
 	 * Constante APELLIDO

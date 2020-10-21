@@ -8,6 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import com.aceg.springboot.backend.service.UserDetailsImpl;
+import com.aceg.springboot.backend.util.ErrorEnum;
+
 import io.jsonwebtoken.*;
 
 /**
@@ -36,7 +38,7 @@ public class JwtUtils {
 	/**
 	 * constante con el tiempo de expiracion del JWT
 	 */
-	private static final Integer JWT_EXPIRATION = 86400000;
+	private static final Long JWT_EXPIRATION = 3600000L;
 
 	/**
 	 * Genera el json web token JWT
@@ -51,7 +53,7 @@ public class JwtUtils {
 		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
 		return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
-				.setExpiration(new Date((new Date()).getTime() + JWT_EXPIRATION))
+				.setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION))
 				.signWith(SignatureAlgorithm.HS512, JWT_SECRET).compact();
 	}
 
@@ -80,14 +82,19 @@ public class JwtUtils {
 			return true;
 		} catch (SignatureException e) {
 			LOGGER.error("Invalid JWT signature: {}", e.getMessage());
+			AuthEntryPointJwt.MENSAJE = ErrorEnum.EXC_ERROR_TOKEN.getMessage();
 		} catch (MalformedJwtException e) {
 			LOGGER.error("Invalid JWT token: {}", e.getMessage());
+			AuthEntryPointJwt.MENSAJE = ErrorEnum.EXC_ERROR_TOKEN.getMessage();
 		} catch (ExpiredJwtException e) {
 			LOGGER.error("JWT token is expired: {}", e.getMessage());
+			AuthEntryPointJwt.MENSAJE = ErrorEnum.EXC_ERROR_TOKEN_EXP.getMessage();
 		} catch (UnsupportedJwtException e) {
 			LOGGER.error("JWT token is unsupported: {}", e.getMessage());
+			AuthEntryPointJwt.MENSAJE = ErrorEnum.EXC_ERROR_TOKEN.getMessage();
 		} catch (IllegalArgumentException e) {
 			LOGGER.error("JWT claims string is empty: {}", e.getMessage());
+			AuthEntryPointJwt.MENSAJE = ErrorEnum.EXC_ERROR_TOKEN.getMessage();
 		}
 
 		return false;

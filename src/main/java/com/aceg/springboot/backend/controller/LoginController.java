@@ -17,7 +17,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,13 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aceg.springboot.backend.models.LoginResponse;
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
+import com.aceg.springboot.backend.exception.AcegServiceException;
 import com.aceg.springboot.backend.jwt.JwtUtils;
 import com.aceg.springboot.backend.service.UserDetailsImpl;
 
 /**
  * - Descripcion: Clase LoginController para le gestion de inicio de sesion de
  * un usuario asi como la validacion de este, generacion de token de acceso 
- * - Numero de Metodos: 5
+ * - Numero de Metodos: 1
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -39,7 +39,7 @@ import com.aceg.springboot.backend.service.UserDetailsImpl;
  */
 
 @RestController
-@RequestMapping("/aceg/api")
+@RequestMapping("/login")
 public class LoginController {
 
 	/**
@@ -59,14 +59,25 @@ public class LoginController {
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
-	@PostMapping("/login")
-	public ResponseEntity<LoginResponse> authenticateUser(@Valid @RequestBody UsuarioBean usuario) {
+	/**
+	 * Realiza el login de un usuario por username and password
+	 * 
+	 * Valida nombre de usuario y contraseña
+	 * Valida token / crea token de acceso
+	 * Obtiene el rol del usuario
+	 * 
+	 * @param usuario - nombre de usuario
+	 * @return token del usuario, id del usuario, nombre usuario, password, rol del usuario
+	 * @throws AcegServiceException - excepcion de capa de servicio
+	 */
+	@PostMapping("/login-usuario")
+	public ResponseEntity<LoginResponse> authenticateUser(@Valid @RequestBody UsuarioBean usuario) throws AcegServiceException {
 		
 		LOGGER.info("Ejecutando LoginController - authenticateUser()");
 
 		Authentication authentication = authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getPassword()));
-
+		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
@@ -76,42 +87,6 @@ public class LoginController {
 
 		return new ResponseEntity<>(new LoginResponse(jwt, userDetails.getId(), userDetails.getUsername(),
 				userDetails.getPassword(), roles), HttpStatus.OK);
-	}
-
-	/**
-	 * Metodo de prueba para el funcionamiento del rol carnicero
-	 * @return - String Solo Carniceros
-	 */
-	@GetMapping("/home/carnicero")
-	public String carniceroAccess() {
-		return "Solo Carniceros.";
-	}
-	
-	/**
-	 * Metodo de prueba para el funcionamiero del rol cliente
-	 * @return - String Solo Clientes
-	 */
-	@GetMapping("/home/cliente")
-	public String clienteAccess() {
-		return "Solo Clientes.";
-	}
-	
-	/**
-	 * Metodo de prueba para el funcionamiero del rol proveedor
-	 * @return - String Solo Proveedores
-	 */
-	@GetMapping("/home/proveedor")
-	public String proveedorAccess() {
-		return "Solo Proveedores.";
-	}
-	
-	/**
-	 * Metodo de prueba para el funcionamiero del rol admin
-	 * @return - String Solo Administradores
-	 */
-	@GetMapping("/home/admin")
-	public String adminAccess() {
-		return "Solo Administradores.";
 	}
 
 }

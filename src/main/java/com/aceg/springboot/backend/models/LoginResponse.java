@@ -7,8 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * - Descripcion: Clase LoginResponse que contiene el response del metodo login
- * ubicado en LoginController 
+ * - Descripcion: Clase LoginResponse que contiene la respuesta de tipo LoginResponse
  * - Numero de Metodos: 7
  * 
  * @author - edgar.rangel

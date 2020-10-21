@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.aceg.springboot.backend.dao.login.ILoginDao;
 import com.aceg.springboot.backend.exception.AcegDaoException;
+import com.aceg.springboot.backend.jwt.AuthEntryPointJwt;
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
+import com.aceg.springboot.backend.util.ErrorEnum;
 
 /**
  * - Descripcion: Clase UserDetailsServiceImpl que contiene los metodos relacionados
@@ -47,7 +49,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	 * @throws UsernameNotFoundException - en caso de que no se encuntre el usuario
 	 */
 	@Override
-	public UserDetails loadUserByUsername(String username) {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		LOGGER.info("Entra UserDetailsServiceImpl - loadUserByUsername()");
 
@@ -55,12 +57,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		try {
 			usuario = loginDao.getByUsername(username);
+			return UserDetailsImpl.build(usuario);
 		} catch (AcegDaoException ex) {
 			LOGGER.error("ERROR: ", ex);
-			throw new UsernameNotFoundException("Usuario o contraseña no validos, verifica tus credenciales");
+			AuthEntryPointJwt.MENSAJE = "El nombre de usuario o la contraseña no son correctos";
+			throw new UsernameNotFoundException(ErrorEnum.EXC_ERRO_AUT.getMessage());
 		}
-
-		return UserDetailsImpl.build(usuario);
+		
 	}
 
 }

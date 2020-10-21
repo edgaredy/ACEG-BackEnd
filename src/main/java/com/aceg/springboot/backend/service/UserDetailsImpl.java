@@ -16,7 +16,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.aceg.springboot.backend.models.RoleBean;
+import com.aceg.springboot.backend.models.role.RoleBean;
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 import com.aceg.springboot.backend.util.ERole;
 import com.fasterxml.jackson.annotation.JsonIgnore;

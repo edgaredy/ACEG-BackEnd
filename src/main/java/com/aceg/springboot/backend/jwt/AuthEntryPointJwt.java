@@ -29,6 +29,11 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 	 * La Constante LOGGER para registro de logs
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthEntryPointJwt.class);
+	
+	/**
+	 * Constante con el mensaje que tendra la respuesta
+	 */
+	public static String MENSAJE = "Error: Unauthorized";
 
 	/**
 	 * Muestra mensaje de acceso no autorizado cuando un usuario no cuenta con token o
@@ -48,7 +53,7 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 		LOGGER.info("Ejecuatndo AuthEntryPointJwt - commence()");
 		
 		LOGGER.error("Unauthorized error: {}", authException.getMessage());
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, MENSAJE);
 	}
 
 }

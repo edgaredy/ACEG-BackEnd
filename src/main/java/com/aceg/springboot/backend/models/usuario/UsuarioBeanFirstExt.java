@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.aceg.springboot.backend.models.RoleBean;
+import com.aceg.springboot.backend.models.role.RoleBean;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**

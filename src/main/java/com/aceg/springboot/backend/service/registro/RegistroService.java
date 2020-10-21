@@ -11,14 +11,17 @@ import org.springframework.stereotype.Service;
 import com.aceg.springboot.backend.dao.registro.IRegistroDao;
 import com.aceg.springboot.backend.exception.AcegDaoException;
 import com.aceg.springboot.backend.exception.AcegServiceException;
+import com.aceg.springboot.backend.models.estado.EstadoResponse;
+import com.aceg.springboot.backend.models.municipio.MunicipioResponse;
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
+import com.aceg.springboot.backend.models.usuario.UsuarioResponse;
 import com.aceg.springboot.backend.util.AcegConstantes;
 import com.aceg.springboot.backend.util.ERole;
 
 /**
  * - Descripcion: Clase RegistroService que contiene los metodos relacionados
  * al registro de un usuario
- * - Numero de Metodos: 1
+ * - Numero de Metodos: 6
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -52,7 +55,7 @@ public class RegistroService implements IRegistroService {
 	@Override
 	public UsuarioBean registrarUsuario(UsuarioBean usuario, ERole role) throws AcegServiceException {
 
-		LOGGER.info("Entra registrarUsuario()");
+		LOGGER.info("Entra RegistroService - registrarUsuario()");
 		
 		UsuarioBean usuarioBean = null;	
 
@@ -62,6 +65,8 @@ public class RegistroService implements IRegistroService {
 			LOGGER.error(AcegConstantes.ERROR_EX, ex);
 			throw new AcegServiceException(ex.getError());
 		}
+		
+		LOGGER.info("Sale RegistroService - registrarUsuario()");
 		
 		return usuarioBean;
 	}
@@ -77,18 +82,21 @@ public class RegistroService implements IRegistroService {
 	@Override
 	public boolean existsByUsername(String email) throws AcegServiceException {
 		
-		LOGGER.info("Entra existsByUsername()");
+		LOGGER.info("Entra RegistroService - existsByUsername()");
 		
-		boolean exmailExiste;
+		boolean emailExiste = false;
 		
 		try {
-			exmailExiste = registroDao.existsByUsername(email);
+			emailExiste = registroDao.existsByUsername(email);
 		} catch (AcegDaoException ex) {
 			LOGGER.error(AcegConstantes.ERROR_EX, ex);
-			throw new AcegServiceException(ex.getError());
+			// throw new AcegServiceException(ex.getError());
+			return emailExiste;
 		}
 		
-		return exmailExiste;
+		LOGGER.info("Sale RegistroService - existsByUsername()");
+		
+		return emailExiste;
 		
 	}
 
@@ -103,7 +111,7 @@ public class RegistroService implements IRegistroService {
 	@Override
 	public boolean findByRole(ERole role) throws AcegServiceException {
 		
-		LOGGER.info("Entra findByRole()");
+		LOGGER.info("Entra RegistroService - findByRole()");
 		
 		boolean resultado;
 		
@@ -114,7 +122,89 @@ public class RegistroService implements IRegistroService {
 			throw new AcegServiceException(ex.getError());
 		}
 		
+		LOGGER.info("Sale RegistroService - findByRole()");
+		
 		return resultado;
+	}
+
+	/**
+	 * - Obtiene el nombre de las carnicerias
+	 * - Nombre de tabla: ACEG_CARNICERIA
+	 * 
+	 * @param idEstado - id del estado
+	 * @return - lista de nombres de carnicerias
+	 * @throws AcegServiceException - excepcion de servicio
+	 */
+	@Override
+	public UsuarioResponse getNombreCarniceriasByIdEstado(Long idEstado) throws AcegServiceException {
+		
+		LOGGER.info("Entra RegistroService - getNombreCarnicerias()");
+		
+		UsuarioResponse usuarioResponse = null;
+		
+		try {
+			usuarioResponse = registroDao.getNombreCarniceriasByIdEstado(idEstado);
+		} catch (AcegDaoException ex) {
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
+			throw new AcegServiceException(ex.getError());
+		}
+		
+		LOGGER.info("Sale RegistroService - getNombreCarnicerias()");
+		
+		return usuarioResponse;
+	}
+
+	/**
+	 * - Obtiene el nombre de los estados
+	 * - Nombre de tabla: ACEG_ESTADO
+	 * 
+	 * @return - lista de esatdos
+	 * @throws AcegServiceException - excepcion de servicio
+	 */
+	@Override
+	public EstadoResponse getEstados() throws AcegServiceException {
+		
+	LOGGER.info("Entra RegistroService - getEstados()");
+		
+		EstadoResponse estadoResponse = null;
+		
+		try {
+			estadoResponse = registroDao.getEstados();
+		} catch (AcegDaoException ex) {
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
+			throw new AcegServiceException(ex.getError());
+		}
+		
+		LOGGER.info("Sale RegistroService - getEstados()");
+		
+		return estadoResponse;
+	}
+
+	/**
+	 * - Obtiene el nombre de los municipios por id del estado
+	 * - Nombre de tabla: ACEG_MUNICIPIO
+	 * 
+	 * @param idEstado - id del estado
+	 * @return lista de municipios
+	 * @throws AcegServiceException - excepcion de servicio
+	 */
+	@Override
+	public MunicipioResponse getMunicipiosById(Long idEstado) throws AcegServiceException {
+		
+		LOGGER.info("Entra RegistroService - getMunicipios()");
+		
+		MunicipioResponse municipioResponse = null;
+		
+		try {
+			municipioResponse = registroDao.getMunicipiosById(idEstado);
+		} catch (AcegDaoException ex) {
+			LOGGER.error(AcegConstantes.ERROR_EX, ex);
+			throw new AcegServiceException(ex.getError());
+		}
+		
+		LOGGER.info("Sale RegistroService - getMunicipios()");
+		
+		return municipioResponse;
 	}
 
 }

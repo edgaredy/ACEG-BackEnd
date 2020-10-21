@@ -1,7 +1,7 @@
 /**
  * Package y Librerias de utilidad de la Clase
  */
-package com.aceg.springboot.backend.models;
+package com.aceg.springboot.backend.models.role;
 
 import java.io.Serializable;
 

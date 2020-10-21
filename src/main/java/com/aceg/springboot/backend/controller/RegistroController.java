@@ -14,24 +14,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aceg.springboot.backend.controller.exception.DefaultError;
+import com.aceg.springboot.backend.controller.exception.DefaultErrorList;
 import com.aceg.springboot.backend.exception.AcegServiceException;
-import com.aceg.springboot.backend.models.RoleBean;
+import com.aceg.springboot.backend.models.estado.EstadoResponse;
+import com.aceg.springboot.backend.models.municipio.MunicipioResponse;
+import com.aceg.springboot.backend.models.role.RoleBean;
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
+import com.aceg.springboot.backend.models.usuario.UsuarioResponse;
 import com.aceg.springboot.backend.service.registro.IRegistroService;
 import com.aceg.springboot.backend.util.AcegConstantes;
 import com.aceg.springboot.backend.util.ERole;
 import com.aceg.springboot.backend.util.ErrorEnum;
-import com.aceg.springboot.backend.util.MessageResponse;
 
 /**
  * - Descripcion: Clase RegistroController para le gestion de registro de un
  * nuevo usuario asi como la validacion de la existencia del mismo 
- * - Numero de Metodos: 4
+ * - Numero de Metodos: 6
  * 
  * @author - edgar.rangel
  * @version - 1.0
@@ -39,7 +45,7 @@ import com.aceg.springboot.backend.util.MessageResponse;
  */
 
 @RestController
-@RequestMapping("/aceg/api")
+@RequestMapping("/registro")
 public class RegistroController {
 	
 	/**
@@ -72,10 +78,10 @@ public class RegistroController {
 	 * Registra al nuevo usuario
 	 * 
 	 * @param usuario
-	 * @return
+	 * @return datos del usuario registrado
 	 * @throws AcegServiceException - excepcion de capa de servicio
 	 */
-	@PostMapping("/registro")
+	@PostMapping("/registrar-usuario")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody UsuarioBean usuario) throws AcegServiceException {
 
 		LOGGER.info("-- Ejecutando RegistroController - registerUser()");
@@ -84,8 +90,8 @@ public class RegistroController {
 		exmailExiste = registroService.existsByUsername(usuario.getEmail());
 
 		if (exmailExiste) {
-			LOGGER.error(AcegConstantes.ERROR_EX + "El email ya esta registrado");
-			throw new AcegServiceException(ErrorEnum.EXC_ERROR_LOGIN);
+			LOGGER.error(AcegConstantes.ERROR_EX + ErrorEnum.EXC_ERROR_LOGIN.getMessage());
+			return new ResponseEntity<DefaultErrorList>(new DefaultErrorList(new DefaultError(ErrorEnum.EXC_ERROR_LOGIN)), HttpStatus.BAD_REQUEST);
 		}
 
 		Set<RoleBean> roles = new HashSet<>();
@@ -151,7 +157,7 @@ public class RegistroController {
 			break;
 		default:
 			LOGGER.error(INVALID_PARAM);
-			return ResponseEntity.badRequest().body(new MessageResponse(AcegConstantes.ERROR_EX + INVALID_PARAM));
+			return new ResponseEntity<DefaultErrorList>(new DefaultErrorList(new DefaultError(ErrorEnum.EXC_ERROR_PARAMS)), HttpStatus.BAD_REQUEST);
 		}
 
 		return new ResponseEntity<>(datosUsuario, HttpStatus.OK);
@@ -233,6 +239,54 @@ public class RegistroController {
 			break;
 		}
 
+	}
+	
+	/**
+	 * Obtiene el nombre de las carnicerias
+	 * 
+	 * @return - lista de nombres de carnicerias
+	 * @throws AcegServiceException - excepcion de capa de servicio
+	 */
+	@GetMapping(value = "get-carnicerias/{idEstado}")
+	public ResponseEntity<UsuarioResponse> getCarniceriasByIdEstado(@PathVariable Long idEstado) throws AcegServiceException {
+		
+		LOGGER.info("-- Ejecutando RegistroController - getCarnicerias()");
+
+		UsuarioResponse usuarioResponse = registroService.getNombreCarniceriasByIdEstado(idEstado);
+		
+		return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
+	}
+	
+	/**
+	 * Obtiene el nombre de los estados
+	 * 
+	 * @return - lista de estados
+	 * @throws AcegServiceException - excepcion de capa de servicio
+	 */
+	@GetMapping(value = "get-estados")
+	public ResponseEntity<EstadoResponse> getEstados() throws AcegServiceException {
+		
+		LOGGER.info("-- Ejecutando RegistroController - getCarnicerias()");
+
+		EstadoResponse usuarioResponse = registroService.getEstados();
+		
+		return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
+	}
+	
+	/**
+	 * Obtiene la lista de municipios por id de estado
+	 * 
+	 * @return - lista de municipios
+	 * @throws AcegServiceException - excepcion de capa de servicio
+	 */
+	@GetMapping(value = "get-municipios/{idEstado}")
+	public ResponseEntity<MunicipioResponse> getMunicipiosById(@PathVariable Long idEstado) throws AcegServiceException {
+		
+		LOGGER.info("-- Ejecutando RegistroController - getMunicipios()");
+
+		MunicipioResponse response = registroService.getMunicipiosById(idEstado);
+		
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 }

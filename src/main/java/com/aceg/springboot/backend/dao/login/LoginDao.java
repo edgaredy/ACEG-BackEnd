@@ -63,6 +63,9 @@ public class LoginDao implements ILoginDao {
 		} catch (EmptyResultDataAccessException ex) {
 			LOGGER.error("ERROR: ", ex);
 			throw new AcegRegistroInexistenteException(ErrorEnum.EXC_ERRO_AUT);
+		} catch (RuntimeException re) {
+			LOGGER.error("ERROR: ", re);
+			throw new AcegDaoException(ErrorEnum.EXC_ERROR_BBDD);
 		}
 
 		return loginBean;

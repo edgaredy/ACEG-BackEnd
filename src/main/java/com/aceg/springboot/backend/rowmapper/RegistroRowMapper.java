@@ -1,6 +1,3 @@
-/**
- * Package y Librerias de utilidad de la Clase
- */
 package com.aceg.springboot.backend.rowmapper;
 
 import java.sql.ResultSet;
@@ -12,21 +9,12 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.aceg.springboot.backend.models.usuario.UsuarioBean;
 
-/**
- * Clase UsuarioRowMapper que contiene el mapeo de la tabla ACEG_USUARIO de la
- * base de datos
- * 
- * @author - edgar.rangel
- * @version - 1.0
- * @since - 09/09/2020
- */
-
-public class UsuarioRowMapper implements RowMapper<UsuarioBean> {
-
+public class RegistroRowMapper implements RowMapper<UsuarioBean> {
+	
 	/**
 	 * La Constante LOGGER para registro de logs
 	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(UsuarioRowMapper.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RegistroRowMapper.class);
 
 	/**
 	 * Metodo que realiza el mapeo de la tabla ACEG_LOGIN de la DB
@@ -40,16 +28,20 @@ public class UsuarioRowMapper implements RowMapper<UsuarioBean> {
 	 */
 	@Override
 	public UsuarioBean mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-		LOGGER.info("-- Ejecutando ROW MAPPER - UsuarioRowMapper");
+		
+		LOGGER.info("-- Ejecutando ROW MAPPER - RegistroRowMapper");
 
 		UsuarioBean usuario = new UsuarioBean();
-
-		usuario.setIdUsuario(rs.getInt("ID_USUARIO_PK"));
-		usuario.setEmail(rs.getString("EMAIL"));
-		usuario.setPassword(rs.getString("PASSWORD"));
-		usuario.setRole(rs.getString("ROLE_FK"));
-
+		
+		usuario.setIdCarniceria(rs.getInt("ID_CARNICERIA_PK"));
+		usuario.setNombre(rs.getString("NOMBRE"));
+		usuario.setDireccion(rs.getString("DIRECCION"));
+		usuario.setCp(rs.getString("CP"));
+		usuario.setTelefono(rs.getString("TELEFONO"));
+		usuario.setDescripcion(rs.getString("DESCRIPCION"));
+		usuario.setIdEstado(rs.getInt("ID_ESTADO_FK"));
+		usuario.setMunicipio(rs.getString("MUNICIPIO"));
+		
 		return usuario;
 	}
 

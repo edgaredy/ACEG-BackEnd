@@ -39,12 +39,61 @@ public final class RegistroDbConstants {
 	/**
 	 * Constante que contiene el query para verificar la existencia del email de un usuario
 	 */
-	public static final String GETBYEMAIL = "SELECT * FROM ACEG_USUARIO WHERE EMAIL = ?";
+	public static final String GETBYEMAIL = "SELECT EMAIL FROM ACEG_USUARIO WHERE EMAIL = ?";
 	
 	/**
 	 * Constante que contiene el query para verificar la existencia del role de un usuario
 	 */
 	public static final String GETBYROL = "SELECT * FROM ACEG_ROLE WHERE ROLE_PK = ?";
+	
+	/**
+	 * Constante que contiene el query para obtener el nombre de las carnicerias
+	 */
+	public static final String GETNAMECARNICERIAS = queryGetCarniceriaByIdEstado();
+	
+	/**
+	 * Constante que contiene el query para obtener los estados
+	 */
+	public static final String GETESTADOS = "SELECT * FROM ACEG_ESTADO ORDER BY ID_ESTADO_PK";
+	
+	/**
+	 * Constante que contiene el query para obtener los municipios
+	 */
+	public static final String GETMUNICIPIOS = "SELECT * FROM ACEG_MUNICIPIO WHERE ID_ESTADO_FK = ? ORDER BY MUNICIPIO";
+	
+	private static String queryGetCarniceriaByIdEstado() {
+		
+		StringBuilder query = new StringBuilder();
+		
+		query.append(DbConstants.SELECT);
+		query.append("CA.ID_CARNICERIA_PK");
+		query.append(DbConstants.COMA);
+		query.append("CA.NOMBRE");
+		query.append(DbConstants.COMA);
+		query.append("CA.DIRECCION");
+		query.append(DbConstants.COMA);
+		query.append("CA.CP");
+		query.append(DbConstants.COMA);
+		query.append("CA.TELEFONO");
+		query.append(DbConstants.COMA);
+		query.append("CA.DESCRIPCION");
+		query.append(DbConstants.COMA);
+		query.append("CA.ID_ESTADO_FK");
+		query.append(DbConstants.COMA);
+		query.append("MU.MUNICIPIO ");
+		query.append(DbConstants.FROM);
+		query.append("ACEG_CARNICERIA CA ");
+		query.append(DbConstants.INNER_JOIN);
+		query.append("ACEG_MUNICIPIO MU ");
+		query.append(DbConstants.ON);
+		query.append("MU.ID_ESTADO_FK = CA.ID_ESTADO_FK ");
+		query.append(DbConstants.AND);
+		query.append("MU.ID_MUNICIPIO_PK = CA.ID_MUNICIPIO_FK ");
+		query.append(DbConstants.WHERE);
+		query.append("CA.ID_ESTADO_FK = ? ");
+		
+		return query.toString();
+	}
 
 	/**
 	 * - Metodo que contiene la consulta para insertar un nuevo carnicero en la DB 
@@ -52,7 +101,7 @@ public final class RegistroDbConstants {
 	 * 
 	 * @return - InsertCarnicero query en formato string
 	 */
-	public static String queryInsertCarnicero() {
+	private static String queryInsertCarnicero() {
 
 		StringBuilder query = new StringBuilder();
 
@@ -73,9 +122,10 @@ public final class RegistroDbConstants {
 		query.append("CP, ");
 		query.append("SUELDO_MENSUAL, ");
 		query.append("ID_CARNICERIA_FK, ");
-		query.append("ID_ESTADO_FK) ");
+		query.append("ID_ESTADO_FK, ");
+		query.append("ID_MUNICIPIO_FK) ");
 		query.append(DbConstants.VALUES);
-		query.append("(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		query.append("(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		return query.toString();
 	}
@@ -86,7 +136,7 @@ public final class RegistroDbConstants {
 	 * 
 	 * @return - InsertCliente query en formato string
 	 */
-	public static String queryInsertCliente() {
+	private static String queryInsertCliente() {
 
 		StringBuilder query = new StringBuilder();
 
@@ -105,9 +155,10 @@ public final class RegistroDbConstants {
 		query.append(DbConstants.DIRECCION);
 		query.append(DbConstants.COMA);
 		query.append("CP, ");
-		query.append("ID_ESTADO_FK) ");
+		query.append("ID_ESTADO_FK, ");
+		query.append("ID_MUNICIPIO_FK) ");
 		query.append(DbConstants.VALUES);
-		query.append("(?, ?, ?, ?, ?, ?, ?, ?)");
+		query.append("(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		return query.toString();
 	}
@@ -118,7 +169,7 @@ public final class RegistroDbConstants {
 	 * 
 	 * @return - InsertProveedor query en formato string
 	 */
-	public static String queryInsertProveedor() {
+	private static String queryInsertProveedor() {
 
 		StringBuilder query = new StringBuilder();
 
@@ -137,9 +188,11 @@ public final class RegistroDbConstants {
 		query.append(DbConstants.COMA);
 		query.append(DbConstants.DIRECCION);
 		query.append(DbConstants.COMA);
-		query.append("CP) ");
+		query.append("CP, ");
+		query.append("ID_ESTADO_FK, ");
+		query.append("ID_MUNICIPIO_FK) ");
 		query.append(DbConstants.VALUES);
-		query.append("(?, ?, ?, ?, ?, ?, ?, ?)");
+		query.append("(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		return query.toString();
 	}
@@ -150,7 +203,7 @@ public final class RegistroDbConstants {
 	 * 
 	 * @return - InsertUsuario query en formato string
 	 */
-	public static String queryInsertUsuario() {
+	private static String queryInsertUsuario() {
 
 		StringBuilder query = new StringBuilder();
 

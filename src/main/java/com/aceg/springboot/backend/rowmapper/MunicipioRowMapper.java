@@ -10,26 +10,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.aceg.springboot.backend.models.role.RoleBean;
+import com.aceg.springboot.backend.models.municipio.MunicipioBean;
 
 /**
- * Clase RolRowMapper que contiene el mapeo de la tabla ACEG_ROLE de la base de
- * datos
+ * Clase MunicipioRowMapper que contiene el mapeo de la tabla ACEG_MUNICIPIO de la
+ * base de datos
  * 
  * @author - edgar.rangel
  * @version - 1.0
- * @since - 10/09/2020
+ * @since - 09/10/2020
  */
 
-public class RolRowMapper implements RowMapper<RoleBean> {
-	
+public class MunicipioRowMapper implements RowMapper<MunicipioBean> {
+
 	/**
 	 * La Constante LOGGER para registro de logs
 	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(RolRowMapper.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(MunicipioRowMapper.class);
 
 	/**
-	 * Metodo que realiza el mapeo de la tabla ACEG_ROLE de la DB
+	 * Metodo que realiza el mapeo de la tabla ACEG_MUNICIPIO de la DB
 	 * 
 	 * @param rs     		   -  El nombre de la columna (pre-inicializado por la fila actual)
 	 * @param rowNum 		   -  El numero actual de la fila
@@ -39,16 +39,17 @@ public class RolRowMapper implements RowMapper<RoleBean> {
 	 * @return roleBean 	   -  El valor resultante (puede ser null)
 	 */
 	@Override
-	public RoleBean mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public MunicipioBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
-		LOGGER.info("-- Ejecutando ROW MAPPER - ROLE");
+		LOGGER.info("-- Ejecutando ROW MAPPER - MUNICIPIO");
 		
-		RoleBean roleBean = new RoleBean();
+		MunicipioBean municipio = new MunicipioBean();
 		
-		roleBean.setRole(rs.getString("ROLE_PK"));
-		roleBean.setDescripcion(rs.getString("DESCRIPCION"));
+		municipio.setId(rs.getInt("ID_MUNICIPIO_PK"));
+		municipio.setMunicipio(rs.getString("MUNICIPIO"));
+		municipio.setIdEstado(rs.getInt("ID_ESTADO_FK"));
 		
-		return roleBean;
+		return municipio;
 	}
 
 }

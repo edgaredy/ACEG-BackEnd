@@ -5,7 +5,7 @@ package com.aceg.springboot.backend.util;
 
 /**
  * - Descripcion: Clase LoginDbConstantes que contiene las constantes de datos
- * de ACEG 
+ * para realizar el login de un usuario
  * - Numero de Metodos: 1
  * 
  * @author - edgar.rangel

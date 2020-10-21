@@ -34,7 +34,11 @@ public enum ErrorEnum {
 
 	EXC_OPER_CON_ERRORES("EXC.103", "Operacion con errores", "Operacion con errores", AcegConstantes.ERROR, "", false),
 	
-	EXC_ERRO_AUT("EXC.103", "Error de autenticacion", "Usuario o contraseña invalidos", AcegConstantes.ERROR, "Verifica tus credeciales", false),
+	EXC_ERRO_AUT("EXC.104", "Error de autenticacion", "Usuario o contraseña invalidos", AcegConstantes.ERROR, "Verifica tus credeciales", false),
+	
+	EXC_ERROR_TOKEN("EXC.105", "Token no valido", "Error, token no valido", AcegConstantes.ERROR, "", false),
+	
+	EXC_ERROR_TOKEN_EXP("EXC.106", "El token ha expirado", "El token ha expirado", AcegConstantes.ERROR, "", false),
 	
 	EXC_ERROR_BBDD("BD.200", "Error de Base de datos", "Error de Base de datos", AcegConstantes.ERROR, "", false),
 	
@@ -42,7 +46,7 @@ public enum ErrorEnum {
 	
 	EXC_ERROR_REGISTRO("BD.202", "Error de registro de usuario", "Error al registrar el usuario, comprueba los campos", AcegConstantes.ERROR, "", false),
 	
-	EXC_ERROR_LOGIN("BD.203", "El email ya esta registrado", "Error de login, el emial ya esta registrado", AcegConstantes.ERROR, "", false)
+	EXC_ERROR_LOGIN("BD.203", "El email ya esta registrado", "Error de login, el email ya esta registrado", AcegConstantes.ERROR, "", false)
 	
 	;
 	
